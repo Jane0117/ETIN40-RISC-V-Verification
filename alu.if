@@ -1,0 +1,40 @@
+#=============================================================
+# Easier UVM Control File for ALU
+#=============================================================
+
+# Project / Component name
+component_name = alu
+
+# Interface signals (端口定义)
+# 格式：<信号方向> <信号名> [位宽]
+
+input  control        [3:0]
+input  left_operand   [31:0]
+input  right_operand  [31:0]
+output zero_flag      [0:0]
+output result         [31:0]
+output overflow       [0:0]
+
+# Transaction fields (用于激励、分析)
+# 格式与上方一致，但代表你希望在sequence/monitor中传递的数据
+transaction_field control        [3:0]
+transaction_field left_operand   [31:0]
+transaction_field right_operand  [31:0]
+transaction_field zero_flag      [0:0]
+transaction_field result         [31:0]
+transaction_field overflow       [0:0]
+
+# Interface name（生成 interface 文件名）
+interface_name = alu_if
+
+# 是否生成 Agent（driver + monitor + sequencer）
+generate_agent = yes
+
+# 是否生成 Sequence & Config class
+generate_sequence = yes
+generate_config   = yes
+
+# 生成 coverage skeleton
+generate_coverage = yes
+
+#=============================================================

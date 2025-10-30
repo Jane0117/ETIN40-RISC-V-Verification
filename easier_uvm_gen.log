@@ -1,0 +1,74 @@
+
+Easier UVM Code Generator version 2017-01-19 (Send feedback to info@doulos.com)
+
+Parsing cmdline ...
+
+num args is 2
+Searching for regmodel flag
+Searching for prefix
+Searching for common template
+common_tpl_fname: .\common.tpl
+pnum_m: 0
+Searching for Syosil scoreboard path
+Searching for templates
+T_List:  .\alu.tpl
+List: .\alu.tpl
+Parsing common : .\common.tpl ...
+
+dut_top: alu
+dut_path: D:/RISC-V/ICP-rv/code/RISC-V-main/RISC-V-main/SystemVerilog/Design
+dut_pfile: alu_pinlist
+Project: generated_alu_tb
+Prefix: alu_top
+timeunit: 1ns
+timeprecision: 1ps
+Backup: NO
+uvm_cmdline: +UVM_VERBOSITY=UVM_MEDIUM
+prefix for top-level names: alu_top
+$regmodel = 0
+
+Parsing Templates ...
+
+Reading[1]: .\alu.tpl
+agent_name: agent_name = alu
+trans_item= alu_tx
+if_port = logic [3:0]   control;
+if_port = logic [31:0]  left_operand;
+if_port = logic [31:0]  right_operand;
+if_port = logic         zero_flag;
+if_port = logic [31:0]  result;
+if_port = logic         overflow;
+trans_var: rand logic [3:0]   control;
+trans_var: rand logic [31:0]  left_operand;
+trans_var: rand logic [31:0]  right_operand;
+trans_var: logic         zero_flag;
+trans_var: logic [31:0]  result;
+trans_var: logic         overflow;
+dir: generated_alu_tb/tb/alu
+Writing code to files
+AGENT-ITEM: alu_tx
+var_decl=rand logic [3:0]   control;
+stripped_decl=rand logic      control;
+VARIABLE type = logic, var = control
+var_decl=rand logic [31:0]  left_operand;
+stripped_decl=rand logic     left_operand;
+VARIABLE type = logic, var = left_operand
+var_decl=rand logic [31:0]  right_operand;
+stripped_decl=rand logic     right_operand;
+VARIABLE type = logic, var = right_operand
+var_decl=logic         zero_flag;
+stripped_decl=logic         zero_flag;
+VARIABLE type = logic, var = zero_flag
+var_decl=logic [31:0]  result;
+stripped_decl=logic     result;
+VARIABLE type = logic, var = result
+var_decl=logic         overflow;
+stripped_decl=logic         overflow;
+VARIABLE type = logic, var = overflow
+top env agents = alu
+Generating testbench in generated_alu_tb/tb
+Writing ports for interface alu_if_0
+Generating simulator scripts in generated_alu_tb/sim
+env_list=, agent_list=alu,
+env_list=, agent_list=alu,
+Code Generation complete
