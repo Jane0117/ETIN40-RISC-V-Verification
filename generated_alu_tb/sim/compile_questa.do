@@ -4,8 +4,6 @@ file delete -force work
 vlib work
 
 #compile the dut code
-set cmd "vlog ../dut/common.sv" ;# Ensure package compiles before modules
-eval $cmd
 set cmd "vlog -F ../dut/files.f"
 eval $cmd
 

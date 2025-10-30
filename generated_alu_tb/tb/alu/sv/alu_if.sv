@@ -1,4 +1,4 @@
-// You can insert code here by setting file_header_inc in file .\common.tpl
+// You can insert code here by setting file_header_inc in file .\\common.tpl
 
 //=============================================================================
 // Project  : generated_alu_tb
@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 18:55:14 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 23:56:52 2025
 //=============================================================================
 // Description: Signal interface for agent alu
 //=============================================================================
@@ -32,7 +32,7 @@ interface alu_if();
 
   // You can insert properties and assertions here
 
-  // You can insert code here by setting if_inc_inside_interface in file .\alu.tpl
+  // You can insert code here by setting if_inc_inside_interface in file .\\alu.tpl
 
 endinterface : alu_if
 

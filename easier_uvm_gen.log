@@ -7,13 +7,13 @@ num args is 2
 Searching for regmodel flag
 Searching for prefix
 Searching for common template
-common_tpl_fname: .\common.tpl
+common_tpl_fname: .\\common.tpl
 pnum_m: 0
 Searching for Syosil scoreboard path
 Searching for templates
-T_List:  .\alu.tpl
-List: .\alu.tpl
-Parsing common : .\common.tpl ...
+T_List:  .\\alu.tpl
+List: .\\alu.tpl
+Parsing common : .\\common.tpl ...
 
 dut_top: alu
 dut_path: D:/RISC-V/ICP-rv/code/RISC-V-main/RISC-V-main/SystemVerilog/Design
@@ -29,9 +29,9 @@ $regmodel = 0
 
 Parsing Templates ...
 
-Reading[1]: .\alu.tpl
+Reading[1]: .\\alu.tpl
 agent_name: agent_name = alu
-trans_item= alu_tx
+trans_item= alu_seq_item
 if_port = logic [3:0]   control;
 if_port = logic [31:0]  left_operand;
 if_port = logic [31:0]  right_operand;
@@ -46,7 +46,7 @@ trans_var: logic [31:0]  result;
 trans_var: logic         overflow;
 dir: generated_alu_tb/tb/alu
 Writing code to files
-AGENT-ITEM: alu_tx
+AGENT-ITEM: alu_seq_item
 var_decl=rand logic [3:0]   control;
 stripped_decl=rand logic      control;
 VARIABLE type = logic, var = control

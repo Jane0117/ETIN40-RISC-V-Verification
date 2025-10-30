@@ -1,4 +1,4 @@
-// You can insert code here by setting file_header_inc in file .\common.tpl
+// You can insert code here by setting file_header_inc in file .\\common.tpl
 
 //=============================================================================
 // Project  : generated_alu_tb
@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 18:55:14 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 23:56:52 2025
 //=============================================================================
 // Description: Testbench
 //=============================================================================
@@ -31,13 +31,13 @@ module alu_top_tb;
   // Test harness
   alu_top_th th();
 
-  // You can insert code here by setting tb_inc_inside_module in file .\common.tpl
+  // You can insert code here by setting tb_inc_inside_module in file .\\common.tpl
 
-  // You can remove the initial block below by setting tb_generate_run_test = no in file .\common.tpl
+  // You can remove the initial block below by setting tb_generate_run_test = no in file .\\common.tpl
 
   initial
   begin
-    // You can insert code here by setting tb_prepend_to_initial in file .\common.tpl
+    // You can insert code here by setting tb_prepend_to_initial in file .\\common.tpl
 
     // Create and populate top-level configuration object
     top_env_config = new("top_env_config");
@@ -53,7 +53,7 @@ module alu_top_tb;
     uvm_config_db #(alu_top_config)::set(null, "uvm_test_top", "config", top_env_config);
     uvm_config_db #(alu_top_config)::set(null, "uvm_test_top.m_env", "config", top_env_config);
 
-    // You can insert code here by setting tb_inc_before_run_test in file .\common.tpl
+    // You can insert code here by setting tb_inc_before_run_test in file .\\common.tpl
 
     run_test();
   end

@@ -1,0 +1,4 @@
+# Simulation artifacts
+generated_alu_tb/sim/work/
+generated_alu_tb/sim/vsim.wlf
+

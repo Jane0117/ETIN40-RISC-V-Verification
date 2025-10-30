@@ -1,4 +1,4 @@
-// You can insert code here by setting file_header_inc in file .\common.tpl
+// You can insert code here by setting file_header_inc in file .\\common.tpl
 
 //=============================================================================
 // Project  : generated_alu_tb
@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 18:55:14 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 23:56:52 2025
 //=============================================================================
 // Description: Sequence for agent alu
 //=============================================================================
@@ -16,7 +16,7 @@
 `ifndef ALU_SEQ_LIB_SV
 `define ALU_SEQ_LIB_SV
 
-class alu_default_seq extends uvm_sequence #(alu_tx);
+class alu_default_seq extends uvm_sequence #(alu_seq_item);
 
   `uvm_object_utils(alu_default_seq)
 
@@ -42,7 +42,7 @@ endfunction : new
 task alu_default_seq::body();
   `uvm_info(get_type_name(), "Default sequence starting", UVM_HIGH)
 
-  req = alu_tx::type_id::create("req");
+  req = alu_seq_item::type_id::create("req");
   start_item(req); 
   if ( !req.randomize() )
     `uvm_error(get_type_name(), "Failed to randomize transaction")
@@ -64,7 +64,7 @@ endfunction: set_starting_phase
 `endif
 
 
-// You can insert code here by setting agent_seq_inc in file .\alu.tpl
+// You can insert code here by setting agent_seq_inc in file .\\alu.tpl
 
 `endif // ALU_SEQ_LIB_SV
 

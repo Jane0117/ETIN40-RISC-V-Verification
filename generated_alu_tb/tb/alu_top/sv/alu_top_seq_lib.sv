@@ -1,4 +1,4 @@
-// You can insert code here by setting file_header_inc in file .\common.tpl
+// You can insert code here by setting file_header_inc in file .\\common.tpl
 
 //=============================================================================
 // Project  : generated_alu_tb
@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 18:55:14 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 23:56:52 2025
 //=============================================================================
 // Description: Sequence for alu_top
 //=============================================================================
@@ -97,7 +97,7 @@ endfunction: set_starting_phase
 `endif
 
 
-// You can insert code here by setting top_seq_inc in file .\common.tpl
+// You can insert code here by setting top_seq_inc in file .\\common.tpl
 
 `endif // ALU_TOP_SEQ_LIB_SV
 

@@ -1,7 +1,7 @@
 # ALU agent/interface template for Easier UVM
 
 agent_name = alu
-trans_item = alu_tx
+trans_item = alu_seq_item
 uvm_seqr_class = yes
 
 # Interface ports (match DUT ports and widths)

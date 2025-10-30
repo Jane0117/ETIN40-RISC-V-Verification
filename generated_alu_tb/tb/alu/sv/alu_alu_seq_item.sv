@@ -1,4 +1,4 @@
-// You can insert code here by setting file_header_inc in file .\common.tpl
+// You can insert code here by setting file_header_inc in file .\\common.tpl
 
 //=============================================================================
 // Project  : generated_alu_tb
@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 18:55:14 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 23:56:52 2025
 //=============================================================================
 // Description: Sequence item for alu_sequencer
 //=============================================================================
@@ -16,14 +16,14 @@
 `ifndef ALU_SEQ_ITEM_SV
 `define ALU_SEQ_ITEM_SV
 
-// You can insert code here by setting trans_inc_before_class in file .\alu.tpl
+// You can insert code here by setting trans_inc_before_class in file .\\alu.tpl
 
-class alu_tx extends uvm_sequence_item; 
+class alu_seq_item extends uvm_sequence_item; 
 
-  `uvm_object_utils(alu_tx)
+  `uvm_object_utils(alu_seq_item)
 
-  // To include variables in copy, compare, print, record, pack, unpack, and compare2string, define them using trans_var in file .\alu.tpl
-  // To exclude variables from compare, pack, and unpack methods, define them using trans_meta in file .\alu.tpl
+  // To include variables in copy, compare, print, record, pack, unpack, and compare2string, define them using trans_var in file .\\alu.tpl
+  // To exclude variables from compare, pack, and unpack methods, define them using trans_meta in file .\\alu.tpl
 
   // Transaction variables
   rand logic [3:0]   control;
@@ -36,7 +36,7 @@ class alu_tx extends uvm_sequence_item;
 
   extern function new(string name = "");
 
-  // You can remove do_copy/compare/print/record and convert2string method by setting trans_generate_methods_inside_class = no in file .\alu.tpl
+  // You can remove do_copy/compare/print/record and convert2string method by setting trans_generate_methods_inside_class = no in file .\\alu.tpl
   extern function void do_copy(uvm_object rhs);
   extern function bit  do_compare(uvm_object rhs, uvm_comparer comparer);
   extern function void do_print(uvm_printer printer);
@@ -45,20 +45,20 @@ class alu_tx extends uvm_sequence_item;
   extern function void do_unpack(uvm_packer packer);
   extern function string convert2string();
 
-  // You can insert code here by setting trans_inc_inside_class in file .\alu.tpl
+  // You can insert code here by setting trans_inc_inside_class in file .\\alu.tpl
 
-endclass : alu_tx 
+endclass : alu_seq_item 
 
 
-function alu_tx::new(string name = "");
+function alu_seq_item::new(string name = "");
   super.new(name);
 endfunction : new
 
 
-// You can remove do_copy/compare/print/record and convert2string method by setting trans_generate_methods_after_class = no in file .\alu.tpl
+// You can remove do_copy/compare/print/record and convert2string method by setting trans_generate_methods_after_class = no in file .\\alu.tpl
 
-function void alu_tx::do_copy(uvm_object rhs);
-  alu_tx rhs_;
+function void alu_seq_item::do_copy(uvm_object rhs);
+  alu_seq_item rhs_;
   if (!$cast(rhs_, rhs))
     `uvm_fatal(get_type_name(), "Cast of rhs object failed")
   super.do_copy(rhs);
@@ -71,9 +71,9 @@ function void alu_tx::do_copy(uvm_object rhs);
 endfunction : do_copy
 
 
-function bit alu_tx::do_compare(uvm_object rhs, uvm_comparer comparer);
+function bit alu_seq_item::do_compare(uvm_object rhs, uvm_comparer comparer);
   bit result;
-  alu_tx rhs_;
+  alu_seq_item rhs_;
   if (!$cast(rhs_, rhs))
     `uvm_fatal(get_type_name(), "Cast of rhs object failed")
   result = super.do_compare(rhs, comparer);
@@ -87,7 +87,7 @@ function bit alu_tx::do_compare(uvm_object rhs, uvm_comparer comparer);
 endfunction : do_compare
 
 
-function void alu_tx::do_print(uvm_printer printer);
+function void alu_seq_item::do_print(uvm_printer printer);
   if (printer.knobs.sprint == 0)
     `uvm_info(get_type_name(), convert2string(), UVM_MEDIUM)
   else
@@ -95,7 +95,7 @@ function void alu_tx::do_print(uvm_printer printer);
 endfunction : do_print
 
 
-function void alu_tx::do_record(uvm_recorder recorder);
+function void alu_seq_item::do_record(uvm_recorder recorder);
   super.do_record(recorder);
   // Use the record macros to record the item fields:
   `uvm_record_field("control",       control)      
@@ -107,7 +107,7 @@ function void alu_tx::do_record(uvm_recorder recorder);
 endfunction : do_record
 
 
-function void alu_tx::do_pack(uvm_packer packer);
+function void alu_seq_item::do_pack(uvm_packer packer);
   super.do_pack(packer);
   `uvm_pack_int(control)       
   `uvm_pack_int(left_operand)  
@@ -118,7 +118,7 @@ function void alu_tx::do_pack(uvm_packer packer);
 endfunction : do_pack
 
 
-function void alu_tx::do_unpack(uvm_packer packer);
+function void alu_seq_item::do_unpack(uvm_packer packer);
   super.do_unpack(packer);
   `uvm_unpack_int(control)       
   `uvm_unpack_int(left_operand)  
@@ -129,7 +129,7 @@ function void alu_tx::do_unpack(uvm_packer packer);
 endfunction : do_unpack
 
 
-function string alu_tx::convert2string();
+function string alu_seq_item::convert2string();
   string s;
   $sformat(s, "%s\n", super.convert2string());
   $sformat(s, {"%s\n",
@@ -144,7 +144,7 @@ function string alu_tx::convert2string();
 endfunction : convert2string
 
 
-// You can insert code here by setting trans_inc_after_class in file .\alu.tpl
+// You can insert code here by setting trans_inc_after_class in file .\\alu.tpl
 
 `endif // ALU_SEQ_ITEM_SV
 
