@@ -37,6 +37,12 @@ class execute_top_env extends uvm_env;
   execute_out_config    m_execute_out_config;  
   execute_out_agent     m_execute_out_agent;   
   execute_out_coverage  m_execute_out_coverage;
+  uvm_tlm_analysis_fifo #(execute_out_tx) m_scoreboard_act_fifo;
+  uvm_tlm_analysis_fifo #(execute_out_tx) m_scoreboard_exp_fifo;
+  execute_stage_scoreboard                m_scoreboard;
+
+  uvm_tlm_analysis_fifo #(execute_out_tx)    m_execute_out_fifo; // FIFO connecting monitor to ref model
+  execute_stage_ref_model                    m_ref_model;       // Reference model to consume execute_out transactions
 
   execute_top_config    m_config;
              
@@ -115,6 +121,13 @@ function void execute_top_env::build_phase(uvm_phase phase);
 
   m_execute_out_agent    = execute_out_agent   ::type_id::create("m_execute_out_agent", this);
   m_execute_out_coverage = execute_out_coverage::type_id::create("m_execute_out_coverage", this);
+  
+  m_execute_out_fifo     = new("m_execute_out_fifo");
+  m_ref_model            = execute_stage_ref_model::type_id::create("m_ref_model", this);
+  uvm_config_db #(execute_stage_ref_model)::set(this, "m_execute_out_agent", "ref_model", m_ref_model);
+  m_scoreboard           = execute_stage_scoreboard::type_id::create("m_scoreboard", this);
+  m_scoreboard_act_fifo  = new("m_scoreboard_act_fifo");
+  m_scoreboard_exp_fifo  = new("m_scoreboard_exp_fifo");
 
   // You can insert code here by setting top_env_append_to_build_phase in file execute_common.tpl
 
@@ -129,6 +142,14 @@ function void execute_top_env::connect_phase(uvm_phase phase);
   m_forward_agent.analysis_port.connect(m_forward_coverage.analysis_export);
 
   m_execute_out_agent.analysis_port.connect(m_execute_out_coverage.analysis_export);
+  // FIFO + reference model connections
+  m_execute_out_agent.analysis_port.connect(m_execute_out_fifo.analysis_export);
+  m_execute_out_fifo.analysis_imp.connect(m_ref_model.port);
+  // Scoreboard connections
+  m_execute_out_agent.analysis_port.connect(m_scoreboard_act_fifo.analysis_export);
+  m_scoreboard_act_fifo.analysis_imp.connect(m_scoreboard.act_port);
+  m_ref_model.ref_ap.connect(m_scoreboard_exp_fifo.analysis_export);
+  m_scoreboard_exp_fifo.analysis_imp.connect(m_scoreboard.exp_port);
 
 
   // You can insert code here by setting top_env_append_to_connect_phase in file execute_common.tpl

@@ -1,3 +1,4 @@
-// Placeholder for connecting execute_out monitor analysis port to a user scoreboard.
-// Example:
-// m_execute_out_agent.m_monitor.ap.connect(m_scoreboard.exp_port);
+// Scoreboard connections are managed in execute_top_env.sv:
+//  - execute_out_monitor.analysis_port feeds the actual FIFO.
+//  - execute_stage_ref_model.ref_ap feeds the expected FIFO.
+//  - execute_stage_scoreboard reads both FIFOs and performs the comparison.

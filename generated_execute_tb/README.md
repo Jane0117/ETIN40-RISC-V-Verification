@@ -33,7 +33,14 @@
 - `execute_out.tpl` 通过 `agent_append_to_connect_phase = my_exec_scoreboard_connect.sv inline` 预留 scoreboard hook，具体连接逻辑写在 `include/my_exec_scoreboard_connect.sv`。
 - 想查看 driver 激励/transaction 结构，可在 `tb/decode_in/sv`、`tb/forward/sv` 中打开 `*_transaction.sv`、`*_driver.sv`、`*_seq_lib.sv` 等文件。
 
-## 4. 后续建议
-1. 在 `include/` 中补充 reference model/scoreboard，让 `execute_out_monitor.analysis_port` 连接到你的验证逻辑。
-2. 为 `decode_in` 和 `forward` agent 写 sequence（`*_seq_lib.sv`）来驱动控制、转发场景。
+## 4. 参考模型与 Scoreboard 说明
+- 参考模型实现文件是 `tb/include/execute_stage_ref_model.sv`，作为 `uvm_component` 通过 `main_phase`（原先的 `run_phase`）持续 `port.get()` `execute_out_tx`，并在读取后构建参考 `ref_tr` 送到 `ref_ap`。
+- Scoreboard 实现位于 `tb/include/execute_stage_scoreboard.sv`，同样在 `main_phase` 中分别从 `exp_port` 与 `act_port` 拉取期望/实际事务并逐字段比较，`uvm_info`/`uvm_error` 报告结果。
+- 在 `execute_top_env.sv` 里，`m_execute_out_agent.analysis_port` 通过 `m_execute_out_fifo` 与 `m_ref_model.port` 串起：monitor 先把事务送入 FIFO，再由参考模型消费；参考值通过 `m_ref_model.ref_ap` 送到 `m_scoreboard_exp_fifo`，actual 通过 `m_scoreboard_act_fifo` 进入 scoreboard。
+- Scoreboard 还通过 `m_scoreboard_act_fifo`/`m_scoreboard_exp_fifo` 分别连接 `execute_stage_scoreboard.act_port` 与 `.exp_port`，从而和 reference model、monitor 正常通信；若要扩展也可以在 `include/my_exec_scoreboard_connect.sv` 中补充连接逻辑。
+- 简而言之：monitor→fifo→ref_model→scoreboard expect，monitor→scoreboard actual，与 `execute_top_env.sv` 中 `connect_phase` 的 fifo/ref_model/scoreboard `analysis_port` 连接配合可实现完整闭环验证。
+
+## 5. 后续建议
+done--1. 在 `include/` 中补充 reference model/scoreboard，让 `execute_out_monitor.analysis_port` 连接到你的验证逻辑。
+2. 为 `execute_in` 和 `forward` agent 写 sequence（`*_seq_lib.sv`）来驱动控制、转发场景。
 3. 使用 `generated_execute_tb/sim/compile_*` 脚本或自定义仿真流程编译/运行，验证 execute-stage 的功能性与 scoreboard 比对。
