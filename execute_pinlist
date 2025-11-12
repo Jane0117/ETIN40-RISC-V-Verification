@@ -1,0 +1,23 @@
+!decode_if
+data1             data1
+data2             data2
+immediate_data    immediate_data
+pc_in             pc_in
+control_in        control_in
+
+!forward_if
+wb_forward_data   wb_forward_data
+mem_forward_data  mem_forward_data
+forward_rs1       forward_rs1
+forward_rs2       forward_rs2
+
+!execute_out_if
+control_out          control_out
+alu_data             alu_data
+memory_data          memory_data
+pc_src               pc_src
+jalr_target_offset   jalr_target_offset
+jalr_flag            jalr_flag
+pc_out               pc_out
+overflow             overflow
+
