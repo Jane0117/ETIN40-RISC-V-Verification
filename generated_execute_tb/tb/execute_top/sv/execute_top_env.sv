@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 19:32:24 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 21:15:16 2025
 //=============================================================================
 // Description: Environment for execute_top
 //=============================================================================
@@ -26,9 +26,9 @@ class execute_top_env extends uvm_env;
 
 
   // Child agents
-  decode_in_config      m_decode_in_config;    
-  decode_in_agent       m_decode_in_agent;     
-  decode_in_coverage    m_decode_in_coverage;  
+  execute_in_config     m_execute_in_config;   
+  execute_in_agent      m_execute_in_agent;    
+  execute_in_coverage   m_execute_in_coverage; 
 
   forward_config        m_forward_config;      
   forward_agent         m_forward_agent;       
@@ -67,18 +67,18 @@ function void execute_top_env::build_phase(uvm_phase phase);
   if (!uvm_config_db #(execute_top_config)::get(this, "", "config", m_config)) 
     `uvm_error(get_type_name(), "Unable to get execute_top_config")
 
-  m_decode_in_config                 = new("m_decode_in_config");         
-  m_decode_in_config.vif             = m_config.decode_in_vif;            
-  m_decode_in_config.is_active       = m_config.is_active_decode_in;      
-  m_decode_in_config.checks_enable   = m_config.checks_enable_decode_in;  
-  m_decode_in_config.coverage_enable = m_config.coverage_enable_decode_in;
+  m_execute_in_config                 = new("m_execute_in_config");         
+  m_execute_in_config.vif             = m_config.execute_in_vif;            
+  m_execute_in_config.is_active       = m_config.is_active_execute_in;      
+  m_execute_in_config.checks_enable   = m_config.checks_enable_execute_in;  
+  m_execute_in_config.coverage_enable = m_config.coverage_enable_execute_in;
 
-  // You can insert code here by setting agent_copy_config_vars in file decode_in.tpl
+  // You can insert code here by setting agent_copy_config_vars in file execute_in.tpl
 
-  uvm_config_db #(decode_in_config)::set(this, "m_decode_in_agent", "config", m_decode_in_config);
-  if (m_decode_in_config.is_active == UVM_ACTIVE )
-    uvm_config_db #(decode_in_config)::set(this, "m_decode_in_agent.m_sequencer", "config", m_decode_in_config);
-  uvm_config_db #(decode_in_config)::set(this, "m_decode_in_coverage", "config", m_decode_in_config);
+  uvm_config_db #(execute_in_config)::set(this, "m_execute_in_agent", "config", m_execute_in_config);
+  if (m_execute_in_config.is_active == UVM_ACTIVE )
+    uvm_config_db #(execute_in_config)::set(this, "m_execute_in_agent.m_sequencer", "config", m_execute_in_config);
+  uvm_config_db #(execute_in_config)::set(this, "m_execute_in_coverage", "config", m_execute_in_config);
 
   m_forward_config                 = new("m_forward_config");         
   m_forward_config.vif             = m_config.forward_vif;            
@@ -107,8 +107,8 @@ function void execute_top_env::build_phase(uvm_phase phase);
   uvm_config_db #(execute_out_config)::set(this, "m_execute_out_coverage", "config", m_execute_out_config);
 
 
-  m_decode_in_agent      = decode_in_agent     ::type_id::create("m_decode_in_agent", this);
-  m_decode_in_coverage   = decode_in_coverage  ::type_id::create("m_decode_in_coverage", this);
+  m_execute_in_agent     = execute_in_agent    ::type_id::create("m_execute_in_agent", this);
+  m_execute_in_coverage  = execute_in_coverage ::type_id::create("m_execute_in_coverage", this);
 
   m_forward_agent        = forward_agent       ::type_id::create("m_forward_agent", this);
   m_forward_coverage     = forward_coverage    ::type_id::create("m_forward_coverage", this);
@@ -124,7 +124,7 @@ endfunction : build_phase
 function void execute_top_env::connect_phase(uvm_phase phase);
   `uvm_info(get_type_name(), "In connect_phase", UVM_HIGH)
 
-  m_decode_in_agent.analysis_port.connect(m_decode_in_coverage.analysis_export);
+  m_execute_in_agent.analysis_port.connect(m_execute_in_coverage.analysis_export);
 
   m_forward_agent.analysis_port.connect(m_forward_coverage.analysis_export);
 
@@ -155,7 +155,7 @@ task execute_top_env::run_phase(uvm_phase phase);
   vseq.set_item_context(null, null);
   if ( !vseq.randomize() )
     `uvm_fatal(get_type_name(), "Failed to randomize virtual sequence")
-  vseq.m_decode_in_agent   = m_decode_in_agent;  
+  vseq.m_execute_in_agent  = m_execute_in_agent; 
   vseq.m_forward_agent     = m_forward_agent;    
   vseq.m_execute_out_agent = m_execute_out_agent;
   vseq.m_config            = m_config;           

@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 23:56:52 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 01:31:07 2025
 //=============================================================================
 // Description: Coverage for agent alu
 //=============================================================================
@@ -18,13 +18,13 @@
 
 // You can insert code here by setting agent_cover_inc_before_class in file .\\alu.tpl
 
-class alu_coverage extends uvm_subscriber #(alu_seq_item);
+class alu_coverage extends uvm_subscriber #(transaction);
 
   `uvm_component_utils(alu_coverage)
 
-  alu_config   m_config;    
-  bit          m_is_covered;
-  alu_seq_item m_item;
+  alu_config  m_config;    
+  bit         m_is_covered;
+  transaction m_item;
      
   // You can replace covergroup m_cov by setting agent_cover_inc in file .\\alu.tpl
   // or remove covergroup m_cov by setting agent_cover_generate_methods_inside_class = no in file .\\alu.tpl
@@ -56,7 +56,7 @@ class alu_coverage extends uvm_subscriber #(alu_seq_item);
   // You can remove new, write, and report_phase by setting agent_cover_generate_methods_inside_class = no in file .\\alu.tpl
 
   extern function new(string name, uvm_component parent);
-  extern function void write(input alu_seq_item t);
+  extern function void write(input transaction t);
   extern function void build_phase(uvm_phase phase);
   extern function void report_phase(uvm_phase phase);
 
@@ -74,7 +74,7 @@ function alu_coverage::new(string name, uvm_component parent);
 endfunction : new
 
 
-function void alu_coverage::write(input alu_seq_item t);
+function void alu_coverage::write(input transaction t);
   if (m_config.coverage_enable)
   begin
     m_item = t;

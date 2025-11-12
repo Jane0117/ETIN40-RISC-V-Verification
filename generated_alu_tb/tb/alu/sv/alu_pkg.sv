@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 23:56:52 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 01:31:07 2025
 //=============================================================================
 // Description: Package for agent alu
 //=============================================================================
@@ -20,7 +20,7 @@ package alu_pkg;
   import uvm_pkg::*;
 
 
-  `include "alu_alu_seq_item.sv"
+  `include "alu_transaction.sv"
   `include "alu_config.sv"
   `include "alu_driver.sv"
   `include "alu_monitor.sv"

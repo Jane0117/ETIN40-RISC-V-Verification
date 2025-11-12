@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 19:32:24 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 21:15:16 2025
 //=============================================================================
 // Description: Testbench
 //=============================================================================
@@ -44,10 +44,10 @@ module execute_top_tb;
     if ( !top_env_config.randomize() )
       `uvm_error("execute_top_tb", "Failed to randomize top-level configuration object" )
 
-    top_env_config.decode_in_vif               = th.decode_in_if_0;  
-    top_env_config.is_active_decode_in         = UVM_ACTIVE;         
-    top_env_config.checks_enable_decode_in     = 1;                  
-    top_env_config.coverage_enable_decode_in   = 1;                  
+    top_env_config.execute_in_vif              = th.execute_in_if_0; 
+    top_env_config.is_active_execute_in        = UVM_ACTIVE;         
+    top_env_config.checks_enable_execute_in    = 1;                  
+    top_env_config.coverage_enable_execute_in  = 1;                  
 
     top_env_config.forward_vif                 = th.forward_if_0;    
     top_env_config.is_active_forward           = UVM_ACTIVE;         

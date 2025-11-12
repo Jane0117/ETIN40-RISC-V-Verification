@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 19:32:24 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 21:15:16 2025
 //=============================================================================
 // Description: Sequence for execute_top
 //=============================================================================
@@ -22,7 +22,7 @@ class execute_top_default_seq extends uvm_sequence #(uvm_sequence_item);
 
   execute_top_config m_config;
           
-  decode_in_agent    m_decode_in_agent;  
+  execute_in_agent   m_execute_in_agent; 
   forward_agent      m_forward_agent;    
   execute_out_agent  m_execute_out_agent;
 
@@ -55,16 +55,16 @@ task execute_top_default_seq::body();
   repeat (m_seq_count)
   begin
     fork
-      if (m_decode_in_agent.m_config.is_active == UVM_ACTIVE)
+      if (m_execute_in_agent.m_config.is_active == UVM_ACTIVE)
       begin
-        decode_in_default_seq seq;
-        seq = decode_in_default_seq::type_id::create("seq");
-        seq.set_item_context(this, m_decode_in_agent.m_sequencer);
+        execute_in_default_seq seq;
+        seq = execute_in_default_seq::type_id::create("seq");
+        seq.set_item_context(this, m_execute_in_agent.m_sequencer);
         if ( !seq.randomize() )
           `uvm_error(get_type_name(), "Failed to randomize sequence")
-        seq.m_config = m_decode_in_agent.m_config;
+        seq.m_config = m_execute_in_agent.m_config;
         seq.set_starting_phase( get_starting_phase() );
-        seq.start(m_decode_in_agent.m_sequencer, this);
+        seq.start(m_execute_in_agent.m_sequencer, this);
       end
       if (m_forward_agent.m_config.is_active == UVM_ACTIVE)
       begin

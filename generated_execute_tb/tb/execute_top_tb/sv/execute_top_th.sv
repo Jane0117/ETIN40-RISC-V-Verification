@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 19:32:24 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 21:15:16 2025
 //=============================================================================
 // Description: Test Harness
 //=============================================================================
@@ -40,7 +40,7 @@ module execute_top_th;
   // Pin-level interfaces connected to DUT
   // You can remove interface instances by setting generate_interface_instance = no in the interface template file
 
-  decode_in_if    decode_in_if_0 ();  
+  execute_in_if   execute_in_if_0 (); 
   forward_if      forward_if_0 ();    
   execute_out_if  execute_out_if_0 ();
 

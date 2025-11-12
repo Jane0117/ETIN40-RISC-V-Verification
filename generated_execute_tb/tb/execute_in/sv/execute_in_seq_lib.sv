@@ -3,24 +3,24 @@
 //=============================================================================
 // Project  : generated_execute_tb
 //
-// File Name: decode_in_seq_lib.sv
+// File Name: execute_in_seq_lib.sv
 //
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 19:32:24 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 21:15:16 2025
 //=============================================================================
-// Description: Sequence for agent decode_in
+// Description: Sequence for agent execute_in
 //=============================================================================
 
-`ifndef DECODE_IN_SEQ_LIB_SV
-`define DECODE_IN_SEQ_LIB_SV
+`ifndef EXECUTE_IN_SEQ_LIB_SV
+`define EXECUTE_IN_SEQ_LIB_SV
 
-class decode_in_default_seq extends uvm_sequence #(decode_tx);
+class execute_in_default_seq extends uvm_sequence #(execute_tx);
 
-  `uvm_object_utils(decode_in_default_seq)
+  `uvm_object_utils(execute_in_default_seq)
 
-  decode_in_config  m_config;
+  execute_in_config  m_config;
 
   extern function new(string name = "");
   extern task body();
@@ -31,18 +31,18 @@ class decode_in_default_seq extends uvm_sequence #(decode_tx);
   extern function void set_starting_phase(uvm_phase phase);
 `endif
 
-endclass : decode_in_default_seq
+endclass : execute_in_default_seq
 
 
-function decode_in_default_seq::new(string name = "");
+function execute_in_default_seq::new(string name = "");
   super.new(name);
 endfunction : new
 
 
-task decode_in_default_seq::body();
+task execute_in_default_seq::body();
   `uvm_info(get_type_name(), "Default sequence starting", UVM_HIGH)
 
-  req = decode_tx::type_id::create("req");
+  req = execute_tx::type_id::create("req");
   start_item(req); 
   if ( !req.randomize() )
     `uvm_error(get_type_name(), "Failed to randomize transaction")
@@ -53,18 +53,18 @@ endtask : body
 
 
 `ifndef UVM_POST_VERSION_1_1
-function uvm_phase decode_in_default_seq::get_starting_phase();
+function uvm_phase execute_in_default_seq::get_starting_phase();
   return starting_phase;
 endfunction: get_starting_phase
 
 
-function void decode_in_default_seq::set_starting_phase(uvm_phase phase);
+function void execute_in_default_seq::set_starting_phase(uvm_phase phase);
   starting_phase = phase;
 endfunction: set_starting_phase
 `endif
 
 
-// You can insert code here by setting agent_seq_inc in file decode_in.tpl
+// You can insert code here by setting agent_seq_inc in file execute_in.tpl
 
-`endif // DECODE_IN_SEQ_LIB_SV
+`endif // EXECUTE_IN_SEQ_LIB_SV
 

@@ -1,7 +1,7 @@
 # Decode → Execute agent template
 
-agent_name     = decode_in
-trans_item     = decode_tx
+agent_name     = execute_in
+trans_item     = execute_tx
 uvm_seqr_class = yes
 agent_is_active = UVM_ACTIVE
 

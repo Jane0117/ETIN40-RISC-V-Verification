@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 19:32:24 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 21:15:16 2025
 //=============================================================================
 // Description: Package for execute_top
 //=============================================================================
@@ -19,7 +19,7 @@ package execute_top_pkg;
 
   import uvm_pkg::*;
 
-  import decode_in_pkg::*;
+  import execute_in_pkg::*;
   import forward_pkg::*;
   import execute_out_pkg::*;
 

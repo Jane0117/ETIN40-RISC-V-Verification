@@ -16,7 +16,7 @@ append cmd " +incdir+../tb/include "
 
 # Compile the agents
 set agent_list {\ 
-    decode_in \
+    execute_in \
     forward \
     execute_out \
 }

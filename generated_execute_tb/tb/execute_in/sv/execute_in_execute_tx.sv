@@ -3,27 +3,27 @@
 //=============================================================================
 // Project  : generated_execute_tb
 //
-// File Name: decode_in_seq_item.sv
+// File Name: execute_in_seq_item.sv
 //
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 19:32:24 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 21:15:16 2025
 //=============================================================================
-// Description: Sequence item for decode_in_sequencer
+// Description: Sequence item for execute_in_sequencer
 //=============================================================================
 
-`ifndef DECODE_IN_SEQ_ITEM_SV
-`define DECODE_IN_SEQ_ITEM_SV
+`ifndef EXECUTE_IN_SEQ_ITEM_SV
+`define EXECUTE_IN_SEQ_ITEM_SV
 
-// You can insert code here by setting trans_inc_before_class in file decode_in.tpl
+// You can insert code here by setting trans_inc_before_class in file execute_in.tpl
 
-class decode_tx extends uvm_sequence_item; 
+class execute_tx extends uvm_sequence_item; 
 
-  `uvm_object_utils(decode_tx)
+  `uvm_object_utils(execute_tx)
 
-  // To include variables in copy, compare, print, record, pack, unpack, and compare2string, define them using trans_var in file decode_in.tpl
-  // To exclude variables from compare, pack, and unpack methods, define them using trans_meta in file decode_in.tpl
+  // To include variables in copy, compare, print, record, pack, unpack, and compare2string, define them using trans_var in file execute_in.tpl
+  // To exclude variables from compare, pack, and unpack methods, define them using trans_meta in file execute_in.tpl
 
   // Transaction variables
   rand logic [31:0] data1;
@@ -35,7 +35,7 @@ class decode_tx extends uvm_sequence_item;
 
   extern function new(string name = "");
 
-  // You can remove do_copy/compare/print/record and convert2string method by setting trans_generate_methods_inside_class = no in file decode_in.tpl
+  // You can remove do_copy/compare/print/record and convert2string method by setting trans_generate_methods_inside_class = no in file execute_in.tpl
   extern function void do_copy(uvm_object rhs);
   extern function bit  do_compare(uvm_object rhs, uvm_comparer comparer);
   extern function void do_print(uvm_printer printer);
@@ -44,20 +44,20 @@ class decode_tx extends uvm_sequence_item;
   extern function void do_unpack(uvm_packer packer);
   extern function string convert2string();
 
-  // You can insert code here by setting trans_inc_inside_class in file decode_in.tpl
+  // You can insert code here by setting trans_inc_inside_class in file execute_in.tpl
 
-endclass : decode_tx 
+endclass : execute_tx 
 
 
-function decode_tx::new(string name = "");
+function execute_tx::new(string name = "");
   super.new(name);
 endfunction : new
 
 
-// You can remove do_copy/compare/print/record and convert2string method by setting trans_generate_methods_after_class = no in file decode_in.tpl
+// You can remove do_copy/compare/print/record and convert2string method by setting trans_generate_methods_after_class = no in file execute_in.tpl
 
-function void decode_tx::do_copy(uvm_object rhs);
-  decode_tx rhs_;
+function void execute_tx::do_copy(uvm_object rhs);
+  execute_tx rhs_;
   if (!$cast(rhs_, rhs))
     `uvm_fatal(get_type_name(), "Cast of rhs object failed")
   super.do_copy(rhs);
@@ -69,9 +69,9 @@ function void decode_tx::do_copy(uvm_object rhs);
 endfunction : do_copy
 
 
-function bit decode_tx::do_compare(uvm_object rhs, uvm_comparer comparer);
+function bit execute_tx::do_compare(uvm_object rhs, uvm_comparer comparer);
   bit result;
-  decode_tx rhs_;
+  execute_tx rhs_;
   if (!$cast(rhs_, rhs))
     `uvm_fatal(get_type_name(), "Cast of rhs object failed")
   result = super.do_compare(rhs, comparer);
@@ -84,7 +84,7 @@ function bit decode_tx::do_compare(uvm_object rhs, uvm_comparer comparer);
 endfunction : do_compare
 
 
-function void decode_tx::do_print(uvm_printer printer);
+function void execute_tx::do_print(uvm_printer printer);
   if (printer.knobs.sprint == 0)
     `uvm_info(get_type_name(), convert2string(), UVM_MEDIUM)
   else
@@ -92,7 +92,7 @@ function void decode_tx::do_print(uvm_printer printer);
 endfunction : do_print
 
 
-function void decode_tx::do_record(uvm_recorder recorder);
+function void execute_tx::do_record(uvm_recorder recorder);
   super.do_record(recorder);
   // Use the record macros to record the item fields:
   `uvm_record_field("data1",          data1)         
@@ -103,7 +103,7 @@ function void decode_tx::do_record(uvm_recorder recorder);
 endfunction : do_record
 
 
-function void decode_tx::do_pack(uvm_packer packer);
+function void execute_tx::do_pack(uvm_packer packer);
   super.do_pack(packer);
   `uvm_pack_int(data1)          
   `uvm_pack_int(data2)          
@@ -113,7 +113,7 @@ function void decode_tx::do_pack(uvm_packer packer);
 endfunction : do_pack
 
 
-function void decode_tx::do_unpack(uvm_packer packer);
+function void execute_tx::do_unpack(uvm_packer packer);
   super.do_unpack(packer);
   `uvm_unpack_int(data1)          
   `uvm_unpack_int(data2)          
@@ -123,7 +123,7 @@ function void decode_tx::do_unpack(uvm_packer packer);
 endfunction : do_unpack
 
 
-function string decode_tx::convert2string();
+function string execute_tx::convert2string();
   string s;
   $sformat(s, "%s\n", super.convert2string());
   $sformat(s, {"%s\n",
@@ -137,7 +137,7 @@ function string decode_tx::convert2string();
 endfunction : convert2string
 
 
-// You can insert code here by setting trans_inc_after_class in file decode_in.tpl
+// You can insert code here by setting trans_inc_after_class in file execute_in.tpl
 
-`endif // DECODE_IN_SEQ_ITEM_SV
+`endif // EXECUTE_IN_SEQ_ITEM_SV
 

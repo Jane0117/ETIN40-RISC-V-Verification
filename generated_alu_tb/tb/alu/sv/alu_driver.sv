@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 23:56:52 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 01:31:07 2025
 //=============================================================================
 // Description: Driver for alu
 //=============================================================================
@@ -18,7 +18,7 @@
 
 // You can insert code here by setting driver_inc_before_class in file .\\alu.tpl
 
-class alu_driver extends uvm_driver #(alu_seq_item);
+class alu_driver extends uvm_driver #(transaction);
 
   `uvm_component_utils(alu_driver)
 

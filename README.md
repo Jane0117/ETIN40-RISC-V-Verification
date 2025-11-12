@@ -44,7 +44,7 @@ With `project = generated_alu_tb`, the generator lays out files like this (names
 - `generated_alu_tb/tb/alu/sv/` (agent-level)
   - `alu_pkg.sv` - agent package and includes
   - `alu_if.sv` - interface matching `alu_pinlist`
-  - `alu_seq_item.sv` - sequence item (transaction)
+  - `alu_transaction.sv` - sequence item (transaction)
   - `alu_sequencer.sv` - sequencer class (since `uvm_seqr_class = yes`)
   - `alu_driver.sv` - drives the interface from sequence items
   - `alu_monitor.sv` - samples the interface and publishes transactions

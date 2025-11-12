@@ -9,7 +9,7 @@ eval $cmd
 
 set tb_name execute_top
 set agent_list {\ 
-    decode_in \
+    execute_in \
     forward \
     execute_out \
 }

@@ -4,7 +4,10 @@
 
 ## 1. 目录结构
 - `dut/`：include 原始的 `execute_stage.sv` 以及复制的依赖文件，方便一键编译。
-- `tb/`：`decode_in`、`forward`、`execute_out` 三个 agent 的 interface/transaction/driver/monitor/seq_lib/agent/config/coverage 文件。
+- `tb/`：包含三个 agent（`execute_in`, `forward`, `execute_out`）对应的
+  - `sv` 子目录：`*_if.sv`, `*_tx.sv`, `*_driver.sv`, `*_monitor.sv`, `*_agent.sv`, `*_config.sv`, `*_coverage.sv`, `*_seq_lib.sv`, `*_sequencer.sv` 等 UVC 文件。
+  - `sv` 之外还包括 `sv` 里用于 seq_lib 和 coverage 的辅助内容。
+- `tb/execute_top`：自动生成的 top-level env/test 包括 `execute_top_env.sv`, `execute_top_config.sv`, `execute_top_pkg.sv`, `execute_top_tb.sv`, `execute_top_th.sv`, `execute_top_test.sv`。
 - `sim/`：Questa/VCS/IUS/Riviera 的编译/仿真脚本，自动使用 `files.f` 与 `uvm_cmdline`。
 
 ## 2. 重新生成步骤
@@ -16,7 +19,7 @@
    - 你可以在 `execute_common.tpl` 里面观察到 `dut_top = execute_stage`、`project = generated_execute_tb`，以及 `execute_pinlist` 三段 `!decode_if`/`!forward_if`/`!execute_out_if` 的端口映射，确保这些绑定到刚刚添加的 `.tpl` 文件中定义的 interface。
 3. 执行生成命令（Linux/WSL 下需加 `PERL5LIB=$PWD`）：
    ```
-   PERL5LIB=$PWD perl easier_uvm_gen.pl -m execute_common.tpl decode_in.tpl forward.tpl execute_out.tpl
+   perl easier_uvm_gen.pl -m execute_common.tpl decode_in.tpl forward.tpl execute_out.tpl
    ```
    该命令会依次生成三个 agent 的 UVC、顶层 env/test、以及 `generated_execute_tb` 的目录结构。
 

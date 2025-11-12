@@ -8,7 +8,7 @@
 //
 // Version:   1.0
 //
-// Code created by Easier UVM Code Generator version 2017-01-19 on Thu Oct 30 23:56:52 2025
+// Code created by Easier UVM Code Generator version 2017-01-19 on Wed Nov 12 01:31:07 2025
 //=============================================================================
 // Description: Agent for alu
 //=============================================================================
@@ -22,13 +22,12 @@ class alu_agent extends uvm_agent;
 
   `uvm_component_utils(alu_agent)
 
-  uvm_analysis_port #(alu_seq_item) analysis_port;
+  uvm_analysis_port #(transaction) analysis_port;
 
   alu_config       m_config;
   alu_sequencer_t  m_sequencer;
   alu_driver       m_driver;
   alu_monitor      m_monitor;
-
   local int m_is_active = -1;
 
   extern function new(string name, uvm_component parent);
