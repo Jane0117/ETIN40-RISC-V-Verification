@@ -45,11 +45,11 @@ module execute_top_th;
   execute_out_if  execute_out_if_0 ();
 
   execute_stage uut (
-    .data1             (decode_if.data1),
-    .data2             (decode_if.data2),
-    .immediate_data    (decode_if.immediate_data),
-    .pc_in             (decode_if.pc_in),
-    .control_in        (decode_if.control_in),
+    .data1             (execute_in_if_0.data1),
+    .data2             (execute_in_if_0.data2),
+    .immediate_data    (execute_in_if_0.immediate_data),
+    .pc_in             (execute_in_if_0.pc_in),
+    .control_in        (execute_in_if_0.control_in),
     .wb_forward_data   (forward_if_0.wb_forward_data),
     .mem_forward_data  (forward_if_0.mem_forward_data),
     .forward_rs1       (forward_if_0.forward_rs1),

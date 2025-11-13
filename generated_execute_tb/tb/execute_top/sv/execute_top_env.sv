@@ -144,12 +144,12 @@ function void execute_top_env::connect_phase(uvm_phase phase);
   m_execute_out_agent.analysis_port.connect(m_execute_out_coverage.analysis_export);
   // FIFO + reference model connections
   m_execute_out_agent.analysis_port.connect(m_execute_out_fifo.analysis_export);
-  m_execute_out_fifo.analysis_imp.connect(m_ref_model.port);
+  m_execute_out_fifo.analysis_export.connect(m_ref_model.port);
   // Scoreboard connections
   m_execute_out_agent.analysis_port.connect(m_scoreboard_act_fifo.analysis_export);
-  m_scoreboard_act_fifo.analysis_imp.connect(m_scoreboard.act_port);
+  m_scoreboard_act_fifo.analysis_export.connect(m_scoreboard.act_port);
   m_ref_model.ref_ap.connect(m_scoreboard_exp_fifo.analysis_export);
-  m_scoreboard_exp_fifo.analysis_imp.connect(m_scoreboard.exp_port);
+  m_scoreboard_exp_fifo.analysis_export.connect(m_scoreboard.exp_port);
 
 
   // You can insert code here by setting top_env_append_to_connect_phase in file execute_common.tpl

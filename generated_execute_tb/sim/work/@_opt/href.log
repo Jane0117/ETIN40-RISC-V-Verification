@@ -1,0 +1,36 @@
+BEGIN 3:execute_in_if:fast__2:work
+    data2 :  1:execute_top_th:fast:work
+    pc_in :  1:execute_top_th:fast:work
+    data1 :  1:execute_top_th:fast:work
+    immediate_data :  1:execute_top_th:fast:work
+    control_in :  1:execute_top_th:fast:work
+END 
+BEGIN 3:execute_out_if:fast__2:work
+    alu_data :  1:execute_top_th:fast:work
+    pc_src :  1:execute_top_th:fast:work
+    jalr_flag :  1:execute_top_th:fast:work
+    overflow :  1:execute_top_th:fast:work
+    control_out :  1:execute_top_th:fast:work
+    memory_data :  1:execute_top_th:fast:work
+    jalr_target_offset :  1:execute_top_th:fast:work
+    pc_out :  1:execute_top_th:fast:work
+END 
+BEGIN 3:forward_if:fast__1:work
+    forward_rs1 :  1:forward_pkg:fast:work
+    forward_rs2 :  1:forward_pkg:fast:work
+    wb_forward_data :  1:forward_pkg:fast:work
+    mem_forward_data :  1:forward_pkg:fast:work
+END 
+BEGIN 3:execute_in_if:fast__1:work
+    control_in :  1:execute_in_pkg:fast:work
+    data2 :  1:execute_in_pkg:fast:work
+    immediate_data :  1:execute_in_pkg:fast:work
+    pc_in :  1:execute_in_pkg:fast:work
+    data1 :  1:execute_in_pkg:fast:work
+END 
+BEGIN 3:forward_if:fast__2:work
+    wb_forward_data :  1:execute_top_th:fast:work
+    forward_rs1 :  1:execute_top_th:fast:work
+    mem_forward_data :  1:execute_top_th:fast:work
+    forward_rs2 :  1:execute_top_th:fast:work
+END 

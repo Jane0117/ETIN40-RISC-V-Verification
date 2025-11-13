@@ -1,3 +1,8 @@
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+import execute_out_pkg::*;
+import common::*;
+
 class execute_stage_ref_model extends uvm_component;
   `uvm_component_utils(execute_stage_ref_model)
 

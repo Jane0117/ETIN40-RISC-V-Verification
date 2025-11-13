@@ -22,6 +22,7 @@ interface execute_out_if();
   timeprecision 1ps;
 
   import execute_out_pkg::*;
+  import common::*;
 
   control_type control_out;
   logic [31:0] alu_data;

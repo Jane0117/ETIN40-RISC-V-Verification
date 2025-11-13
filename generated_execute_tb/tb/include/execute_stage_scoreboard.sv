@@ -1,3 +1,8 @@
+`include "uvm_macros.svh"
+import uvm_pkg::*;
+import execute_out_pkg::*;
+import common::*;
+
 class execute_stage_scoreboard extends uvm_scoreboard;
   `uvm_component_utils(execute_stage_scoreboard)
 
@@ -51,14 +56,14 @@ task execute_stage_scoreboard::main_phase(uvm_phase phase);
         result &= (get_actual.pc_out == tmp_tran.pc_out);
         result &= (get_actual.overflow == tmp_tran.overflow);
         if (result) begin
-          `uvm_info(get_type_name(), \"execute_stage comparison passed\", UVM_LOW);
+          `uvm_info(get_type_name(), "execute_stage comparison passed", UVM_LOW);
         end else begin
-          `uvm_error(get_type_name(), \"execute_stage comparison FAILED\");
-          `uvm_info(get_type_name(), $sformatf(\"Expect: control_out=%0h, alu_data=%0d, memory_data=%0d, pc_src=%0b\", tmp_tran.control_out, tmp_tran.alu_data, tmp_tran.memory_data, tmp_tran.pc_src), UVM_LOW);
-          `uvm_info(get_type_name(), $sformatf(\"Actual: control_out=%0h, alu_data=%0d, memory_data=%0d, pc_src=%0b\", get_actual.control_out, get_actual.alu_data, get_actual.memory_data, get_actual.pc_src), UVM_LOW);
+          `uvm_error(get_type_name(), "execute_stage comparison FAILED");
+          `uvm_info(get_type_name(), $sformatf("Expect: control_out=%0h, alu_data=%0d, memory_data=%0d, pc_src=%0b", tmp_tran.control_out, tmp_tran.alu_data, tmp_tran.memory_data, tmp_tran.pc_src), UVM_LOW);
+          `uvm_info(get_type_name(), $sformatf("Actual: control_out=%0h, alu_data=%0d, memory_data=%0d, pc_src=%0b", get_actual.control_out, get_actual.alu_data, get_actual.memory_data, get_actual.pc_src), UVM_LOW);
         end
       end else begin
-        `uvm_error(get_type_name(), \"actual transaction received while expect queue empty\");
+        `uvm_error(get_type_name(), "actual transaction received while expect queue empty");
       end
     end
   join_none

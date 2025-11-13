@@ -22,6 +22,7 @@ interface execute_in_if();
   timeprecision 1ps;
 
   import execute_in_pkg::*;
+  import common::*;
 
   logic [31:0] data1;
   logic [31:0] data2;

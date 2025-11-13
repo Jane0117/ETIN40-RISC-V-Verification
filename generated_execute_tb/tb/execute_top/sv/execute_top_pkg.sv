@@ -25,6 +25,8 @@ package execute_top_pkg;
 
   `include "execute_top_config.sv"
   `include "execute_top_seq_lib.sv"
+  `include "execute_stage_scoreboard.sv"
+  `include "execute_stage_ref_model.sv"
   `include "execute_top_env.sv"
 
 endpackage : execute_top_pkg

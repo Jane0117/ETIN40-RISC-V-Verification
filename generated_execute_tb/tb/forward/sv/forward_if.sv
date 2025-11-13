@@ -22,6 +22,7 @@ interface forward_if();
   timeprecision 1ps;
 
   import forward_pkg::*;
+  import common::*;
 
   logic [31:0] wb_forward_data;
   logic [31:0] mem_forward_data;

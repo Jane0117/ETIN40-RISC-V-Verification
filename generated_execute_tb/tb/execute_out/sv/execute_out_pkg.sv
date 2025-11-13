@@ -18,6 +18,7 @@ package execute_out_pkg;
   `include "uvm_macros.svh"
 
   import uvm_pkg::*;
+  import common::*;
 
 
   `include "execute_out_execute_out_tx.sv"
