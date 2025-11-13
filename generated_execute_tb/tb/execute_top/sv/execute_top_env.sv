@@ -82,6 +82,8 @@ function void execute_top_env::build_phase(uvm_phase phase);
   // You can insert code here by setting agent_copy_config_vars in file execute_in.tpl
 
   uvm_config_db #(execute_in_config)::set(this, "m_execute_in_agent", "config", m_execute_in_config);
+  uvm_config_db #(virtual execute_in_if)::set(this, "m_execute_in_agent.m_driver", "vif", m_execute_in_config.vif);
+  uvm_config_db #(virtual execute_in_if)::set(this, "m_execute_in_agent.m_monitor", "vif", m_execute_in_config.vif);
   if (m_execute_in_config.is_active == UVM_ACTIVE )
     uvm_config_db #(execute_in_config)::set(this, "m_execute_in_agent.m_sequencer", "config", m_execute_in_config);
   uvm_config_db #(execute_in_config)::set(this, "m_execute_in_coverage", "config", m_execute_in_config);
@@ -95,6 +97,8 @@ function void execute_top_env::build_phase(uvm_phase phase);
   // You can insert code here by setting agent_copy_config_vars in file forward.tpl
 
   uvm_config_db #(forward_config)::set(this, "m_forward_agent", "config", m_forward_config);
+  uvm_config_db #(virtual forward_if)::set(this, "m_forward_agent.m_driver", "vif", m_forward_config.vif);
+  uvm_config_db #(virtual forward_if)::set(this, "m_forward_agent.m_monitor", "vif", m_forward_config.vif);
   if (m_forward_config.is_active == UVM_ACTIVE )
     uvm_config_db #(forward_config)::set(this, "m_forward_agent.m_sequencer", "config", m_forward_config);
   uvm_config_db #(forward_config)::set(this, "m_forward_coverage", "config", m_forward_config);
@@ -144,12 +148,12 @@ function void execute_top_env::connect_phase(uvm_phase phase);
   m_execute_out_agent.analysis_port.connect(m_execute_out_coverage.analysis_export);
   // FIFO + reference model connections
   m_execute_out_agent.analysis_port.connect(m_execute_out_fifo.analysis_export);
-  m_execute_out_fifo.analysis_export.connect(m_ref_model.port);
+  m_ref_model.port.connect(m_execute_out_fifo.get_peek_export);
   // Scoreboard connections
   m_execute_out_agent.analysis_port.connect(m_scoreboard_act_fifo.analysis_export);
-  m_scoreboard_act_fifo.analysis_export.connect(m_scoreboard.act_port);
+  m_scoreboard.act_port.connect(m_scoreboard_act_fifo.get_peek_export);
   m_ref_model.ref_ap.connect(m_scoreboard_exp_fifo.analysis_export);
-  m_scoreboard_exp_fifo.analysis_export.connect(m_scoreboard.exp_port);
+  m_scoreboard.exp_port.connect(m_scoreboard_exp_fifo.get_peek_export);
 
 
   // You can insert code here by setting top_env_append_to_connect_phase in file execute_common.tpl

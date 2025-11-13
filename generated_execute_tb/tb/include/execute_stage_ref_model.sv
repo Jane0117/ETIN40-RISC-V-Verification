@@ -6,7 +6,7 @@ import common::*;
 class execute_stage_ref_model extends uvm_component;
   `uvm_component_utils(execute_stage_ref_model)
 
-  uvm_blocking_get_port #(execute_out_tx) port;
+  uvm_get_peek_port    #(execute_out_tx) port;
   uvm_analysis_port  #(execute_out_tx) ref_ap;  // 用来把参考值送 scoreboard
 
   extern function new(string name, uvm_component parent);

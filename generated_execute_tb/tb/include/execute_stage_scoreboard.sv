@@ -6,8 +6,8 @@ import common::*;
 class execute_stage_scoreboard extends uvm_scoreboard;
   `uvm_component_utils(execute_stage_scoreboard)
 
-  uvm_blocking_get_port #(execute_out_tx) exp_port;
-  uvm_blocking_get_port #(execute_out_tx) act_port;
+  uvm_get_peek_port    #(execute_out_tx) exp_port;
+  uvm_get_peek_port    #(execute_out_tx) act_port;
   execute_out_tx expect_queue[$];
 
   extern function new(string name, uvm_component parent = null);
