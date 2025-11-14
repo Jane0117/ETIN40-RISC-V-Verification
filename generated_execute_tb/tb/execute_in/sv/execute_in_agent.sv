@@ -60,10 +60,11 @@ function void execute_in_agent::build_phase(uvm_phase phase);
     `uvm_error(get_type_name(), "execute_in config not found")
 
   m_monitor     = execute_in_monitor    ::type_id::create("m_monitor", this);
-
+  m_monitor.m_config = m_config; // fix warning: Pass config to monitor
   if (get_is_active() == UVM_ACTIVE)
   begin
     m_driver    = execute_in_driver     ::type_id::create("m_driver", this);
+    m_driver.m_config = m_config; // fix warning: Pass config to driver
     m_sequencer = execute_in_sequencer_t::type_id::create("m_sequencer", this);
   end
 

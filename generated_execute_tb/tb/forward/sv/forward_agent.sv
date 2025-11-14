@@ -60,10 +60,11 @@ function void forward_agent::build_phase(uvm_phase phase);
     `uvm_error(get_type_name(), "forward config not found")
 
   m_monitor     = forward_monitor    ::type_id::create("m_monitor", this);
-
+  m_monitor.m_config = m_config; // fix warning: Pass config to monitor
   if (get_is_active() == UVM_ACTIVE)
   begin
     m_driver    = forward_driver     ::type_id::create("m_driver", this);
+    m_driver.m_config = m_config; // fix warning: Pass config to driver
     m_sequencer = forward_sequencer_t::type_id::create("m_sequencer", this);
   end
 
