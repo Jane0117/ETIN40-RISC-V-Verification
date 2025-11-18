@@ -28,7 +28,7 @@ class forward_driver extends uvm_driver #(forward_tx);
 
   extern function new(string name, uvm_component parent);
   extern function void build_phase(uvm_phase phase);
-  extern task main_phase(uvm_phase phase);
+  extern task run_phase(uvm_phase phase);
   extern task drive_transaction(forward_tx tr);
 
   // You can insert code here by setting driver_inc_inside_class in file forward.tpl
@@ -54,7 +54,7 @@ function void forward_driver::build_phase(uvm_phase phase);
 endfunction : build_phase
 
 
-task forward_driver::main_phase(uvm_phase phase);
+task forward_driver::run_phase(uvm_phase phase);
   forward_tx req;
   `uvm_info(get_type_name(), "main_phase start", UVM_LOW)
   super.main_phase(phase);
@@ -64,11 +64,13 @@ task forward_driver::main_phase(uvm_phase phase);
     seq_item_port.item_done();
   end
   `uvm_info(get_type_name(), "main_phase end", UVM_LOW)
-endtask : main_phase
+endtask : run_phase
 
 
 task forward_driver::drive_transaction(forward_tx tr);
   `uvm_info(get_type_name(), "drive_transaction start", UVM_LOW)
+  `uvm_info("DRV", $sformatf("driver sees clock=%0b", vif.clock), UVM_LOW)
+
   if (vif == null && m_config != null)
     vif = m_config.vif;
   if (vif == null) begin
@@ -82,7 +84,7 @@ task forward_driver::drive_transaction(forward_tx tr);
   `uvm_info(get_type_name(), $sformatf("Driving forward transaction: wb=%0h mem=%0h rs1=%0h rs2=%0h",
                                       tr.wb_forward_data, tr.mem_forward_data,
                                       tr.forward_rs1, tr.forward_rs2), UVM_LOW)
-  //@(posedge vif.clock);
+  @(posedge vif.clock);
   `uvm_info(get_type_name(), "drive_transaction end", UVM_LOW)
 endtask : drive_transaction
 

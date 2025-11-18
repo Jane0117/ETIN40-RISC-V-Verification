@@ -16,7 +16,7 @@
 `ifndef EXECUTE_OUT_IF_SV
 `define EXECUTE_OUT_IF_SV
 
-interface execute_out_if(input clock); 
+interface execute_out_if(input clock, input reset); 
 
   timeunit      1ns;
   timeprecision 1ps;

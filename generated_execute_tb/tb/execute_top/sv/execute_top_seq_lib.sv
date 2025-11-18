@@ -27,7 +27,7 @@ class execute_top_default_seq extends uvm_sequence #(uvm_sequence_item);
   execute_out_agent  m_execute_out_agent;
 
   // Number of times to repeat child sequences
-  int m_seq_count = 3;
+  int m_seq_count = 5;
 
   extern function new(string name = "");
   extern task body();

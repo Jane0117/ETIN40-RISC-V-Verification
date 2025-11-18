@@ -28,7 +28,7 @@ class execute_in_driver extends uvm_driver #(execute_tx);
 
   extern function new(string name, uvm_component parent);
   extern function void build_phase(uvm_phase phase);
-  extern task main_phase(uvm_phase phase);
+  extern task run_phase(uvm_phase phase);
   extern task drive_transaction(execute_tx tr);
 
   // You can insert code here by setting driver_inc_inside_class in file execute_in.tpl
@@ -52,7 +52,7 @@ function void execute_in_driver::build_phase(uvm_phase phase);
     `uvm_error(get_type_name(), "execute_in_config.vif is null")
 endfunction : build_phase
 
-task execute_in_driver::main_phase(uvm_phase phase);
+task execute_in_driver::run_phase(uvm_phase phase);
   execute_tx req;
   super.main_phase(phase);
   `uvm_info(get_type_name(), "main_phase is called", UVM_LOW);
@@ -61,7 +61,7 @@ task execute_in_driver::main_phase(uvm_phase phase);
     drive_transaction(req);
     seq_item_port.item_done();
   end
-endtask : main_phase
+endtask : run_phase
 
 task execute_in_driver::drive_transaction(execute_tx tr);
   if (vif == null && m_config != null)
@@ -71,13 +71,14 @@ task execute_in_driver::drive_transaction(execute_tx tr);
     return;
   end
    `uvm_info(get_type_name(), "begin to drive execute_in", UVM_LOW);
+   `uvm_info("DRV", $sformatf("driver sees clock=%0b", vif.clock), UVM_LOW)
   vif.data1          <= tr.data1;
   vif.data2          <= tr.data2;
   vif.immediate_data <= tr.immediate_data;
   vif.pc_in          <= tr.pc_in;
   vif.control_in     <= tr.control_in;
   `uvm_info(get_type_name(), $sformatf("Driving transaction: data1=%0h data2=%0h immediate=%0h pc=%0h", tr.data1, tr.data2, tr.immediate_data, tr.pc_in), UVM_LOW)
-  //@(posedge vif.clock);
+  @(posedge vif.clock);
   `uvm_info(get_type_name(), "drive_transaction end", UVM_LOW)
 endtask : drive_transaction
 

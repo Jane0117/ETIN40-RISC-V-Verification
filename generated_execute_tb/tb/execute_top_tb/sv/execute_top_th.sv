@@ -40,9 +40,9 @@ module execute_top_th;
   // Pin-level interfaces connected to DUT
   // You can remove interface instances by setting generate_interface_instance = no in the interface template file
 
-  execute_in_if   execute_in_if_0 (clock); 
-  forward_if      forward_if_0 (clock);    
-  execute_out_if  execute_out_if_0 (clock);
+  execute_in_if   execute_in_if_0 (clock,reset); 
+  forward_if      forward_if_0 (clock,reset);    
+  execute_out_if  execute_out_if_0 (clock,reset);
 
   execute_stage uut (
     .data1             (execute_in_if_0.data1),
