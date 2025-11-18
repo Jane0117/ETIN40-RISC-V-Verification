@@ -175,20 +175,24 @@ endfunction : end_of_elaboration_phase
 // You can remove run_phase by setting top_env_generate_run_phase = no in file execute_common.tpl
 
 task execute_top_env::run_phase(uvm_phase phase);
-  execute_top_default_seq vseq;
-  vseq = execute_top_default_seq::type_id::create("vseq");
-  vseq.set_item_context(null, null);
-  if ( !vseq.randomize() )
-    `uvm_fatal(get_type_name(), "Failed to randomize virtual sequence")
-  vseq.m_execute_in_agent  = m_execute_in_agent; 
-  vseq.m_forward_agent     = m_forward_agent;    
-  vseq.m_execute_out_agent = m_execute_out_agent;
-  vseq.m_config            = m_config;           
-  vseq.set_starting_phase(phase);
-  vseq.start(null);
-
-  // You can insert code here by setting top_env_append_to_run_phase in file execute_common.tpl
-
+  
+  //execute_top_default_seq vseq;
+    phase.raise_objection(this);
+    //
+    //vseq = execute_top_default_seq::type_id::create("vseq");
+    //vseq.set_item_context(null, null);
+    //if ( !vseq.randomize() )
+    //  `uvm_fatal(get_type_name(), "Failed to randomize virtual sequence")
+    //vseq.m_execute_in_agent  = m_execute_in_agent; 
+    //vseq.m_forward_agent     = m_forward_agent;    
+    //vseq.m_execute_out_agent = m_execute_out_agent;
+    //vseq.m_config            = m_config;           
+    //vseq.set_starting_phase(phase);
+    //vseq.start(null);
+    #1000
+    `uvm_info(get_type_name(), "Stillwaiting！！！！", UVM_MEDIUM)
+    // You can insert code here by setting top_env_append_to_run_phase in file execute_common.tpl
+    phase.drop_objection(this);
 endtask : run_phase
 
 

@@ -22,7 +22,7 @@ module execute_top_th;
   // You can remove clock and reset below by setting th_generate_clock_and_reset = no in file execute_common.tpl
 
   // Example clock and reset declarations
-  logic clock = 0;
+  logic clock;
   logic reset;
 
   // Example clock generator process
@@ -31,6 +31,7 @@ module execute_top_th;
   // Example reset generator process
   initial
   begin
+    clock = 0;
     reset = 0;         // Active low reset in this example
     #75 reset = 1;
   end

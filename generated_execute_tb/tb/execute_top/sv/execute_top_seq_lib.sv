@@ -50,11 +50,12 @@ endfunction : new
 
 task execute_top_default_seq::body();
   `uvm_info(get_type_name(), "Default sequence starting", UVM_LOW)
-
+  
+  pre_start();
 
   repeat (m_seq_count)
-  `uvm_info(get_type_name(), "thats one task", UVM_LOW)
   begin
+     `uvm_info(get_type_name(), "thats one task", UVM_LOW)
     fork
       if (m_execute_in_agent.m_config.is_active == UVM_ACTIVE)
       begin
@@ -91,8 +92,9 @@ task execute_top_default_seq::body();
         seq.start(m_execute_out_agent.m_sequencer, this);
       end
     join
-  end
 
+  end
+  post_start();
   `uvm_info(get_type_name(), "Default sequence completed", UVM_HIGH)
 endtask : body
 
@@ -101,6 +103,7 @@ task execute_top_default_seq::pre_start();
   uvm_phase phase = get_starting_phase();
   if (phase != null)
     phase.raise_objection(this);
+    `uvm_info(get_type_name(), "objection raised", UVM_LOW)
 endtask: pre_start
 
 
@@ -108,6 +111,7 @@ task execute_top_default_seq::post_start();
   uvm_phase phase = get_starting_phase();
   if (phase != null) 
     phase.drop_objection(this);
+    `uvm_info(get_type_name(), "objection drop", UVM_LOW)
 endtask: post_start
 
 
