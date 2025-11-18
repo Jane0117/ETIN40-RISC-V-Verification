@@ -84,6 +84,7 @@ function void execute_in_agent::connect_phase(uvm_phase phase);
   begin
     m_driver.seq_item_port.connect(m_sequencer.seq_item_export);
     m_driver.vif      = m_config.vif;
+    `uvm_info(get_type_name(), "execute_in config has been set by agent", UVM_LOW);
     m_driver.m_config = m_config;
   end
 

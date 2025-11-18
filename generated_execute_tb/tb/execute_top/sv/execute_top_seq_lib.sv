@@ -27,7 +27,7 @@ class execute_top_default_seq extends uvm_sequence #(uvm_sequence_item);
   execute_out_agent  m_execute_out_agent;
 
   // Number of times to repeat child sequences
-  int m_seq_count = 1;
+  int m_seq_count = 10;
 
   extern function new(string name = "");
   extern task body();
@@ -49,15 +49,17 @@ endfunction : new
 
 
 task execute_top_default_seq::body();
-  `uvm_info(get_type_name(), "Default sequence starting", UVM_HIGH)
+  `uvm_info(get_type_name(), "Default sequence starting", UVM_LOW)
 
 
   repeat (m_seq_count)
+  `uvm_info(get_type_name(), "thats one task", UVM_LOW)
   begin
     fork
       if (m_execute_in_agent.m_config.is_active == UVM_ACTIVE)
       begin
         execute_in_default_seq seq;
+        `uvm_info(get_type_name(), "seq execute in begin", UVM_LOW)
         seq = execute_in_default_seq::type_id::create("seq");
         seq.set_item_context(this, m_execute_in_agent.m_sequencer);
         if ( !seq.randomize() )

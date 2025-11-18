@@ -78,6 +78,7 @@ task execute_in_driver::drive_transaction(execute_tx tr);
   vif.control_in     <= tr.control_in;
   `uvm_info(get_type_name(), $sformatf("Driving transaction: data1=%0h data2=%0h immediate=%0h pc=%0h", tr.data1, tr.data2, tr.immediate_data, tr.pc_in), UVM_LOW)
   `uvm_info(get_type_name(), "drive_transaction end", UVM_LOW)
+  @(posedge vif.clock);
 endtask : drive_transaction
 
 // You can insert code here by setting driver_inc_after_class in file execute_in.tpl

@@ -16,7 +16,7 @@
 `ifndef FORWARD_IF_SV
 `define FORWARD_IF_SV
 
-interface forward_if(); 
+interface forward_if(input clock); 
 
   timeunit      1ns;
   timeprecision 1ps;

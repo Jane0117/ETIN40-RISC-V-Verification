@@ -31,7 +31,7 @@ class execute_top_test extends uvm_test;
   extern function void build_phase(uvm_phase phase);
 
   // You can insert code here by setting test_inc_inside_class in file execute_common.tpl
-
+  // extern task run_phase(uvm_phase phase);
 endclass : execute_top_test
 
 
@@ -56,6 +56,15 @@ function void execute_top_test::build_phase(uvm_phase phase);
 
 endfunction : build_phase
 
+// task execute_top_test::run_phase(uvm_phase phase);
+//     super.run_phase(phase);
+//     `uvm_info(get_name(),$sformatf("UVM TB Starts UVM test; '%s'",get_name()),UVM_NONE)
+//     // Raise objection if no UVM test is running
+//     phase.raise_objection(this);
+//     #1000ns;
+//     // Drop objection if no UVM test is running
+//     phase.drop_objection(this);
+// endtask : run_phase
 
 // You can insert code here by setting test_inc_after_class in file execute_common.tpl
 

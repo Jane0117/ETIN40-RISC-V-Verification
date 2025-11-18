@@ -83,6 +83,7 @@ task forward_driver::drive_transaction(forward_tx tr);
                                       tr.wb_forward_data, tr.mem_forward_data,
                                       tr.forward_rs1, tr.forward_rs2), UVM_LOW)
   `uvm_info(get_type_name(), "drive_transaction end", UVM_LOW)
+  @(posedge vif.clock);
 endtask : drive_transaction
 
 
