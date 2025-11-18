@@ -77,6 +77,7 @@ task execute_in_driver::drive_transaction(execute_tx tr);
   vif.pc_in          <= tr.pc_in;
   vif.control_in     <= tr.control_in;
   `uvm_info(get_type_name(), $sformatf("Driving transaction: data1=%0h data2=%0h immediate=%0h pc=%0h", tr.data1, tr.data2, tr.immediate_data, tr.pc_in), UVM_LOW)
+  //@(posedge vif.clock);
   `uvm_info(get_type_name(), "drive_transaction end", UVM_LOW)
 endtask : drive_transaction
 

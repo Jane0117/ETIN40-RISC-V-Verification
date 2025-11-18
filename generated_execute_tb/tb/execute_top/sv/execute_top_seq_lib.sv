@@ -27,7 +27,7 @@ class execute_top_default_seq extends uvm_sequence #(uvm_sequence_item);
   execute_out_agent  m_execute_out_agent;
 
   // Number of times to repeat child sequences
-  int m_seq_count = 1;
+  int m_seq_count = 3;
 
   extern function new(string name = "");
   extern task body();
@@ -49,15 +49,17 @@ endfunction : new
 
 
 task execute_top_default_seq::body();
+  int iter;
   `uvm_info(get_type_name(), "Default sequence starting", UVM_HIGH)
 
-
-  repeat (m_seq_count)
+  for (iter = 0; iter < m_seq_count; iter++)
   begin
+    `uvm_info(get_type_name(), $sformatf("iteration %0d", iter), UVM_LOW)
     fork
       if (m_execute_in_agent.m_config.is_active == UVM_ACTIVE)
       begin
         execute_in_default_seq seq;
+        `uvm_info(get_type_name(), "start one sequence", UVM_LOW)
         seq = execute_in_default_seq::type_id::create("seq");
         seq.set_item_context(this, m_execute_in_agent.m_sequencer);
         if ( !seq.randomize() )
@@ -65,6 +67,7 @@ task execute_top_default_seq::body();
         seq.m_config = m_execute_in_agent.m_config;
         seq.set_starting_phase( get_starting_phase() );
         seq.start(m_execute_in_agent.m_sequencer, this);
+        `uvm_info(get_type_name(), "end one sequence", UVM_LOW)
       end
       if (m_forward_agent.m_config.is_active == UVM_ACTIVE)
       begin
@@ -90,15 +93,23 @@ task execute_top_default_seq::body();
       end
     join
   end
-
   `uvm_info(get_type_name(), "Default sequence completed", UVM_HIGH)
 endtask : body
 
 
+// task execute_top_default_seq::pre_start();
+//   uvm_phase phase = get_starting_phase();
+// endtask: pre_start
+
+
+// task execute_top_default_seq::post_start();
+//   #10ns;
+// endtask: post_start
 task execute_top_default_seq::pre_start();
   uvm_phase phase = get_starting_phase();
   if (phase != null)
     phase.raise_objection(this);
+    `uvm_info(get_type_name(), "objection raised", UVM_LOW)
 endtask: pre_start
 
 
@@ -106,8 +117,8 @@ task execute_top_default_seq::post_start();
   uvm_phase phase = get_starting_phase();
   if (phase != null) 
     phase.drop_objection(this);
+    `uvm_info(get_type_name(), "objection drop", UVM_LOW)
 endtask: post_start
-
 
 `ifndef UVM_POST_VERSION_1_1
 function uvm_phase execute_top_default_seq::get_starting_phase();

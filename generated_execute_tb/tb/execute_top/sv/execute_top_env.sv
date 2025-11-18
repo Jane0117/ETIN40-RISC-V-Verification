@@ -185,7 +185,13 @@ task execute_top_env::run_phase(uvm_phase phase);
   vseq.m_execute_out_agent = m_execute_out_agent;
   vseq.m_config            = m_config;           
   vseq.set_starting_phase(phase);
+  // if (phase != null)
+  //   phase.raise_objection(this);
   vseq.start(null);
+  // if (phase != null) begin
+  //   #10ns;
+  //   phase.drop_objection(this);
+  //end
 
   // You can insert code here by setting top_env_append_to_run_phase in file execute_common.tpl
 

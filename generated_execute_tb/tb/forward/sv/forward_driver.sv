@@ -82,6 +82,7 @@ task forward_driver::drive_transaction(forward_tx tr);
   `uvm_info(get_type_name(), $sformatf("Driving forward transaction: wb=%0h mem=%0h rs1=%0h rs2=%0h",
                                       tr.wb_forward_data, tr.mem_forward_data,
                                       tr.forward_rs1, tr.forward_rs2), UVM_LOW)
+  //@(posedge vif.clock);
   `uvm_info(get_type_name(), "drive_transaction end", UVM_LOW)
 endtask : drive_transaction
 
