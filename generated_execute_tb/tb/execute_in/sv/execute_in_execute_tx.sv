@@ -32,6 +32,150 @@ class execute_tx extends uvm_sequence_item;
   rand logic [31:0] pc_in;
   rand control_type  control_in;
 
+  constraint c_basic {
+    pc_in[1:0] == 2'b00;
+    !(control_in.mem_read && control_in.mem_write);
+
+    // 如果不是访存，则 mem 相关信号应处于“空”状态
+    if (!(control_in.mem_read || control_in.mem_write)) {
+      control_in.mem_size == 2'b00;
+      control_in.mem_sign == 1'b0;
+      control_in.mem_to_reg == 1'b0;
+    }
+  }
+
+  constraint c_encoding_relation {
+
+    // R_TYPE：纯 ALU 寄存器运算
+    if (control_in.encoding == R_TYPE) {
+      control_in.mem_read   == 1'b0;
+      control_in.mem_write  == 1'b0;
+      control_in.mem_to_reg == 1'b0;
+      control_in.is_branch  == 1'b0;
+      control_in.reg_write  == 1'b1;   // 写回寄存器
+      control_in.alu_src    == 1'b0;   // 使用 data1/data2
+      control_in.alu_op inside {
+        ALU_AND, ALU_OR, ALU_XOR,
+        ALU_ADD, ALU_SUB,
+        ALU_SLT, ALU_SLTU,
+        ALU_SLL, ALU_SRL, ALU_SRA
+      };
+    }
+
+    // I_TYPE：ALU 立即数 / LOAD
+    if (control_in.encoding == I_TYPE) {
+      control_in.alu_src == 1'b1; // 使用 immediate_data
+
+      if (control_in.mem_read) {
+        // LOAD 指令
+        control_in.mem_write  == 1'b0;
+        control_in.reg_write  == 1'b1;
+        control_in.mem_to_reg == 1'b1; // 从 memory 写回
+        control_in.is_branch  == 1'b0;
+        control_in.alu_op     == ALU_ADD; // 地址 = data1 + imm
+      }
+      else {
+        // I 型 ALU：ADDI/ANDI/ORI/...（简化假设）
+        control_in.mem_write  == 1'b0;
+        control_in.mem_to_reg == 1'b0;
+        control_in.reg_write  == 1'b1;
+        control_in.is_branch  == 1'b0;
+        control_in.alu_op inside {
+          ALU_AND, ALU_OR, ALU_XOR,
+          ALU_ADD,
+          ALU_SLT, ALU_SLTU,
+          ALU_SLL, ALU_SRL, ALU_SRA
+        };
+      }
+    }
+
+    // S_TYPE：STORE
+    if (control_in.encoding == S_TYPE) {
+      control_in.mem_read   == 1'b0;
+      control_in.mem_write  == 1'b1;
+      control_in.reg_write  == 1'b0;
+      control_in.mem_to_reg == 1'b0;
+      control_in.is_branch  == 1'b0;
+      control_in.alu_src    == 1'b1;   // base + imm
+      control_in.alu_op     == ALU_ADD;
+    }
+
+    // B_TYPE：分支
+    if (control_in.encoding == B_TYPE) {
+      control_in.mem_read   == 1'b0;
+      control_in.mem_write  == 1'b0;
+      control_in.mem_to_reg == 1'b0;
+      control_in.reg_write  == 1'b0;
+      control_in.is_branch  == 1'b1;
+      // 选择一部分 branch op（你实际实现了哪些就填哪些）
+      control_in.alu_op inside { B_BNE, B_BLT, B_BGE, B_LTU, B_GEU };
+    }
+
+    // U_TYPE：LUI/AUIPC —— 这里先只考虑 LUI
+    if (control_in.encoding == U_TYPE) {
+      control_in.mem_read   == 1'b0;
+      control_in.mem_write  == 1'b0;
+      control_in.mem_to_reg == 1'b0;
+      control_in.reg_write  == 1'b1;
+      control_in.is_branch  == 1'b0;
+      control_in.alu_op     == ALU_LUI;
+      // alu_src 是否使用 imm，看你实现，这里不强约束
+    }
+
+    // J_TYPE：JAL/JALR
+    if (control_in.encoding == J_TYPE) {
+      control_in.mem_read   == 1'b0;
+      control_in.mem_write  == 1'b0;
+      control_in.mem_to_reg == 1'b0;
+      control_in.reg_write  == 1'b1;  // 写 rd = PC+4
+      // is_branch 是否置 1 取决于你的设计，这里可以不约束或者设为 1
+      // control_in.is_branch  == 1'b1;
+    }
+  }
+
+    // -------------------------
+  // immediate 与 PC 的简单关系
+  // -------------------------
+  constraint c_immediate_branch_align {
+    // B/J 型立即数来自 immediate_extension，最低位应为 0（2 字节对齐）
+    if (control_in.encoding == B_TYPE || control_in.encoding == J_TYPE) {
+      immediate_data[0] == 1'b0;
+    }
+  }
+
+    // -------------------------
+  // 访存地址对齐约束
+  // -------------------------
+  constraint c_memory_addr_align {
+    if (control_in.mem_read || control_in.mem_write) {
+
+      // 字访问：地址 4 对齐
+      if (control_in.mem_size == 2'b10) {
+        ((data1 + immediate_data) & 32'h3) == 0;
+
+      }
+
+      // 半字访问：地址 2 对齐
+      if (control_in.mem_size == 2'b01) {
+        ((data1 + immediate_data) & 32'h1) == 0;
+
+      }
+
+      // 字节访问：不做对齐约束
+    }
+  }
+
+  // -------------------------
+  // 访存地址范围约束（可按实际内存范围调整）
+  // -------------------------
+  localparam bit [31:0] MEM_BASE  = 32'h0000_1000;
+  localparam bit [31:0] MEM_LIMIT = 32'h0000_FFFF;
+
+  constraint c_memory_addr_range {
+    if (control_in.mem_read || control_in.mem_write) {
+      (data1 + immediate_data) inside {[MEM_BASE : MEM_LIMIT]};
+    }
+  }
 
   extern function new(string name = "");
 

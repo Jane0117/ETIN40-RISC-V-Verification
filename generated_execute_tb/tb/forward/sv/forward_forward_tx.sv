@@ -40,7 +40,7 @@ class forward_tx extends uvm_sequence_item;
   extern function void do_print(uvm_printer printer);
   extern function void do_record(uvm_recorder recorder);
   extern function void do_pack(uvm_packer packer);
-  extern function void do_unpack(uvm_packer packer);
+  // extern function void do_unpack(uvm_packer packer);
   extern function string convert2string();
 
   // You can insert code here by setting trans_inc_inside_class in file forward.tpl
@@ -108,13 +108,13 @@ function void forward_tx::do_pack(uvm_packer packer);
 endfunction : do_pack
 
 
-function void forward_tx::do_unpack(uvm_packer packer);
-  super.do_unpack(packer);
-  `uvm_unpack_int(wb_forward_data)  
-  `uvm_unpack_int(mem_forward_data) 
-  `uvm_unpack_int(forward_rs1)      
-  `uvm_unpack_int(forward_rs2)      
-endfunction : do_unpack
+// function void forward_tx::do_unpack(uvm_packer packer);
+//   super.do_unpack(packer);
+//   `uvm_unpack_int(wb_forward_data)  
+//   `uvm_unpack_int(mem_forward_data) 
+//   `uvm_unpack_int(forward_rs1)      
+//   `uvm_unpack_int(forward_rs2)      
+// endfunction : do_unpack
 
 
 function string forward_tx::convert2string();

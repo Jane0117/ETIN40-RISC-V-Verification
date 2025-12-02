@@ -23,14 +23,13 @@ class execute_in_monitor extends uvm_monitor;
   `uvm_component_utils(execute_in_monitor)
 
   virtual execute_in_if vif;
-
   execute_in_config     m_config;
 
   uvm_analysis_port #(execute_tx) analysis_port;
 
   extern function new(string name, uvm_component parent);
   extern function void build_phase(uvm_phase phase);
-  extern task main_phase(uvm_phase phase);
+  extern task run_phase(uvm_phase phase);
   extern task collect_values(execute_tx tr);
 
   // You can insert code here by setting monitor_inc_inside_class in file execute_in.tpl
@@ -56,10 +55,10 @@ function void execute_in_monitor::build_phase(uvm_phase phase);
   `uvm_info(get_type_name(), "build_phase end", UVM_LOW)
 endfunction : build_phase
 
-task execute_in_monitor::main_phase(uvm_phase phase);
+task execute_in_monitor::run_phase(uvm_phase phase);
   execute_tx tr;
   `uvm_info(get_type_name(), "main_phase start", UVM_LOW)
-  super.main_phase(phase);
+  super.run_phase(phase);
   forever begin
     tr = execute_tx::type_id::create("tr");
     collect_values(tr);
@@ -67,16 +66,17 @@ task execute_in_monitor::main_phase(uvm_phase phase);
     #1;
   end
   `uvm_info(get_type_name(), "main_phase end", UVM_LOW)
-endtask : main_phase
+endtask : run_phase
 
 task execute_in_monitor::collect_values(execute_tx tr);
-  `uvm_info(get_type_name(), "collect_values start", UVM_LOW)
   if (vif == null && m_config != null)
     vif = m_config.vif;
   if (vif == null) begin
     `uvm_error(get_type_name(), "Cannot sample execute_in interface because `vif` is null")
     return;
   end
+
+  if (vif.valid == 1'b1) begin
   tr.data1          = vif.data1;
   tr.data2          = vif.data2;
   tr.immediate_data = vif.immediate_data;
@@ -84,6 +84,7 @@ task execute_in_monitor::collect_values(execute_tx tr);
   tr.control_in     = vif.control_in;
   `uvm_info(get_type_name(), $sformatf("Monitor captured execute_in: data1=%0h data2=%0h pc=%0h", tr.data1, tr.data2, tr.pc_in), UVM_LOW)
   `uvm_info(get_type_name(), "collect_values end", UVM_LOW)
+    end
 endtask : collect_values
 
 

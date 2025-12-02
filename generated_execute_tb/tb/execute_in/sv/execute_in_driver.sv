@@ -54,7 +54,7 @@ endfunction : build_phase
 
 task execute_in_driver::run_phase(uvm_phase phase);
   execute_tx req;
-  super.main_phase(phase);
+  super.run_phase(phase);
   `uvm_info(get_type_name(), "main_phase is called", UVM_LOW);
   forever begin
     seq_item_port.get_next_item(req);
@@ -72,13 +72,16 @@ task execute_in_driver::drive_transaction(execute_tx tr);
   end
    `uvm_info(get_type_name(), "begin to drive execute_in", UVM_LOW);
    `uvm_info("DRV", $sformatf("driver sees clock=%0b", vif.clock), UVM_LOW)
+    @(posedge vif.clock);
   vif.data1          <= tr.data1;
   vif.data2          <= tr.data2;
   vif.immediate_data <= tr.immediate_data;
   vif.pc_in          <= tr.pc_in;
   vif.control_in     <= tr.control_in;
+  vif.valid <= 1'b1;
   `uvm_info(get_type_name(), $sformatf("Driving transaction: data1=%0h data2=%0h immediate=%0h pc=%0h", tr.data1, tr.data2, tr.immediate_data, tr.pc_in), UVM_LOW)
   @(posedge vif.clock);
+    vif.valid <= 1'b0;
   `uvm_info(get_type_name(), "drive_transaction end", UVM_LOW)
 endtask : drive_transaction
 

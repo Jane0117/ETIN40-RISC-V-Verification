@@ -30,6 +30,8 @@ interface execute_in_if(input clock, input reset);
   logic [31:0] pc_in;
   control_type control_in;
 
+  //detect if there is a new data coming
+  logic valid;
   // You can insert properties and assertions here
 
   // You can insert code here by setting if_inc_inside_interface in file execute_in.tpl
