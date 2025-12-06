@@ -30,20 +30,42 @@ class forward_coverage extends uvm_subscriber #(forward_tx);
   // or remove covergroup m_cov by setting agent_cover_generate_methods_inside_class = no in file forward.tpl
 
   covergroup m_cov;
-    option.per_instance = 1;
+    option.per_instance = 1; // 意味着每个实例都有独立的覆盖率报告
     // You may insert additional coverpoints here ...
 
-    cp_wb_forward_data: coverpoint m_item.wb_forward_data;
-    //  Add bins here if required
+    // 数据通道覆盖（可按需细分）--通常数据值覆盖意义不大
+    // cp_wb_forward_data:  coverpoint m_item.wb_forward_data;
+    // cp_mem_forward_data: coverpoint m_item.mem_forward_data;
 
-    cp_mem_forward_data: coverpoint m_item.mem_forward_data;
-    //  Add bins here if required
-
+    // selector 覆盖
     cp_forward_rs1: coverpoint m_item.forward_rs1;
-    //  Add bins here if required
-
     cp_forward_rs2: coverpoint m_item.forward_rs2;
-    //  Add bins here if required
+
+    // 9 条路径（hazard 模式）覆盖
+    cp_path_tag: coverpoint m_item.path_tag {
+      bins none_none = {forward_tx::PATH_NONE_NONE};
+      bins mem_none  = {forward_tx::PATH_MEM_NONE};
+      bins ex_none   = {forward_tx::PATH_EX_NONE};
+      bins none_mem  = {forward_tx::PATH_NONE_MEM};
+      bins mem_mem   = {forward_tx::PATH_MEM_MEM};
+      bins ex_mem    = {forward_tx::PATH_EX_MEM};
+      bins none_ex   = {forward_tx::PATH_NONE_EX};
+      bins mem_ex    = {forward_tx::PATH_MEM_EX};
+      bins ex_ex     = {forward_tx::PATH_EX_EX};
+    }
+
+    // hazard cross：所有 rs1/rs2 组合（等价于 9 条 path）
+    cross_rs1_rs2: cross cp_forward_rs1, cp_forward_rs2;
+
+    // 简单 hazard bins：只要 rs1/rs2 有前递即命中
+    cp_hazard_rs1: coverpoint m_item.forward_rs1 {
+      bins from_ex  = {FORWARD_FROM_EX};
+      bins from_mem = {FORWARD_FROM_MEM};
+    }
+    cp_hazard_rs2: coverpoint m_item.forward_rs2 {
+      bins from_ex  = {FORWARD_FROM_EX};
+      bins from_mem = {FORWARD_FROM_MEM};
+    }
 
   endgroup
 

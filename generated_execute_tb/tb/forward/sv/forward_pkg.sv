@@ -29,5 +29,6 @@ package forward_pkg;
   `include "forward_coverage.sv"
   `include "forward_agent.sv"
   `include "forward_seq_lib.sv"
+  `include "../../include/forward_scoreboard.sv"
 
 endpackage : forward_pkg

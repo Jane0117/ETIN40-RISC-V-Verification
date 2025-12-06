@@ -30,7 +30,7 @@ class forward_monitor extends uvm_monitor;
 
   extern function new(string name, uvm_component parent);
   extern function void build_phase(uvm_phase phase);
-  extern task main_phase(uvm_phase phase);
+  extern task run_phase(uvm_phase phase);
   extern task collect_values(forward_tx tr);
 
   // You can insert code here by setting monitor_inc_inside_class in file forward.tpl
@@ -54,35 +54,48 @@ function void forward_monitor::build_phase(uvm_phase phase);
 endfunction : build_phase
 
 
-task forward_monitor::main_phase(uvm_phase phase);
+task forward_monitor::run_phase(uvm_phase phase);
   forward_tx tr;
-  `uvm_info(get_type_name(), "main_phase start", UVM_LOW)
-  super.main_phase(phase);
+  `uvm_info(get_type_name(), "run_phase start", UVM_LOW)
+  super.run_phase(phase);
+  if (vif == null && m_config != null)
+    vif = m_config.vif;
+  if (vif == null)
+    `uvm_error(get_type_name(), "Cannot sample forward interface because `vif` is null")
+  else
+    wait (vif.reset); // wait until reset deasserted
   forever begin
     tr = forward_tx::type_id::create("tr");
     collect_values(tr);
-    analysis_port.write(tr);
-    #1;
   end
-  `uvm_info(get_type_name(), "main_phase end", UVM_LOW)
-endtask : main_phase
+  `uvm_info(get_type_name(), "run_phase end", UVM_LOW)
+endtask : run_phase
 
 
 task forward_monitor::collect_values(forward_tx tr);
+  static forward_tx prev;
+  static bit has_prev = 0;
   `uvm_info(get_type_name(), "collect_values start", UVM_LOW)
-  if (vif == null && m_config != null)
-    vif = m_config.vif;
-  if (vif == null) begin
-    `uvm_error(get_type_name(), "Cannot sample forward interface because `vif` is null")
-    return;
-  end
+  @(posedge vif.clock);
   tr.wb_forward_data  = vif.wb_forward_data;
   tr.mem_forward_data = vif.mem_forward_data;
   tr.forward_rs1      = vif.forward_rs1;
   tr.forward_rs2      = vif.forward_rs2;
-  `uvm_info(get_type_name(), $sformatf("Monitor captured forward: wb=%0h mem=%0h rs1=%0h rs2=%0h",
-                                      tr.wb_forward_data, tr.mem_forward_data,
-                                      tr.forward_rs1, tr.forward_rs2), UVM_LOW)
+  tr.bake_expect(); // fill exp_src/path_tag for scoreboard/coverage
+  if (!has_prev ||
+      tr.wb_forward_data != prev.wb_forward_data ||
+      tr.mem_forward_data != prev.mem_forward_data ||
+      tr.forward_rs1 != prev.forward_rs1 ||
+      tr.forward_rs2 != prev.forward_rs2) begin
+    analysis_port.write(tr);
+    prev = tr;
+    has_prev = 1;
+    `uvm_info(get_type_name(), $sformatf("Monitor captured forward: wb=%0h mem=%0h rs1=%0h rs2=%0h",
+                                        tr.wb_forward_data, tr.mem_forward_data,
+                                        tr.forward_rs1, tr.forward_rs2), UVM_LOW)
+  end else begin
+    `uvm_info(get_type_name(), "Monitor skipped duplicate sample", UVM_LOW)
+  end
   `uvm_info(get_type_name(), "collect_values end", UVM_LOW)
 endtask : collect_values
 
@@ -90,4 +103,3 @@ endtask : collect_values
 // You can insert code here by setting monitor_inc_after_class in file forward.tpl
 
 `endif // FORWARD_MONITOR_SV
-

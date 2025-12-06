@@ -33,6 +33,7 @@ class execute_top_env extends uvm_env;
   forward_config        m_forward_config;      
   forward_agent         m_forward_agent;       
   forward_coverage      m_forward_coverage;    
+  forward_scoreboard    m_forward_scoreboard;
 
   execute_out_config    m_execute_out_config;  
   execute_out_agent     m_execute_out_agent;   
@@ -132,6 +133,7 @@ function void execute_top_env::build_phase(uvm_phase phase);
   m_scoreboard           = execute_stage_scoreboard::type_id::create("m_scoreboard", this);
   m_scoreboard_act_fifo  = new("m_scoreboard_act_fifo");
   m_scoreboard_exp_fifo  = new("m_scoreboard_exp_fifo");
+  m_forward_scoreboard   = forward_scoreboard   ::type_id::create("m_forward_scoreboard", this);
 
   // You can insert code here by setting top_env_append_to_build_phase in file execute_common.tpl
 
@@ -144,6 +146,9 @@ function void execute_top_env::connect_phase(uvm_phase phase);
   m_execute_in_agent.analysis_port.connect(m_execute_in_coverage.analysis_export);
 
   m_forward_agent.analysis_port.connect(m_forward_coverage.analysis_export);
+  // forward scoreboard connections: driver ap -> exp, monitor -> act
+  m_forward_agent.m_driver.ap.connect(m_forward_scoreboard.exp_imp);
+  m_forward_agent.m_monitor.analysis_port.connect(m_forward_scoreboard.act_imp);
 
   m_execute_out_agent.analysis_port.connect(m_execute_out_coverage.analysis_export);
   // FIFO + reference model connections
