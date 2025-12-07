@@ -25,6 +25,7 @@ class forward_driver extends uvm_driver #(forward_tx);
   virtual forward_if vif;
 
   forward_config     m_config;
+  uvm_analysis_port #(forward_tx) ap;
 
   extern function new(string name, uvm_component parent);
   extern function void build_phase(uvm_phase phase);
@@ -38,6 +39,7 @@ endclass : forward_driver
 
 function forward_driver::new(string name, uvm_component parent);
   super.new(name, parent);
+  ap = new("ap", this);
 endfunction : new
 
 
@@ -56,14 +58,14 @@ endfunction : build_phase
 
 task forward_driver::run_phase(uvm_phase phase);
   forward_tx req;
-  `uvm_info(get_type_name(), "main_phase start", UVM_LOW)
-  super.main_phase(phase);
+  `uvm_info(get_type_name(), "run_phase start", UVM_LOW)
+  super.run_phase(phase);
   forever begin
     seq_item_port.get_next_item(req);
     drive_transaction(req);
     seq_item_port.item_done();
   end
-  `uvm_info(get_type_name(), "main_phase end", UVM_LOW)
+  `uvm_info(get_type_name(), "run_phase end", UVM_LOW)
 endtask : run_phase
 
 
@@ -71,19 +73,27 @@ task forward_driver::drive_transaction(forward_tx tr);
   `uvm_info(get_type_name(), "drive_transaction start", UVM_LOW)
   `uvm_info("DRV", $sformatf("driver sees clock=%0b", vif.clock), UVM_LOW)
 
+  // 防御式更新期望字段，避免遗漏 post_randomize/bake_expect
+  tr.bake_expect();
+
   if (vif == null && m_config != null)
     vif = m_config.vif;
   if (vif == null) begin
     `uvm_error(get_type_name(), "Cannot drive forward interface because `vif` is null")
     return;
   end
+  @(posedge vif.clock);
   vif.wb_forward_data <= tr.wb_forward_data;
   vif.mem_forward_data <= tr.mem_forward_data;
   vif.forward_rs1 <= tr.forward_rs1;
   vif.forward_rs2 <= tr.forward_rs2;
-  `uvm_info(get_type_name(), $sformatf("Driving forward transaction: wb=%0h mem=%0h rs1=%0h rs2=%0h",
-                                      tr.wb_forward_data, tr.mem_forward_data,
-                                      tr.forward_rs1, tr.forward_rs2), UVM_LOW)
+  // 推送期望 txn 到分析端口，供 forward scoreboard 使用
+  ap.write(tr);
+  `uvm_info(get_type_name(),
+            $sformatf("Driving forward transaction: wb=%0h mem=%0h rs1=%0h rs2=%0h path=%0d",
+                      tr.wb_forward_data, tr.mem_forward_data,
+                      tr.forward_rs1, tr.forward_rs2, tr.path_tag),
+            UVM_LOW)
   @(posedge vif.clock);
   `uvm_info(get_type_name(), "drive_transaction end", UVM_LOW)
 endtask : drive_transaction
