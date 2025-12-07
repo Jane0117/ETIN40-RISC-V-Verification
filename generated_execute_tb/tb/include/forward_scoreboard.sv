@@ -3,7 +3,8 @@ import uvm_pkg::*;
 
 class forward_scoreboard extends uvm_scoreboard;
   `uvm_component_utils(forward_scoreboard)
-
+//生成了两个带后缀的 uvm_analysis_imp_* 类型。
+//宏会为该 imp 自动实现一个 write()，内部转调宿主类的 write_act() / write_exp()。
   `uvm_analysis_imp_decl(_exp)
   `uvm_analysis_imp_decl(_act)
 
@@ -36,30 +37,32 @@ endfunction
 
 function void forward_scoreboard::write_act(forward_tx t);
   forward_tx clone;
+  forward_tx exp_match;
   int match_idx;
   clone = forward_tx::type_id::create("act_clone");
   clone.copy(t);
   match_idx = -1;
-  // 在 exp_queue 中寻找匹配项（按 selector/数据/path）
-  foreach (exp_queue[i]) begin
-    if (clone.forward_rs1 == exp_queue[i].forward_rs1 &&
-        clone.forward_rs2 == exp_queue[i].forward_rs2 &&
-        clone.wb_forward_data == exp_queue[i].wb_forward_data &&
-        clone.mem_forward_data == exp_queue[i].mem_forward_data &&
-        clone.path_tag == exp_queue[i].path_tag) begin
-      match_idx = i;
-      break;
+
+  // FIFO 匹配：只比较队首，确保 exp/act 一一对应
+  if (exp_queue.size() > 0) begin
+    forward_tx exp = exp_queue[0];
+    if (clone.forward_rs1 == exp.forward_rs1 &&
+        clone.forward_rs2 == exp.forward_rs2 &&
+        clone.wb_forward_data == exp.wb_forward_data &&
+        clone.mem_forward_data == exp.mem_forward_data &&
+        clone.path_tag == exp.path_tag) begin
+      match_idx = 0;
+      exp_match = exp;
+      exp_queue.delete(0);
     end
   end
 
   if (match_idx != -1) begin
-    forward_tx exp = exp_queue[match_idx];
-    exp_queue.delete(match_idx);
     `uvm_info(get_type_name(),
-              $sformatf("forward comparison passed (match_idx=%0d qsize_after=%0d)\n  EXP: rs1=%0d rs2=%0d wb=0x%0h mem=0x%0h path=%0d\n  ACT: rs1=%0d rs2=%0d wb=0x%0h mem=0x%0h path=%0d",
-                        match_idx, exp_queue.size(),
-                        exp.forward_rs1, exp.forward_rs2,
-                        exp.wb_forward_data, exp.mem_forward_data, exp.path_tag,
+              $sformatf("forward comparison passed (FIFO match, qsize_after=%0d)\n  EXP: rs1=%0d rs2=%0d wb=0x%0h mem=0x%0h path=%0d\n  ACT: rs1=%0d rs2=%0d wb=0x%0h mem=0x%0h path=%0d",
+                        exp_queue.size(),
+                        exp_match.forward_rs1, exp_match.forward_rs2,
+                        exp_match.wb_forward_data, exp_match.mem_forward_data, exp_match.path_tag,
                         clone.forward_rs1, clone.forward_rs2,
                         clone.wb_forward_data, clone.mem_forward_data, clone.path_tag),
               UVM_LOW)
