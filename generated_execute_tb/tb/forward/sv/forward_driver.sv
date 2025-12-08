@@ -60,6 +60,19 @@ task forward_driver::run_phase(uvm_phase phase);
   forward_tx req;
   `uvm_info(get_type_name(), "run_phase start", UVM_LOW)
   super.run_phase(phase);
+
+  // 等待复位释放后再开始驱动，避免复位期间把期望推入 scoreboard
+  if (vif == null && m_config != null)
+    vif = m_config.vif;
+  if (vif == null) begin
+    `uvm_error(get_type_name(), "Cannot drive forward interface because `vif` is null")
+    return;
+  end
+  wait (vif.reset);
+
+  @(posedge vif.clock);
+  //@(posedge vif.clock);
+
   forever begin
     seq_item_port.get_next_item(req);
     drive_transaction(req);

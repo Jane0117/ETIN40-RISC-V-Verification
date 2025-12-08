@@ -27,6 +27,8 @@ class forward_monitor extends uvm_monitor;
   forward_config     m_config;
 
   uvm_analysis_port #(forward_tx) analysis_port;
+  forward_tx prev;      // 上一次采样的事务
+  bit        has_prev;  // 是否已有有效 prev
 
   extern function new(string name, uvm_component parent);
   extern function void build_phase(uvm_phase phase);
@@ -64,6 +66,11 @@ task forward_monitor::run_phase(uvm_phase phase);
     `uvm_error(get_type_name(), "Cannot sample forward interface because `vif` is null")
   else
     wait (vif.reset); // wait until reset deasserted
+
+  // 复位边沿后清空历史记录，确保首个样本不会被重复过滤掉
+  prev = null;
+  has_prev = 0;
+
   forever begin
     tr = forward_tx::type_id::create("tr");
     collect_values(tr);
@@ -73,15 +80,23 @@ endtask : run_phase
 
 
 task forward_monitor::collect_values(forward_tx tr);
-  static forward_tx prev;
-  static bit has_prev = 0;
   `uvm_info(get_type_name(), "collect_values start", UVM_LOW)
   @(posedge vif.clock);
+  // 等待一个 #1step，确保驱动的非阻塞赋值已在 NBA 区域更新
+  //#1step;
   tr.wb_forward_data  = vif.wb_forward_data;
   tr.mem_forward_data = vif.mem_forward_data;
   tr.forward_rs1      = vif.forward_rs1;
   tr.forward_rs2      = vif.forward_rs2;
   tr.bake_expect(); // fill exp_src/path_tag for scoreboard/coverage
+
+  // 若仍为 X/Z（通常出现在首拍或驱动前），跳过本次采样，避免把不稳定数据送入 scoreboard
+  if (^tr.wb_forward_data === 1'bX || ^tr.mem_forward_data === 1'bX ||
+      (^tr.forward_rs1 === 1'bX)   || (^tr.forward_rs2 === 1'bX)) begin
+    `uvm_info(get_type_name(), "Skip sample with X/Z on forward bus", UVM_LOW)
+    return;
+  end
+
   if (!has_prev ||
       tr.wb_forward_data != prev.wb_forward_data ||
       tr.mem_forward_data != prev.mem_forward_data ||

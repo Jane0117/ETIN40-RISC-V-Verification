@@ -1,7 +1,2 @@
-1032:# UVM_WARNING :    0
-2181:# UVM_WARNING :    0
-3668:# UVM_WARNING :    0
-109105:# UVM_WARNING :    0
-109650:# UVM_WARNING :    0
-109889:# UVM_WARNING ../tb/execute_out/sv/execute_out_monitor.sv(53) @ 0: uvm_test_top.m_env.m_execute_out_agent.m_monitor [execute_out_monitor] execute_out_config not provided to monitor
-371082:# UVM_WARNING :    1
+942:# UVM_WARNING :    0
+2006:# UVM_WARNING :    0
