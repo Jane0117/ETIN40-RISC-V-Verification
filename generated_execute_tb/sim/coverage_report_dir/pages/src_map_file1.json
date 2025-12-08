@@ -1,0 +1,7 @@
+var g_data = {'dummy':null,
+'5':'../tb/execute_in/sv/execute_in_coverage.sv',
+'6':'../tb/execute_in/sv/execute_in_pkg.sv',
+'1':'../tb/execute_out/sv/execute_out_coverage.sv',
+'2':'../tb/execute_out/sv/execute_out_pkg.sv',
+'3':'../tb/forward/sv/forward_coverage.sv',
+'4':'../tb/forward/sv/forward_pkg.sv'};

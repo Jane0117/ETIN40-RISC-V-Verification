@@ -1,0 +1,6 @@
+../tb/execute_in/sv/execute_in_coverage.sv
+../tb/execute_in/sv/execute_in_pkg.sv
+../tb/execute_out/sv/execute_out_coverage.sv
+../tb/execute_out/sv/execute_out_pkg.sv
+../tb/forward/sv/forward_coverage.sv
+../tb/forward/sv/forward_pkg.sv

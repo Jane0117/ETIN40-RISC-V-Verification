@@ -178,7 +178,7 @@ class execute_tx extends uvm_sequence_item;
   }
 
   extern function new(string name = "");
-
+  extern function void post_randomize();
   // You can remove do_copy/compare/print/record and convert2string method by setting trans_generate_methods_inside_class = no in file execute_in.tpl
   extern function void do_copy(uvm_object rhs);
   extern function bit  do_compare(uvm_object rhs, uvm_comparer comparer);
@@ -197,6 +197,25 @@ function execute_tx::new(string name = "");
   super.new(name);
 endfunction : new
 
+
+function void execute_tx::post_randomize();
+  super.post_randomize();
+
+  `uvm_info(get_type_name(),
+            $sformatf("post_randomize: pc_in=0x%08h data1=0x%08h data2=0x%08h imm=0x%08h\n"
+                    // 根据你 control_type 的定义调整下面这些字段名
+                    // 例如 encoding/mem_read/mem_write/alu_op 等
+                    // 这里只是示例：
+                    //"  encoding=%0d mem_read=%0b mem_write=%0b mem_to_reg=%0b is_branch=%0b reg_write=%0b alu_src=%0b alu_op=%0d",
+                    //control_in.encoding,
+                    //control_in.mem_read, control_in.mem_write,
+                    //control_in.mem_to_reg, control_in.is_branch,
+                    //control_in.reg_write, control_in.alu_src,
+                    //control_in.alu_op
+                    ,
+                    pc_in, data1, data2, immediate_data),
+            UVM_HIGH)
+endfunction : post_randomize
 
 // You can remove do_copy/compare/print/record and convert2string method by setting trans_generate_methods_after_class = no in file execute_in.tpl
 
@@ -284,4 +303,3 @@ endfunction : convert2string
 // You can insert code here by setting trans_inc_after_class in file execute_in.tpl
 
 `endif // EXECUTE_IN_SEQ_ITEM_SV
-

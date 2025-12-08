@@ -39,4 +39,3 @@ interface execute_in_if(input clock, input reset);
 endinterface : execute_in_if
 
 `endif // EXECUTE_IN_IF_SV
-

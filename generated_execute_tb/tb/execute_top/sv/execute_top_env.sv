@@ -116,6 +116,9 @@ function void execute_top_env::build_phase(uvm_phase phase);
   if (m_execute_out_config.is_active == UVM_ACTIVE )
     uvm_config_db #(execute_out_config)::set(this, "m_execute_out_agent.m_sequencer", "config", m_execute_out_config);
   uvm_config_db #(execute_out_config)::set(this, "m_execute_out_coverage", "config", m_execute_out_config);
+  // Provide virtual interface handles for execute_out agent components
+  uvm_config_db #(virtual execute_out_if)::set(this, "m_execute_out_agent.m_monitor", "vif", m_execute_out_config.vif);
+  uvm_config_db #(virtual execute_out_if)::set(this, "m_execute_out_agent.m_driver",   "vif", m_execute_out_config.vif);
 
 
   m_execute_in_agent     = execute_in_agent    ::type_id::create("m_execute_in_agent", this);

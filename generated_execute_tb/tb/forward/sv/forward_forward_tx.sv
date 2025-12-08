@@ -197,29 +197,29 @@ function void forward_tx::do_pack(uvm_packer packer);
   `uvm_pack_int(path_tag)
 endfunction : do_pack
 
-function void forward_tx::do_unpack(uvm_packer packer);
-  int unsigned tmp_rs1;
-  int unsigned tmp_rs2;
-  int unsigned tmp_exp_rs1;
-  int unsigned tmp_exp_rs2;
-  int unsigned tmp_path;
-  super.do_unpack(packer);
-  `uvm_unpack_int(wb_forward_data)  
-  `uvm_unpack_int(mem_forward_data) 
-  `uvm_unpack_int(tmp_rs1)
-  `uvm_unpack_int(tmp_rs2)
-  `uvm_unpack_int(exp_wb_forward_data)
-  `uvm_unpack_int(exp_mem_forward_data)
-  `uvm_unpack_int(tmp_exp_rs1)
-  `uvm_unpack_int(tmp_exp_rs2)
-  `uvm_unpack_int(tmp_path)
-  forward_rs1      = forward_type'(tmp_rs1);
-  forward_rs2      = forward_type'(tmp_rs2);
-  exp_src_rs1      = forward_type'(tmp_exp_rs1);
-  exp_src_rs2      = forward_type'(tmp_exp_rs2);
-  path_tag         = forward_path_e'(tmp_path);
-  bake_expect();
-endfunction : do_unpack
+// function void forward_tx::do_unpack(uvm_packer packer);
+//   int unsigned tmp_rs1;
+//   int unsigned tmp_rs2;
+//   int unsigned tmp_exp_rs1;
+//   int unsigned tmp_exp_rs2;
+//   int unsigned tmp_path;
+//   super.do_unpack(packer);
+//   `uvm_unpack_int(wb_forward_data)  
+//   `uvm_unpack_int(mem_forward_data) 
+//   `uvm_unpack_int(tmp_rs1)
+//   `uvm_unpack_int(tmp_rs2)
+//   `uvm_unpack_int(exp_wb_forward_data)
+//   `uvm_unpack_int(exp_mem_forward_data)
+//   `uvm_unpack_int(tmp_exp_rs1)
+//   `uvm_unpack_int(tmp_exp_rs2)
+//   `uvm_unpack_int(tmp_path)
+//   forward_rs1      = forward_type'(tmp_rs1);
+//   forward_rs2      = forward_type'(tmp_rs2);
+//   exp_src_rs1      = forward_type'(tmp_exp_rs1);
+//   exp_src_rs2      = forward_type'(tmp_exp_rs2);
+//   path_tag         = forward_path_e'(tmp_path);
+//   bake_expect();
+// endfunction : do_unpack
 
 //打印成字符串（日志格式化）
 function string forward_tx::convert2string();

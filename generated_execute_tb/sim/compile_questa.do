@@ -130,3 +130,4 @@ if {![file exists $transcript_src]} {
         close $fh
     }
 }
+coverage report -output coverage_report.txt -details -code bcesf -assert -cvg

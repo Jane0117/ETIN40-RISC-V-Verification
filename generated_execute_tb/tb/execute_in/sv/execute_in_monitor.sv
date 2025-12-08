@@ -60,10 +60,14 @@ task execute_in_monitor::run_phase(uvm_phase phase);
   `uvm_info(get_type_name(), "main_phase start", UVM_LOW)
   super.run_phase(phase);
   forever begin
-    tr = execute_tx::type_id::create("tr");
-    collect_values(tr);
-    analysis_port.write(tr);
-    #1;
+    
+     @(posedge vif.clock);
+     if (vif.valid) begin  
+        tr = execute_tx::type_id::create("tr");
+        collect_values(tr);
+        analysis_port.write(tr);
+     end
+
   end
   `uvm_info(get_type_name(), "main_phase end", UVM_LOW)
 endtask : run_phase
@@ -76,7 +80,6 @@ task execute_in_monitor::collect_values(execute_tx tr);
     return;
   end
 
-  if (vif.valid == 1'b1) begin
   tr.data1          = vif.data1;
   tr.data2          = vif.data2;
   tr.immediate_data = vif.immediate_data;
@@ -84,11 +87,9 @@ task execute_in_monitor::collect_values(execute_tx tr);
   tr.control_in     = vif.control_in;
   `uvm_info(get_type_name(), $sformatf("Monitor captured execute_in: data1=%0h data2=%0h pc=%0h", tr.data1, tr.data2, tr.pc_in), UVM_LOW)
   `uvm_info(get_type_name(), "collect_values end", UVM_LOW)
-    end
 endtask : collect_values
 
 
 // You can insert code here by setting monitor_inc_after_class in file execute_in.tpl
 
 `endif // EXECUTE_IN_MONITOR_SV
-
