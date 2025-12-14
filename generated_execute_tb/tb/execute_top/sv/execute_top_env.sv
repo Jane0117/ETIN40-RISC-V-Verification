@@ -41,6 +41,7 @@ class execute_top_env extends uvm_env;
   uvm_tlm_analysis_fifo #(execute_out_tx) m_scoreboard_act_fifo;
   uvm_tlm_analysis_fifo #(execute_out_tx) m_scoreboard_exp_fifo;
   execute_stage_scoreboard                m_scoreboard;
+  execute_top_virtual_sequencer           m_vseqr;
 
   uvm_tlm_analysis_fifo #(execute_out_tx)    m_execute_out_fifo; // FIFO connecting monitor to ref model
   execute_stage_ref_model                    m_ref_model;       // Reference model to consume execute_out transactions
@@ -137,6 +138,7 @@ function void execute_top_env::build_phase(uvm_phase phase);
   m_scoreboard_act_fifo  = new("m_scoreboard_act_fifo");
   m_scoreboard_exp_fifo  = new("m_scoreboard_exp_fifo");
   m_forward_scoreboard   = forward_scoreboard   ::type_id::create("m_forward_scoreboard", this);
+  m_vseqr                = execute_top_virtual_sequencer::type_id::create("m_vseqr", this);
 
   // You can insert code here by setting top_env_append_to_build_phase in file execute_common.tpl
 
@@ -163,6 +165,14 @@ function void execute_top_env::connect_phase(uvm_phase phase);
   m_ref_model.ref_ap.connect(m_scoreboard_exp_fifo.analysis_export);
   m_scoreboard.exp_port.connect(m_scoreboard_exp_fifo.get_peek_export);
 
+  // 虚拟 sequencer 绑定子 sequencer 句柄
+  if (m_vseqr != null) begin
+    if (m_execute_in_agent != null)
+      m_vseqr.m_execute_in_sqr = m_execute_in_agent.m_sequencer;
+    if (m_forward_agent != null)
+      m_vseqr.m_forward_sqr    = m_forward_agent.m_sequencer;
+  end
+
 
   // You can insert code here by setting top_env_append_to_connect_phase in file execute_common.tpl
 
@@ -185,21 +195,12 @@ endfunction : end_of_elaboration_phase
 task execute_top_env::run_phase(uvm_phase phase);
   execute_top_default_seq vseq;
   vseq = execute_top_default_seq::type_id::create("vseq");
-  vseq.set_item_context(null, null);
-  if ( !vseq.randomize() )
-    `uvm_fatal(get_type_name(), "Failed to randomize virtual sequence")
-  vseq.m_execute_in_agent  = m_execute_in_agent; 
-  vseq.m_forward_agent     = m_forward_agent;    
-  vseq.m_execute_out_agent = m_execute_out_agent;
-  vseq.m_config            = m_config;           
+  vseq.m_vsqr   = m_vseqr;
+  vseq.m_config = m_config;
   vseq.set_starting_phase(phase);
-  // if (phase != null)
-  //   phase.raise_objection(this);
-  vseq.start(null);
-  // if (phase != null) begin
-  //   #10ns;
-  //   phase.drop_objection(this);
-  //end
+  if (!vseq.randomize())
+    `uvm_fatal(get_type_name(), "Failed to randomize execute_top_default_seq")
+  vseq.start(m_vseqr);
 
   // You can insert code here by setting top_env_append_to_run_phase in file execute_common.tpl
 
