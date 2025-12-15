@@ -1,0 +1,8 @@
+!alu_if
+control       control
+left_operand  left_operand
+right_operand right_operand
+zero_flag     zero_flag
+result        result
+overflow      overflow
+

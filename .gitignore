@@ -1,0 +1,7 @@
+# Simulation artifacts
+generated_alu_tb/sim/work/
+generated_alu_tb/sim/vsim.wlf
+generated_execute_tb/sim/work/
+generated_execute_tb/sim/vsim.wlf
+generated_execute_tb/sim/transcript
+generated_execute_tb/sim/certe_dump.xml

@@ -1,0 +1,162 @@
+sub  parse_common;
+sub  after_parse_common;
+sub  parse_reg_template;
+sub  parse_template;
+sub  after_parse_template;
+sub  check_file;
+sub  check_inc_file;
+sub  check_common_pkg;
+sub  check_common_env_pkg;
+sub  gen_bfm;
+sub  gen_if;
+sub  gen_seq_item;
+sub  gen_driver;
+sub  gen_monitor;
+sub  gen_sequencer;
+sub  gen_config;
+sub  gen_cov;
+sub  gen_agent;
+sub  gen_env;
+sub  gen_seq_lib;
+sub  gen_env_seq_lib;
+sub  gen_agent_pkg;
+sub  gen_top_pkg;
+sub  gen_dut_inst;
+sub  gen_top;
+sub  gen_port_converter;
+sub  gen_ref_model;
+sub  gen_top_env;
+sub  gen_top_config;
+sub  gen_top_seq_lib;
+sub  gen_top_test;
+sub  gen_regmodel_adapter;
+sub  gen_regmodel_coverage;
+sub  gen_regmodel_seq_lib;
+sub  gen_questa_script;
+sub  gen_vcs_script;
+sub  gen_ius_script;
+sub  gen_riviera_script;
+sub  gen_compile_file_list;
+sub  get_pkg_name;
+sub  write_file_header;
+
+
+# Scalar Variables:
+my $agent_has_env;
+my $agent_if;
+my $agent_item;
+my $agent_name;
+my $agent_reset;
+my $agent_seqr_class;
+my $aname;
+my $argnum;
+my $author;
+my $backup;
+my $common_pkg;
+my $common_pkg_fname;
+my $common_env_pkg;
+my $common_env_pkg_fname;
+my $common_tpl_fname;
+my $company;
+my $continue_on_warning;
+my $copyright;
+my $date;
+my $dept;
+my $dir1;
+my $dir2;
+my $dir;
+my $dual_top;
+my $dut_iname;
+my $dut_path;
+my $dut_pfile;
+my $dut_tb_dir;
+my $dut_tb_path;
+my $dut_top;
+my $ele;
+my $email;
+my $env_clock_list;
+my $env_reset_list;
+my $field;
+my $file_header_inc;
+sub  usage;
+    print "\n";
+    print "USAGE: perl easier_uvm_gen.pl [-t] <filename> <filename> ...     list of template file names\n";
+    print "\n";
+    print "       -p <top>            Prefix used to construct names associated with top-level env, default is top\n";
+    print "       -m <filename>       Path to common template file, default is common.tpl\n";
+    print "       -s <path>           Path to source files for Syosil scoreboard (overrides syosil_scoreboard_src_path in common template)\n";
+    print "       -c                  The code generator will continue after warnings\n";
+    print "       -r                  Causes a register model to be instantiated in the generated code (switch is no longer necessary}\n";
+    print "       -x dut_source_path  Returns the value of the dut_source_path setting\n";
+    print "       -x inc_path         Returns the value of the inc_path setting\n";
+    print "       -x project          Returns the value of the project setting\n";
+    print "       -x regmodel_file    Returns the value of the regmodel_file setting\n";
+    print "       -nopack             Suppresses generation of do_pack & do_unpack methods for backward compatibility\n";
+    print "\n";
+    exit;
+}    # end sub usage
+
+sub parse_common {
+    my $template_name = $common_tpl_fname;
+    @common_config_var_array   = ();
+
+    open( TH, $template_name )
+      || die "Exiting due to Error: can't open template: ${template_name}\n";
+    print LOGFILE "Parsing common : $template_name ...\n\n";
+
+    for ( ; ; ) {
+        my $line;
+        undef $!;
+        unless ( defined( $line = <TH> ) ) {
+            die $! if $!;
+            last;    # reached EOF
+        }
+
+        next if ( $line =~ m/^\s*#/ );    #comment line starts with "#"
+        next if ( $line =~ m/^\s+$/ );    #blank line
+
+        $line =~ s/(^.*?)#.*/$1/;         #delete trailing comments
+
+        $line =~ /^\s*(\w+)\s*=\s*(.+?)\s*$/
+          or die "Exiting due to Error: bad entry in line $. of ${common_tpl_fname}: $line\n";
+        my $param_name  = $1;
+        my $param_value = $2;
+
+        #check for dut path
+        if ( $param_name =~ /dut_source_path/i ) {
+            $dut_path = $param_value;
+            print LOGFILE "dut_path: $dut_path\n";
+        }
+
+        #check for include paths
+        if ( $param_name =~ /^\s*inc_path/i ) {
+            $inc_path = $param_value;
+        }
+
+        #check for project
+        if ( $param_name =~ /project/i ) {
+            $project = $param_value;
+            print LOGFILE "Project: $project\n";
+        }
+
+        #check for regmodel file
+        if ( $param_name =~ /regmodel_file/i) {
+            unless (defined($flag_x)) {
+                    check_file($param_value);
+            }
+            $regmodel_file = $param_value;
+            print LOGFILE "regmodel_file: $regmodel_file\n";
+        }
+
+        #check for top-level regmodel type
+        if ( $param_name =~ /top_reg_block_type/i) {
+            $top_reg_block_type = $param_value;
+            print LOGFILE "top_reg_block_type: $top_reg_block_type\n";
+        }
+
+        # Don't parse the rest of the settings if called with the -x switch
+        unless (defined($flag_x)) {
+
+        if ( $param_name =~ /prefix/i ) {
+            unless ( defined $tbname ) {
+sub usage {

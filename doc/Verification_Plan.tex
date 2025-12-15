@@ -1,0 +1,268 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+% 在导言区添加（只需一次）
+\renewcommand{\arraystretch}{1.2} % 行距略大，增强可读性
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % 自定义左对齐列宽
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+\begin{center}
+    \Large \textbf{Verification Plan for RISC-V ALU and Execute Stage}\\[6pt]
+    \normalsize Shengjie Chen
+\end{center}
+
+\section{Verification Scope and Objectives}
+
+This verification plan targets two cascaded modules in the RISC-V pipeline:
+\begin{itemize}
+    \item \textbf{ALU (Arithmetic Logic Unit):} Performs arithmetic, logic, shift, and comparison operations based on the 4-bit control signal.
+    \item \textbf{Execute Stage:} Integrates the ALU, operand forwarding logic, and branch handling. It computes results and forwarding data for subsequent pipeline stages.
+\end{itemize}
+\textbf{Objectives:}
+\begin{enumerate}
+    \item Verify functional correctness of ALU operations and flag generation (zero, overflow).
+    \item Verify operand selection and forwarding paths within the execute stage.
+    \item Ensure correct generation of control signals (\texttt{pc\_src}, \texttt{jalr\_flag}, etc.).
+    \item Achieve functional and code coverage closure with UVM-based verification.
+\end{enumerate}
+
+\section{Design Interface Summary}
+
+% ======== ALU TABLE ========
+\subsection*{ALU}
+\begin{longtable}{@{}L{3.5cm}L{1.8cm}L{8.5cm}@{}}
+\caption{Interface Summary of the ALU}\\
+\toprule
+\textbf{Signal} & \textbf{Direction} & \textbf{Description} \\ 
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Signal} & \textbf{Direction} & \textbf{Description} \\ 
+\midrule
+\endhead
+
+\midrule
+\multicolumn{3}{r}{\textit{(continued on next page)}} \\
+\bottomrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\texttt{control[3:0]} & Input & Operation select code controlling the arithmetic, logical, shift, or comparison behavior of the ALU. \\[2pt]
+\texttt{left\_operand[31:0]} & Input & Left-hand operand used as the first input to the operation. \\[2pt]
+\texttt{right\_operand[31:0]} & Input & Right-hand operand or shift amount, depending on operation type. \\[2pt]
+\texttt{result[31:0]} & Output & Computed result of the selected ALU operation. \\[2pt]
+\texttt{zero\_flag} & Output & Asserted high when \texttt{result} equals zero; used for branch decision logic. \\[2pt]
+\texttt{overflow} & Output & Indicates a signed arithmetic overflow during \texttt{ADD} or \texttt{SUB} operations. \\
+
+\end{longtable}
+
+
+\subsection*{Execute Stage}
+\begin{longtable}{@{}L{3.5cm}L{1.8cm}L{8.5cm}@{}}
+\caption{Interface Summary of the Execute Stage}\\
+\toprule
+\textbf{Signal} & \textbf{Direction} & \textbf{Description} \\ 
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Signal} & \textbf{Direction} & \textbf{Description} \\ 
+\midrule
+\endhead
+
+\midrule
+\multicolumn{3}{r}{\textit{(continued on next page)}} \\
+\bottomrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\texttt{data1}, \texttt{data2} & Input & Source register operands from the decode stage. \\
+\texttt{immediate\_data} & Input & Immediate value decoded from instruction. \\
+\texttt{pc\_in} & Input & Current program counter value entering the execute stage. \\
+\texttt{control\_in} & Input & Control structure containing ALU operation type, instruction encoding, and pipeline control signals. \\
+\texttt{wb\_forward\_data} & Input & Data forwarded from the write-back stage for hazard resolution. \\
+\texttt{mem\_forward\_data} & Input & Data forwarded from the memory stage for hazard resolution. \\
+\texttt{forward\_rs1}, \texttt{forward\_rs2} & Input & Multiplexer selectors determining which data source to forward for operands 1 and 2. \\
+\texttt{control\_out} & Output & Propagated control signals to the next pipeline stage. \\
+\texttt{alu\_data} & Output & Final ALU computation result. \\
+\texttt{memory\_data} & Output & Data prepared for memory write operations (valid for S-type instructions). \\
+\texttt{pc\_src} & Output & Branch decision flag indicating whether the next PC should be redirected. \\
+\texttt{jalr\_target\_offset} & Output & Calculated target address offset for JALR instructions. \\
+\texttt{jalr\_flag} & Output & Indicates that a JALR-type instruction is being executed. \\
+\texttt{pc\_out} & Output & Program counter value passed to the next stage. \\
+\texttt{overflow} & Output & Overflow indicator propagated from the ALU operation. \\
+
+\end{longtable}
+
+
+\section{Verification Environment Overview}
+
+\subsection{Testbench Architecture}
+A UVM-based testbench will be built using Easier UVM generator, including:
+\begin{itemize}
+    \item \textbf{Interface:} Connects testbench to DUT (ALU or execute\_stage).
+    \item \textbf{Driver:} Drives randomized transaction stimuli.
+    \item \textbf{Monitor:} Captures DUT outputs for checking and coverage.
+    \item \textbf{Scoreboard:} Compares DUT outputs with reference model.
+    \item \textbf{sequence item:} The data generated from the randomization.
+    \item \textbf{Sequence/Sequencer:} Generates constrained random operations and operand patterns.
+    \item \textbf{Coverage Collector:} Records coverage metrics.
+\end{itemize}
+
+% \begin{center}
+%     \includegraphics[width=0.8\textwidth]{uvm_env.png}
+% \end{center}
+
+\section{Functional Verification Plan}
+
+\subsection{ALU Verification Items}
+
+\textbf{Operation Coverage:}
+\begin{longtable}{@{}lll@{}}
+\toprule
+\textbf{Category} & \textbf{Operation} & \textbf{Verification Goal} \\ \midrule
+Logic & AND, OR, XOR & Verify bitwise correctness. \\
+Arithmetic & ADD, SUB & Verify signed arithmetic and overflow. \\
+Comparison & SLT, SLTU & Verify signed/unsigned comparison correctness. \\
+Shift & SLL, SRL, SRA & Verify correct shift amount and direction. \\
+Immediate & LUI & Verify correct upper-immediate load. \\
+Branch & Bxx (BEQ, BNE, etc.) & Verify zero-flag generation correctness. \\ \bottomrule
+\end{longtable}
+\textbf{Flag Verification:}
+\begin{itemize}
+    \item \texttt{zero\_flag} = 1 iff result == 0.
+    \item \texttt{overflow} = 1 iff ADD/SUB crosses signed boundary.
+\end{itemize}
+
+\subsection{Execute Stage Verification Items}
+
+\textbf{Forwarding Logic:}
+\begin{itemize}
+    \item Verify correct selection from \texttt{data1}, \texttt{data2}, \texttt{mem\_forward\_data}, and \texttt{wb\_forward\_data}.
+    \item Check data hazards resolution in cases FORWARD\_FROM\_EX and FORWARD\_FROM\_MEM.
+\end{itemize}
+\textbf{Control and Branch:}
+\begin{itemize}
+    \item Verify \texttt{pc\_src} asserted only for valid branch.
+    \item Verify \texttt{jalr\_flag} and \texttt{jalr\_target\_offset} for jump instructions.
+\end{itemize}
+\textbf{ALU Integration:}
+\begin{itemize}
+    \item Cross-check ALU output consistency with Execute Stage’s \texttt{alu\_data}.
+    \item Verify propagation of overflow and zero\_flag signals.
+\end{itemize}
+
+\section{Bug Detection Strategy}
+
+\begin{itemize}
+    \item Use \textbf{scoreboard} to compare DUT outputs with a SystemVerilog reference model.
+    \item Add \textbf{assertions (SVA)}:
+    \begin{itemize}
+        \item \texttt{assert property (result == 0 -> zero\_flag == 1);}
+        \item \texttt{assert property (control inside \{ADD,SUB\} |-> overflow == expected);}
+        \item \texttt{assert property (forwarding path matches selected signal);}
+    \end{itemize}
+    \item Use directed tests for corner cases (e.g., overflow, max/min shift).
+\end{itemize}
+
+\section{Coverage Plan}
+
+\subsection{Code Coverage}
+Collected automatically by simulator:
+\begin{itemize}
+    \item Statement coverage
+    \item Branch coverage
+    \item Toggle coverage
+\end{itemize}
+
+\subsection{Functional Coverage}
+
+\textbf{A covergroup will be defined on the transaction level to track ALU operation types and key functional signals:}
+
+\begin{verbatim}
+// Covergroup definition for ALU operations and overflow conditions
+covergroup alu_cg @(posedge vif.clk);
+
+  // Control operation type classification
+  coverpoint tr.control {
+    // Logical operations
+    bins logic_ops[]  = {ALU_AND, ALU_OR, ALU_XOR};
+
+    // Arithmetic operations with possible overflow
+    bins arith_ops[]  = {ALU_ADD, ALU_SUB};
+
+    // Shift operations
+    bins shift_ops[]  = {ALU_SLL, ALU_SRL, ALU_SRA};
+
+    // Comparison operations
+    bins cmp_ops[]    = {ALU_SLT, ALU_SLTU};
+
+    // Illegal or default operation (unexpected control)
+    bins illegal_ops  = default;
+  }
+
+  // Capture overflow condition
+  coverpoint tr.overflow;
+
+  // Ensure overflow only occurs in ADD or SUB operations
+  cross control, overflow;
+
+endgroup
+\end{verbatim}
+\textbf{Execute Stage coverage will cross:}
+\begin{itemize}
+    \item Operand forwarding paths $\times$ control type.  
+    \textit{→ Ensures all instruction types are tested under every forwarding condition.}
+
+    \item Branch decisions ($pc\_src$) $\times$ zero\_flag.  
+    \textit{→ Confirms branch logic behaves correctly for both taken and not-taken cases.}
+
+    \item Instruction encoding types ($encoding\_t$).  
+    \textit{→ Verifies that all instruction formats (R/I/S/B/U/J) are executed in simulation.}
+
+    \item Immediate data extension cases.  
+    \textit{→ Ensures both sign-extension and zero-extension immediates are covered.}
+
+    \item Control signal forwarding ($control\_in$ $\times$ $control\_out$).  
+    \textit{→ Confirms control signals are properly propagated between pipeline stages.}
+
+    \item JALR branch target computation ($jalr\_flag$ $\times$ $jalr\_target\_offset$).  
+    \textit{→ Validates that JALR-type branch targets are calculated correctly.}
+\end{itemize}
+
+
+\section{Verification Closure Criteria}
+
+\begin{itemize}
+    \item All functional coverage points reached ($\geq 95\%$).
+    \item Code coverage $\geq 90\%$.
+    \item All assertions pass without failure.
+    \item No mismatches reported by scoreboard.
+    \item All directed corner cases verified.
+\end{itemize}
+
+\section{Deliverables}
+
+\begin{itemize}
+    \item UVM environment source files.
+    \item Verification plan and coverage report.
+    \item Simulation waveforms for representative cases.
+    \item Summary report of detected bugs and fixes.
+\end{itemize}
+
+\end{document}

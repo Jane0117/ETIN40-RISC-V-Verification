@@ -1,0 +1,8 @@
+-html
+-htmldir
+coverage_report_dir
+-details
+-code
+bcesf
+-assert
+-cvg
