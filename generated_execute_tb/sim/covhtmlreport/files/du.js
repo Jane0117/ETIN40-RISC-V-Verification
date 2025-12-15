@@ -1,0 +1,2 @@
+var g_data = {"data":[{"n":"work.execute_in_pkg","id":7,"zf":1,"tc":99.71,"g":99.71},{"n":"work.execute_out_pkg","id":5,"zf":1,"tc":46.09,"g":46.09},{"n":"work.forward_pkg","id":6,"zf":1,"tc":100.00,"g":100.00}]};
+processDuData(g_data);

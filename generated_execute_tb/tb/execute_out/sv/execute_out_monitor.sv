@@ -47,6 +47,13 @@ endfunction : new
 function void execute_out_monitor::build_phase(uvm_phase phase);
   `uvm_info(get_type_name(), "build_phase start", UVM_LOW)
   super.build_phase(phase);
+  
+  // if (!uvm_config_db#(execute_out_config)::get(this, "", "config", m_config))
+  //   `uvm_warning(get_type_name(), "execute_out_config not provided to monitor")
+
+  // // ✅ 获取 vif（你原来就有）
+  // if (!uvm_config_db#(virtual execute_out_if)::get(this, "", "vif", vif))
+  //   `uvm_fatal(get_type_name(), "virtual interface must be set for execute_out_monitor.vif")
   if (!uvm_config_db#(virtual execute_out_if)::get(this, "", "vif", vif))
     `uvm_fatal(get_type_name(), "virtual interface must be set for execute_out_monitor.vif")
   if (m_config == null)
@@ -64,7 +71,7 @@ task execute_out_monitor::run_phase(uvm_phase phase);
   super.run_phase(phase);
   forever begin
     @(posedge vif.clock);
-    if(vif.reset) begin
+    if(!vif.reset) begin
       continue;
     end
     tr = execute_out_tx::type_id::create($sformatf("tr_%0d", tr_cnt++), this);
@@ -75,8 +82,15 @@ endtask : run_phase
 
 
 task execute_out_monitor::collect_values(execute_out_tx tr);
+
+// //for testing if the repeat in sequence is working 
+// static int cnt = 0;
+// cnt++;
+// if (cnt % 100 == 0)
+//   `uvm_info("MON", $sformatf("execute_out monitor cnt=%0d", cnt), UVM_NONE);
+
   if (vif == null && m_config != null)
-    vif = m_config.vif 
+    vif = m_config.vif; 
   if (vif == null) begin
     `uvm_error(get_type_name(), "Cannot sample execute_out interface because `vif` is null")
     return;

@@ -28,7 +28,7 @@ class execute_top_config extends uvm_object;
 
   uvm_active_passive_enum  is_active_execute_in        = UVM_ACTIVE;
   uvm_active_passive_enum  is_active_forward           = UVM_ACTIVE;
-  uvm_active_passive_enum  is_active_execute_out       = UVM_ACTIVE;
+  uvm_active_passive_enum  is_active_execute_out       = UVM_PASSIVE;
 
   bit                      checks_enable_execute_in;   
   bit                      checks_enable_forward;      

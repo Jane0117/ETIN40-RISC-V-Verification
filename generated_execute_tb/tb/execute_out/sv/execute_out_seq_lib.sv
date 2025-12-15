@@ -41,7 +41,6 @@ endfunction : new
 
 task execute_out_default_seq::body();
   `uvm_info(get_type_name(), "Default sequence starting", UVM_HIGH)
-
   req = execute_out_tx::type_id::create("req");
   start_item(req); 
   if ( !req.randomize() )

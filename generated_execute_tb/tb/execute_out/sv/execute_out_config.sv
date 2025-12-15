@@ -24,7 +24,7 @@ class execute_out_config extends uvm_object;
 
   virtual execute_out_if   vif;
                   
-  uvm_active_passive_enum  is_active = UVM_ACTIVE;
+  uvm_active_passive_enum  is_active = UVM_PASSIVE;
   bit                      coverage_enable;       
   bit                      checks_enable;         
 
