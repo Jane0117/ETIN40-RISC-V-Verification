@@ -1,0 +1,15 @@
+360:# UVM_ERROR :    0
+946:# UVM_ERROR :    0
+1535:# UVM_ERROR :    0
+1913:# UVM_ERROR ../tb/decode_wb/sv/decode_wb_monitor.sv(65) @ 90000: uvm_test_top.m_env.m_decode_wb_agent.m_monitor [decode_wb_monitor] write_en asserted with write_id==0
+1938:# UVM_ERROR ../tb/decode_wb/sv/decode_wb_monitor.sv(65) @ 330000: uvm_test_top.m_env.m_decode_wb_agent.m_monitor [decode_wb_monitor] write_en asserted with write_id==0
+2063:# UVM_ERROR ../tb/decode_wb/sv/decode_wb_monitor.sv(65) @ 1570000: uvm_test_top.m_env.m_decode_wb_agent.m_monitor [decode_wb_monitor] write_en asserted with write_id==0
+2126:# UVM_ERROR :    3
+2638:# UVM_ERROR ../tb/decode_wb/sv/decode_wb_monitor.sv(65) @ 90000: uvm_test_top.m_env.m_decode_wb_agent.m_monitor [decode_wb_monitor] write_en asserted with write_id==0
+2718:# UVM_ERROR ../tb/decode_wb/sv/decode_wb_monitor.sv(65) @ 330000: uvm_test_top.m_env.m_decode_wb_agent.m_monitor [decode_wb_monitor] write_en asserted with write_id==0
+3153:# UVM_ERROR ../tb/decode_wb/sv/decode_wb_monitor.sv(65) @ 1570000: uvm_test_top.m_env.m_decode_wb_agent.m_monitor [decode_wb_monitor] write_en asserted with write_id==0
+3346:# UVM_ERROR :    3
+4430:# UVM_ERROR :    0
+5784:# UVM_ERROR :    0
+7278:# UVM_ERROR :    0
+9612:# UVM_ERROR :    0

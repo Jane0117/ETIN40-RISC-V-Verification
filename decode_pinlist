@@ -1,0 +1,19 @@
+!decode_in_if
+clk              clk
+reset_n          reset_n
+instruction      instruction
+pc_in            pc_in
+
+!decode_wb_if
+write_en         write_en
+write_id         write_id
+write_data       write_data
+
+!decode_out_if
+reg_rd_id          reg_rd_id
+read_data1         read_data1
+read_data2         read_data2
+immediate_data     immediate_data
+pc_out             pc_out
+instruction_illegal instruction_illegal
+control_signals    control_signals

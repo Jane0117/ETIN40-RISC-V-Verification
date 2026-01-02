@@ -138,6 +138,8 @@
 
 
 ## Easier UVM Generator
+## Example (decode stage):
+##   perl easier_uvm_gen.pl -m decode_common.tpl decode_in.tpl decode_wb.tpl decode_out.tpl
 
 use strict;
 use warnings;
@@ -5922,12 +5924,23 @@ sub deal_with_files_f {
         # files.f does not exist, so create files.f in the output directory
         open( FILESFH, ">", "${dut_tb_path}/files.f");
         opendir( DH, $dut_path ) or die "Unable to open DUT directory ${dut_path} when looking for DUT files.f\n";
+
+        my @sv_files;
         while (my $file = readdir(DH)) {
-            if ( $file =~ /.*\.sv/ ) {
-                print FILESFH "${file}\n";
-            }
+            push @sv_files, $file if ( $file =~ /.*\.sv/ );
         }
         closedir(DH);
+
+        # Put common.sv first (package) then the rest alphabetically
+        @sv_files = sort @sv_files;
+        if ( grep { $_ eq "common.sv" } @sv_files ) {
+            print FILESFH "common.sv\n";
+            @sv_files = grep { $_ ne "common.sv" } @sv_files;
+        }
+        foreach my $file (@sv_files) {
+            print FILESFH "${file}\n";
+        }
+
         close(FILESFH);
     }
 }
