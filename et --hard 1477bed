@@ -1,0 +1,31 @@
+* [33m1477bed[m[33m ([m[1;31morigin/main[m[33m)[m exe finish
+* [33mdab3b0a[m decode
+* [33m46814e5[m combine exe_in and forward.
+*   [33m24ac280[m[33m ([m[1;31morigin/peihao_branch[m[33m)[m Merge branch 'main' of https://github.com/Jane0117/ETIN40-RISC-V-Verification
+[32m|[m[33m\[m  
+[32m|[m * [33m67d2824[m modified forward_scoreboard to make sure FIFO detection on EXP and ACT
+* [33m|[m [33m9e6ddb3[m finish execute_in coverage
+* [33m|[m [33mab6435a[m finish execute_in coverage
+* [33m|[m [33m702a13f[m finish coverage for execute_in
+* [33m|[m [33m516c25a[m Merge branch 'main' of https://github.com/Jane0117/ETIN40-RISC-V-Verification
+[34m|[m[33m\[m[33m|[m 
+[34m|[m * [33m12c7448[m pushed forward agent, passed coverage and scoreboard
+* [35m|[m [33mfa46d8f[m trying to solve the monitor problem
+[35m|[m[35m/[m  
+* [33md1dc1ff[m Add Debug log folder
+* [33mb33bd3d[m Fixed clk problem by changing main_phase to run_phase in driver.
+* [33me6129ea[m Modified repeat times to 3
+* [33m3ca09f7[m Fixed questa.do; fixed uvm_warning(config)
+* [33mc4a1a29[m Fix env config wiring and scoreboard connections
+* [33m065ca32[m Add build_phase and main_phase in driver and monitor. Make sure the project is runnable in Questasim.
+* [33m0f76601[m Updated Ref Model and Scoreboard
+* [33m9233dea[m Add execute-stage UVC templates and generated environment
+* [33m7072647[m Add execute stage UVM generation templates and README.md
+* [33m71b9d12[m Generated UVM environment for EX-Stage
+* [33m0f8aceb[m Modify agent_item name
+* [33mc09f8b7[m Modify files.f and compile_questa.do to ensure QuestaSim runs successfully.
+* [33m84ca8c2[m Add README.md
+* [33m3bff935[m Add README.md
+* [33mb09bb7f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Initial import: Easier UVM generator + ALU setup
+* [33me723cc7[m[33m ([m[1;31morigin/feature/execute-output[m[33m)[m finish exe output
+* [33mf86aa9f[m initial commit

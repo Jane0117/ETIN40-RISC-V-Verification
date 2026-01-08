@@ -1,0 +1,158 @@
+# ** Error (suppressible): (vdel-19) Failed to access library 'work' at "work".
+# No such file or directory. (errno = ENOENT)
+# ** Warning: (vdel-57) Library 'work' is missing or is not a valid QuestaSim library.
+# QuestaSim-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+# Start time: 14:14:25 on Jan 08,2026
+# vlog -reportprogress 300 -sv D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/dut/common.sv 
+# -- Compiling package common
+# 
+# Top level modules:
+# 	--none--
+# End time: 14:14:25 on Jan 08,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+# Start time: 14:14:25 on Jan 08,2026
+# vlog -reportprogress 300 -sv D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/dut/alu.sv 
+# -- Compiling package alu_sv_unit
+# -- Importing package common
+# -- Compiling module alu
+# 
+# Top level modules:
+# 	alu
+# End time: 14:14:25 on Jan 08,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+# Start time: 14:14:25 on Jan 08,2026
+# vlog -reportprogress 300 -sv D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/dut/execute_stage.sv 
+# -- Compiling package execute_stage_sv_unit
+# -- Importing package common
+# -- Compiling module execute_stage
+# 
+# Top level modules:
+# 	execute_stage
+# End time: 14:14:25 on Jan 08,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+# Start time: 14:14:25 on Jan 08,2026
+# vlog -reportprogress 300 -sv "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/dut" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/include" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_in/sv" D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_in/sv/execute_in_pkg.sv 
+# -- Compiling package execute_in_pkg
+# ** Note: (vlog-2286) D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_in/sv/execute_in_pkg.sv(18): Using implicit +incdir+F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package common
+# 
+# Top level modules:
+# 	--none--
+# End time: 14:14:25 on Jan 08,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+# Start time: 14:14:25 on Jan 08,2026
+# vlog -reportprogress 300 -sv "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/dut" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/include" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_in/sv" D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_in/sv/execute_in_if.sv 
+# -- Compiling interface execute_in_if
+# -- Importing package execute_in_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package common
+# 
+# Top level modules:
+# 	--none--
+# End time: 14:14:26 on Jan 08,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+# Start time: 14:14:26 on Jan 08,2026
+# vlog -reportprogress 300 -sv "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/dut" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/include" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_out/sv" D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_out/sv/execute_out_pkg.sv 
+# -- Compiling package execute_out_pkg
+# ** Note: (vlog-2286) D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_out/sv/execute_out_pkg.sv(18): Using implicit +incdir+F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package common
+# 
+# Top level modules:
+# 	--none--
+# End time: 14:14:26 on Jan 08,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+# Start time: 14:14:26 on Jan 08,2026
+# vlog -reportprogress 300 -sv "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/dut" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/include" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_out/sv" D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_out/sv/execute_out_if.sv 
+# -- Compiling interface execute_out_if
+# -- Importing package execute_out_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package common
+# 
+# Top level modules:
+# 	--none--
+# End time: 14:14:26 on Jan 08,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+# Start time: 14:14:26 on Jan 08,2026
+# vlog -reportprogress 300 -sv "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/dut" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/include" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_top/sv" D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_top/sv/execute_top_pkg.sv 
+# -- Compiling package execute_top_pkg
+# ** Note: (vlog-2286) D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_top/sv/execute_top_pkg.sv(18): Using implicit +incdir+F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package execute_in_pkg
+# -- Importing package common
+# -- Importing package execute_out_pkg
+# 
+# Top level modules:
+# 	--none--
+# End time: 14:14:27 on Jan 08,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+# Start time: 14:14:27 on Jan 08,2026
+# vlog -reportprogress 300 -sv "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/dut" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/include" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_top_test/sv" D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_top_test/sv/execute_top_test_pkg.sv 
+# -- Compiling package execute_top_test_pkg
+# ** Note: (vlog-2286) D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_top_test/sv/execute_top_test_pkg.sv(21): Using implicit +incdir+F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package execute_in_pkg
+# -- Importing package common
+# -- Importing package execute_out_pkg
+# -- Importing package execute_top_pkg
+# 
+# Top level modules:
+# 	--none--
+# End time: 14:14:27 on Jan 08,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+# Start time: 14:14:27 on Jan 08,2026
+# vlog -reportprogress 300 -sv -timescale 1ns/1ps "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/dut" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/include" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_top_tb/sv" D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_top_tb/sv/execute_top_th.sv 
+# -- Compiling module execute_top_th
+# 
+# Top level modules:
+# 	execute_top_th
+# End time: 14:14:27 on Jan 08,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 10.6c Compiler 2017.07 Jul 26 2017
+# Start time: 14:14:27 on Jan 08,2026
+# vlog -reportprogress 300 -sv -timescale 1ns/1ps "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/dut" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/include" "+incdir+D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_top_tb/sv" D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_top_tb/sv/execute_top_tb.sv 
+# -- Compiling module execute_top_tb
+# ** Note: (vlog-2286) D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/exe_v1/tb/execute_top_tb/sv/execute_top_tb.sv(21): Using implicit +incdir+F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package execute_top_test_pkg
+# -- Importing package execute_in_pkg
+# -- Importing package common
+# -- Importing package execute_out_pkg
+# -- Importing package execute_top_pkg
+# 
+# Top level modules:
+# 	execute_top_tb
+# End time: 14:14:27 on Jan 08,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" -solvefaildebug -uvmcontrol=all -classdebug work.execute_top_tb "+UVM_TESTNAME=execute_top_test" "+UVM_VERBOSITY=UVM_MEDIUM" 
+# Start time: 14:14:28 on Jan 08,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading sv_std.std
+# Loading work.execute_in_if(fast)
+# Loading work.execute_out_if(fast)
+# Loading work.common(fast)
+# Loading mtiUvm.uvm_pkg
+# Loading work.execute_out_pkg(fast)
+# Loading work.execute_in_pkg(fast)
+# Loading work.execute_top_pkg(fast)
+# Loading work.execute_top_test_pkg(fast)
+# Loading work.execute_top_tb(fast)
+# Loading work.execute_top_th(fast)
+# Loading work.execute_in_if(fast)
+# Loading work.execute_out_if(fast)
+# Loading work.execute_stage_sv_unit(fast)
+# Loading work.execute_stage(fast)
+# Loading work.alu_sv_unit(fast)
+# Loading work.alu(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading F:/questasim/uvm-1.1d\win64\uvm_dpi.dll
