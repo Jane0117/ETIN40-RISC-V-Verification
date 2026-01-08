@@ -1,0 +1,11 @@
+234:# UVM_WARNING D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/tb/execute_out/sv/execute_out_monitor.sv(53) @ 0: uvm_test_top.m_env.m_execute_out_agent.m_monitor [execute_out_monitor] execute_out_config not provided to monitor
+50190:# UVM_WARNING :    1
+50403:# UVM_WARNING D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/tb/execute_out/sv/execute_out_monitor.sv(53) @ 0: uvm_test_top.m_env.m_execute_out_agent.m_monitor [execute_out_monitor] execute_out_config not provided to monitor
+100355:# UVM_WARNING D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/tb/include/execute_stage_scoreboard.sv(90) @ 327990000: uvm_test_top.m_env.m_scoreboard [execute_stage_scoreboard] no comparisons performed; check ref/act connections or valid gating
+100361:# UVM_WARNING :    2
+100575:# UVM_WARNING D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/tb/execute_out/sv/execute_out_monitor.sv(53) @ 0: uvm_test_top.m_env.m_execute_out_agent.m_monitor [execute_out_monitor] execute_out_config not provided to monitor
+175131:# UVM_WARNING :    1
+175346:# UVM_WARNING D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/tb/execute_out/sv/execute_out_monitor.sv(53) @ 0: uvm_test_top.m_env.m_execute_out_agent.m_monitor [execute_out_monitor] execute_out_config not provided to monitor
+249897:# UVM_WARNING :    1
+250111:# UVM_WARNING D:/learning/lund/learning_resources/ETIN40/sem2/exe_stage/tb/execute_out/sv/execute_out_monitor.sv(55) @ 0: uvm_test_top.m_env.m_execute_out_agent.m_monitor [execute_out_monitor] execute_out_config not provided to monitor
+308266:# UVM_WARNING :    1
