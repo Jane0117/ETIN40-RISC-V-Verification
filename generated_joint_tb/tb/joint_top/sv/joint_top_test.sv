@@ -32,7 +32,7 @@ class joint_top_test extends uvm_test;
   task run_phase(uvm_phase phase);
     phase.raise_objection(this, "joint_top_test run");
     // 运行足够长时间以覆盖默认序列
-    #5000ns;
+    #20000ns;
     phase.drop_objection(this, "joint_top_test run done");
   endtask
 endclass

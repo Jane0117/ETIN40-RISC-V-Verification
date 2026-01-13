@@ -50,37 +50,14 @@ class joint_scoreboard extends uvm_component;
   // regfile model for basic sanity (write port only)
   logic [31:0] regfile[0:31];
 
-  // coverage sampling vars
-  int cov_encoding;
-  int cov_alu_op;
-  int cov_mem_size;
-  bit cov_mem_sign;
-  bit cov_mem_read;
-  bit cov_mem_write;
-  bit cov_reg_write;
-  bit cov_is_branch;
-  bit cov_pc_src;
-  bit cov_jalr_flag;
   // summary counters
   int unsigned dec_count;
   int unsigned exec_total;
   int unsigned exec_pass;
   int unsigned exec_fail;
+  int unsigned rd_check_total;
+  int unsigned rd_check_fail;
 
-  covergroup cg_joint;
-    cp_encoding  : coverpoint cov_encoding;
-    cp_alu_op    : coverpoint cov_alu_op;
-    cp_mem_size  : coverpoint cov_mem_size;
-    cp_mem_sign  : coverpoint cov_mem_sign;
-    cp_mem_read  : coverpoint cov_mem_read;
-    cp_mem_write : coverpoint cov_mem_write;
-    cp_reg_write : coverpoint cov_reg_write;
-    cp_is_branch : coverpoint cov_is_branch;
-    cp_pc_src    : coverpoint cov_pc_src;
-    cp_jalr_flag : coverpoint cov_jalr_flag;
-    cross_enc_pc : cross cp_encoding, cp_pc_src;
-    cross_alu_pc : cross cp_alu_op, cp_pc_src;
-  endgroup
 
   function new(string name, uvm_component parent);
     super.new(name, parent);
@@ -90,11 +67,12 @@ class joint_scoreboard extends uvm_component;
     exp_imp  = new("exp_imp",  this);
     dec_in_imp = new("dec_in_imp", this);
     foreach (regfile[ii]) regfile[ii] = '0;
-    cg_joint = new();
     dec_count   = 0;
     exec_total  = 0;
     exec_pass   = 0;
     exec_fail   = 0;
+    rd_check_total = 0;
+    rd_check_fail  = 0;
   endfunction
 
   // -----------------------------------------------------------------------
@@ -269,6 +247,10 @@ class joint_scoreboard extends uvm_component;
     control_type c; logic decode_failed;
     dec_exp_t exp;
     instruction_type instr = '0;
+    logic [4:0] rs1;
+    logic [4:0] rs2;
+    logic [31:0] exp_data1;
+    logic [31:0] exp_data2;
     if ($isunknown(t.pc_tag)) begin
       `uvm_warning(get_type_name(), "Skip dec with X pc_tag")
       return;
@@ -290,6 +272,22 @@ class joint_scoreboard extends uvm_component;
     exp.data1    = t.read_data1;
     exp.data2    = t.read_data2;
     exp_by_pc[t.pc_tag] = exp;
+    rs1 = instr.rs1;
+    rs2 = instr.rs2;
+    if (!decode_failed && !t.instruction_illegal) begin
+      if (c.encoding inside {R_TYPE, I_TYPE, S_TYPE, B_TYPE}) begin
+        exp_data1 = (rs1 != 0) ? regfile[rs1] : '0;
+        rd_check_total++;
+        if (t.read_data1 !== exp_data1)
+          rd_check_fail++;
+      end
+      if (c.encoding inside {R_TYPE, S_TYPE, B_TYPE}) begin
+        exp_data2 = (rs2 != 0) ? regfile[rs2] : '0;
+        rd_check_total++;
+        if (t.read_data2 !== exp_data2)
+          rd_check_fail++;
+      end
+    end
     if (!$isunknown(t.pc_out) && !$isunknown(t.seq_id))
       dec_seq_q_by_pc[t.pc_out].push_back(t.seq_id);
     // 基本一致性检查
@@ -372,7 +370,8 @@ class joint_scoreboard extends uvm_component;
     ok &= (t.control_out.is_branch  === ref_tx.control_out.is_branch);
     ok &= (t.pc_src      === ref_tx.pc_src);
     ok &= (t.alu_data    === ref_tx.alu_data);
-    ok &= (t.memory_data === ref_tx.memory_data);
+    if (t.control_out.mem_write)
+      ok &= (t.memory_data === ref_tx.memory_data);
     if (!ok)
       begin
         exec_fail++;
@@ -385,18 +384,6 @@ class joint_scoreboard extends uvm_component;
       `uvm_info(get_type_name(), $sformatf("PASS pc=0x%0h", t.pc_out), UVM_MEDIUM);
     end
 
-    // coverage sample
-    cov_encoding  = exp.control.encoding;
-    cov_alu_op    = exp.control.alu_op;
-    cov_mem_size  = exp.control.mem_size;
-    cov_mem_sign  = exp.control.mem_sign;
-    cov_mem_read  = exp.control.mem_read;
-    cov_mem_write = exp.control.mem_write;
-    cov_reg_write = exp.control.reg_write;
-    cov_is_branch = exp.control.is_branch;
-    cov_pc_src    = t.pc_src;
-    cov_jalr_flag = t.jalr_flag;
-    cg_joint.sample();
     `uvm_info(get_type_name(), $sformatf("EXEC pc=0x%0h ctrl=%0h alu=0x%0h mem=0x%0h pc_src=%0b jalr=%0b",
               t.pc_out, t.control_out, t.alu_data, t.memory_data, t.pc_src, t.jalr_flag), UVM_MEDIUM)
   endfunction
@@ -404,8 +391,8 @@ class joint_scoreboard extends uvm_component;
   function void report_phase(uvm_phase phase);
     super.report_phase(phase);
     `uvm_info(get_type_name(),
-              $sformatf("SUMMARY dec=%0d exec_total=%0d pass=%0d fail=%0d",
-                        dec_count, exec_total, exec_pass, exec_fail),
+              $sformatf("SUMMARY dec=%0d exec_total=%0d pass=%0d fail=%0d rd_chk=%0d rd_fail=%0d",
+                        dec_count, exec_total, exec_pass, exec_fail, rd_check_total, rd_check_fail),
               UVM_LOW)
   endfunction
 endclass

@@ -46,14 +46,21 @@ task decode_wb_default_seq::body();
   for (int unsigned i = 0; i < m_seq_count; i++) begin
     req = decode_wb_tx::type_id::create($sformatf("req_%0d", i));
     start_item(req); 
-    // Edge-heavy writeback patterns
-    req.write_en   = ($urandom_range(0,9) < 7); // 70% enable
-    req.write_id   = $urandom_range(0,31);
-    unique case (i % 3)
-      0: req.write_data = 32'h0000_0000;
-      1: req.write_data = 32'hFFFF_FFFF;
-      default: req.write_data = $urandom();
-    endcase
+    if (i < 2) begin
+      // Seed deterministic values for branch comparisons
+      req.write_en   = 1'b1;
+      req.write_id   = (i == 0) ? 5'h01 : 5'h02;
+      req.write_data = (i == 0) ? 32'h0000_0001 : 32'h0000_0002;
+    end else begin
+      // Edge-heavy writeback patterns
+      req.write_en   = ($urandom_range(0,9) < 7); // 70% enable
+      req.write_id   = $urandom_range(0,31);
+      unique case (i % 3)
+        0: req.write_data = 32'h0000_0000;
+        1: req.write_data = 32'hFFFF_FFFF;
+        default: req.write_data = $urandom();
+      endcase
+    end
     finish_item(req); 
   end
 

@@ -107,6 +107,45 @@ task decode_in_default_seq::body();
       finish_item(req);
       continue;
     end
+    if (i < 34) begin
+      case (i)
+        3:  req.instruction = {FUNCT7_ADD,5'h01,5'h02,FUNCT3_ADD,5'h03,OPC_RTYPE}; // ADD
+        4:  req.instruction = {FUNCT7_SUB,5'h04,5'h05,FUNCT3_SUB,5'h06,OPC_RTYPE}; // SUB
+        5:  req.instruction = {FUNCT7_ADD,5'h07,5'h08,3'b001,   5'h09,OPC_RTYPE}; // SLL
+        6:  req.instruction = {FUNCT7_ADD,5'h07,5'h08,3'b101,   5'h09,OPC_RTYPE}; // SRL
+        7:  req.instruction = {FUNCT7_SRA,5'h07,5'h08,FUNCT3_SRA,5'h09,OPC_RTYPE}; // SRA
+        8:  req.instruction = {FUNCT7_ADD,5'h0a,5'h0b,FUNCT3_SLT, 5'h0c,OPC_RTYPE};
+        9:  req.instruction = {FUNCT7_ADD,5'h0d,5'h0e,FUNCT3_SLTU,5'h0f,OPC_RTYPE};
+        10: req.instruction = {FUNCT7_ADD,5'h10,5'h11,FUNCT3_XOR, 5'h12,OPC_RTYPE};
+        11: req.instruction = {FUNCT7_ADD,5'h13,5'h14,FUNCT3_OR,  5'h15,OPC_RTYPE};
+        12: req.instruction = {FUNCT7_ADD,5'h16,5'h17,FUNCT3_AND, 5'h18,OPC_RTYPE};
+        13: req.instruction = {12'h0,5'h01,3'b000,5'h02,OPC_LOAD}; // LB
+        14: req.instruction = {12'h0,5'h01,3'b001,5'h02,OPC_LOAD}; // LH
+        15: req.instruction = {12'h0,5'h01,3'b010,5'h02,OPC_LOAD}; // LW
+        16: req.instruction = {12'h0,5'h01,FUNCT3_LBU,5'h02,OPC_LOAD}; // LBU
+        17: req.instruction = {12'h0,5'h01,FUNCT3_LHU,5'h02,OPC_LOAD}; // LHU
+        18: req.instruction = {7'h0,5'h02,5'h01,FUNCT3_SB,5'h00,OPC_STORE}; // SB
+        19: req.instruction = {7'h0,5'h02,5'h01,FUNCT3_SH,5'h00,OPC_STORE}; // SH
+        20: req.instruction = {7'h0,5'h02,5'h01,FUNCT3_SW,5'h00,OPC_STORE}; // SW
+        21: req.instruction = {7'h0,5'h00,5'h00,FUNCT3_BEQ,5'h00,OPC_BRANCH}; // beq x0,x0 -> taken
+        22: req.instruction = {7'h0,5'h01,5'h00,FUNCT3_BNE,5'h00,OPC_BRANCH}; // bne x0,x1 -> taken
+        23: req.instruction = {7'h0,5'h01,5'h00,FUNCT3_BLT,5'h00,OPC_BRANCH}; // blt x0,x1 -> taken
+        24: req.instruction = {7'h0,5'h01,5'h00,FUNCT3_BGE,5'h00,OPC_BRANCH}; // bge x0,x1 -> not taken
+        25: req.instruction = {7'h0,5'h01,5'h00,FUNCT3_BLTU,5'h00,OPC_BRANCH}; // bltu x0,x1 -> taken
+        26: req.instruction = {7'h0,5'h01,5'h00,FUNCT3_BGEU,5'h00,OPC_BRANCH}; // bgeu x0,x1 -> not taken
+        27: req.instruction = {20'h0,5'h01,OPC_JAL};
+        28: req.instruction = {12'h0,5'h01,3'b000,5'h02,OPC_JALR};
+        29: req.instruction = {20'h0,5'h03,OPC_LUI};
+        30: req.instruction = {20'h0,5'h04,OPC_AUIPC};
+        31: req.instruction = {7'h0,5'h00,5'h00,FUNCT3_BLTU,5'h00,OPC_BRANCH}; // bltu x0,x0 -> not taken
+        32: req.instruction = {7'h0,5'h00,5'h00,FUNCT3_BGEU,5'h00,OPC_BRANCH}; // bgeu x0,x0 -> taken
+        33: req.instruction = {7'h0,5'h00,5'h01,FUNCT3_BGE, 5'h00,OPC_BRANCH}; // bge x1,x0 -> taken
+        default: req.instruction = $urandom;
+      endcase
+      req.pc_in = $urandom_range(0, 1024);
+      finish_item(req);
+      continue;
+    end
 
     // 覆盖 opcode/funct 的定向随机组合
     unique case (i % 18)
@@ -155,16 +194,43 @@ task decode_in_default_seq::body();
       default: req.instruction = {FUNCT7_ADD,5'h16,5'h17,FUNCT3_AND, 5'h18,OPC_RTYPE};
     endcase
   end
-  13: begin // BEQ/BNE
-    req.instruction = {7'h0,5'h19,5'h1a,FUNCT3_BEQ,5'h1b,OPC_BRANCH};
+  13: begin // BEQ/BNE: toggle equal/unequal to hit pc_src 0/1
+    logic [4:0] rs1;
+    logic [4:0] rs2;
+    if (i[1]) begin
+      rs1 = 5'h00; // x0
+      rs2 = 5'h01; // x1
+    end else begin
+      rs1 = 5'h00; // x0
+      rs2 = 5'h00; // x0
+    end
+    req.instruction = {7'h0, rs2, rs1, FUNCT3_BEQ, 5'h1b, OPC_BRANCH};
     if (i[0]) req.instruction[14:12] = FUNCT3_BNE;
   end
-  14: begin // BLT/BGE
-    req.instruction = {7'h0,5'h1c,5'h1d,FUNCT3_BLT,5'h1e,OPC_BRANCH};
+  14: begin // BLT/BGE: toggle less/greater to hit pc_src 0/1
+    logic [4:0] rs1;
+    logic [4:0] rs2;
+    if (i[1]) begin
+      rs1 = 5'h01; // x1
+      rs2 = 5'h00; // x0
+    end else begin
+      rs1 = 5'h00; // x0
+      rs2 = 5'h01; // x1
+    end
+    req.instruction = {7'h0, rs2, rs1, FUNCT3_BLT, 5'h1e, OPC_BRANCH};
     if (i[0]) req.instruction[14:12] = FUNCT3_BGE;
   end
-  15: begin // BLTU/BGEU
-    req.instruction = {7'h0,5'h1f,5'h00,FUNCT3_BLTU,5'h01,OPC_BRANCH};
+  15: begin // BLTU/BGEU: toggle less/greater (unsigned) to hit pc_src 0/1
+    logic [4:0] rs1;
+    logic [4:0] rs2;
+    if (i[1]) begin
+      rs1 = 5'h01; // x1
+      rs2 = 5'h00; // x0
+    end else begin
+      rs1 = 5'h00; // x0
+      rs2 = 5'h01; // x1
+    end
+    req.instruction = {7'h0, rs2, rs1, FUNCT3_BLTU, 5'h01, OPC_BRANCH};
     if (i[0]) req.instruction[14:12] = FUNCT3_BGEU;
   end
   16: begin // Load 尺寸/符号位
