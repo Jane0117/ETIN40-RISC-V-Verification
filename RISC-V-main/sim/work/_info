@@ -1,0 +1,897 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/learning/lund/learning_resources/ETIN40/sem2/RISC-V-main/sim
+T_opt
+!s110 1767897412
+VF58Z^VAZk]12]JN5_<NX13
+04 10 4 work cpu_tb_top fast 0
+=1-1cce51133fda-695ff944-69-6a04
+o-quiet -auto_acc_if_foreign -work work +acc
+Z1 tCvgOpt 0
+n@_opt
+OL;O;10.6c;65
+valu
+Z2 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z3 DXx4 work 6 common 0 22 >^6UZ=TmWfFnkY8fLzCe21
+DXx4 work 11 alu_sv_unit 0 22 bjbATT0f0@oHf3IDma_^[0
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+31
+!i10b 1
+!s100 k>EFA<1gXmjBa?6DgPW[>3
+I7T=b=KMAKC@XXOaPN[goN3
+!s105 alu_sv_unit
+S1
+R0
+Z5 w1750105616
+Z6 8../SystemVerilog/Design/alu.sv
+Z7 F../SystemVerilog/Design/alu.sv
+L0 5
+Z8 OL;L;10.6c;65
+Z9 !s108 1767897410.000000
+Z10 !s107 tb/tests/cpu_tests.sv|tb/env/cpu_env.sv|tb/sequences/cpu_sequences.sv|tb/coverage/cpu_coverage.sv|tb/scoreboard/cpu_scoreboard.sv|tb/ref/cpu_ref_model.sv|tb/monitors/cpu_monitors.sv|tb/pkg/cpu_typedefs.sv|F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_deprecated_defines.svh|F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_reg_defines.svh|F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_callback_defines.svh|F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_sequence_defines.svh|F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/tlm1/uvm_tlm_imps.svh|F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_tlm_defines.svh|F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_printer_defines.svh|F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_object_defines.svh|F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_phase_defines.svh|F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_message_defines.svh|F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/macros/uvm_version_defines.svh|F:/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src/uvm_macros.svh|tb/cpu_tb_top.sv|tb/cpu_tb_pkg.sv|tb/cpu_mon_bind.sv|tb/agents/uart/uart_pkg.sv|tb/interfaces/cpu_mon_if.sv|tb/interfaces/uart_if.sv|../SystemVerilog/Design/cpu.sv|../SystemVerilog/Design/uart_wrapper.sv|../SystemVerilog/Design/uart.sv|../SystemVerilog/Design/gshare_predictor.sv|../SystemVerilog/Design/stall_unit.sv|../SystemVerilog/Design/forwarding_unit.sv|../SystemVerilog/Design/mem_stage.sv|../SystemVerilog/Design/program_memory.sv|../SystemVerilog/Design/data_memory.sv|../SystemVerilog/Design/execute_stage.sv|../SystemVerilog/Design/decode_stage.sv|../SystemVerilog/Design/fetch_stage.sv|../SystemVerilog/Design/instr_decompressor.sv|../SystemVerilog/Design/register_file.sv|../SystemVerilog/Design/control.sv|../SystemVerilog/Design/alu.sv|../SystemVerilog/Design/common.sv|
+Z11 !s90 -sv|-timescale|1ns/1ps|-f|filelist.f|
+!i113 0
+Z12 o-sv -timescale 1ns/1ps -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z13 !s92 -sv -timescale 1ns/1ps +incdir+../SystemVerilog/Design +incdir+tb +incdir+tb/interfaces +incdir+tb/agents/uart +incdir+tb/pkg +incdir+tb/monitors +incdir+tb/ref +incdir+tb/scoreboard +incdir+tb/coverage +incdir+tb/sequences +incdir+tb/env +incdir+tb/tests -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+Xalu_sv_unit
+R2
+R3
+VbjbATT0f0@oHf3IDma_^[0
+r1
+!s85 0
+31
+!i10b 1
+!s100 nJI4@QJ^D1M6iG?JzQloF2
+IbjbATT0f0@oHf3IDma_^[0
+!i103 1
+S1
+R0
+R5
+R6
+R7
+L0 3
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Xcommon
+R2
+Z14 !s110 1767897410
+!i10b 1
+!s100 ^z<LOMRBI9g2O;JQamni20
+I>^6UZ=TmWfFnkY8fLzCe21
+V>^6UZ=TmWfFnkY8fLzCe21
+S1
+R0
+R5
+8../SystemVerilog/Design/common.sv
+F../SystemVerilog/Design/common.sv
+L0 3
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vcontrol
+R2
+R3
+DXx4 work 15 control_sv_unit 0 22 RIUGL?C]3>hUi@oYL>_G42
+R4
+r1
+!s85 0
+31
+!i10b 1
+!s100 22JYY`AA7?0mMN;hJEFd:1
+IQYj6k0=FU0GPGHQNzJJf72
+!s105 control_sv_unit
+S1
+R0
+R5
+Z15 8../SystemVerilog/Design/control.sv
+Z16 F../SystemVerilog/Design/control.sv
+L0 6
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Xcontrol_sv_unit
+R2
+R3
+VRIUGL?C]3>hUi@oYL>_G42
+r1
+!s85 0
+31
+!i10b 1
+!s100 jz8WHk;SBo=48[jeC6ndX3
+IRIUGL?C]3>hUi@oYL>_G42
+!i103 1
+S1
+R0
+R5
+R15
+R16
+L0 3
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vcpu
+R2
+R3
+DXx4 work 11 cpu_sv_unit 0 22 :jSZH6T:jzTeg2[9;VnK_3
+R4
+r1
+!s85 0
+31
+!i10b 1
+!s100 OhI9DBBS^ODWgaZU^c`VK3
+IiaJC<IBjl=T9j^]AlOiIE2
+!s105 cpu_sv_unit
+S1
+R0
+Z17 w1767886077
+Z18 8../SystemVerilog/Design/cpu.sv
+Z19 F../SystemVerilog/Design/cpu.sv
+L0 6
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vcpu_mon_bind
+R2
+R3
+DXx4 work 20 cpu_mon_bind_sv_unit 0 22 3hGF27a=5WGPlnAR8hN_F1
+R4
+r1
+!s85 0
+31
+!i10b 1
+!s100 D5?M9[K<h@V<m`f99KRI]2
+I70W?9Ca8kgBLPf2^XIzB=1
+!s105 cpu_mon_bind_sv_unit
+S1
+R0
+Z20 w1767886934
+Z21 8tb/cpu_mon_bind.sv
+Z22 Ftb/cpu_mon_bind.sv
+L0 4
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Xcpu_mon_bind_sv_unit
+R2
+R3
+V3hGF27a=5WGPlnAR8hN_F1
+r1
+!s85 0
+31
+!i10b 1
+!s100 6ShgdmB6iQDIOKeoTVFFG1
+I3hGF27a=5WGPlnAR8hN_F1
+!i103 1
+S1
+R0
+R20
+R21
+R22
+L0 2
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Ycpu_mon_if
+R2
+R3
+R14
+!i10b 1
+!s100 SA@@M>9RQbaP<V;g5ANX01
+Im4GV9`>]14F^Vf?Og9>@T3
+R4
+!s105 cpu_mon_if_sv_unit
+S1
+R0
+w1767886885
+8tb/interfaces/cpu_mon_if.sv
+Ftb/interfaces/cpu_mon_if.sv
+L0 3
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Xcpu_sv_unit
+R2
+R3
+V:jSZH6T:jzTeg2[9;VnK_3
+r1
+!s85 0
+31
+!i10b 1
+!s100 j6^l=6ScB;CZ[zJk]l3=E0
+I:jSZH6T:jzTeg2[9;VnK_3
+!i103 1
+S1
+R0
+R17
+R18
+R19
+L0 3
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Xcpu_tb_pkg
+Z23 !s115 uart_if
+!s115 cpu_mon_if
+R2
+Z24 DXx6 mtiUvm 7 uvm_pkg 0 22 oMKUklN?>LE6@MJe7=2><1
+Z25 DXx4 work 8 uart_pkg 0 22 iWn]iPO2oDOTn=L<QfK9Z0
+R3
+Z26 !s110 1767897411
+!i10b 1
+!s100 hb5PPB[];DVDa76k7?CK:1
+IMd=57^EC0[Ud;e_B9TE;L2
+VMd=57^EC0[Ud;e_B9TE;L2
+S1
+R0
+w1767897350
+8tb/cpu_tb_pkg.sv
+Ftb/cpu_tb_pkg.sv
+Ftb/pkg/cpu_typedefs.sv
+Ftb/monitors/cpu_monitors.sv
+Ftb/ref/cpu_ref_model.sv
+Ftb/scoreboard/cpu_scoreboard.sv
+Ftb/coverage/cpu_coverage.sv
+Ftb/sequences/cpu_sequences.sv
+Ftb/env/cpu_env.sv
+Ftb/tests/cpu_tests.sv
+L0 4
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vcpu_tb_top
+R2
+R24
+R25
+R3
+DXx4 work 10 cpu_tb_pkg 0 22 Md=57^EC0[Ud;e_B9TE;L2
+R26
+!i10b 1
+!s100 zJC@Zm;B9_;Xlc__7Lza30
+In3WP6Ri5eOCAnODHgHPY51
+R4
+!s105 cpu_tb_top_sv_unit
+S1
+R0
+w1767886898
+8tb/cpu_tb_top.sv
+Ftb/cpu_tb_top.sv
+L0 3
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vdata_memory
+R2
+R14
+!i10b 1
+!s100 GB<foB2]3]d17gLS>SRbk2
+IW]1fN?9Nl97UAiFRXEhW10
+R4
+!s105 data_memory_sv_unit
+S1
+R0
+R5
+8../SystemVerilog/Design/data_memory.sv
+F../SystemVerilog/Design/data_memory.sv
+L0 3
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vdecode_stage
+R2
+R3
+DXx4 work 20 decode_stage_sv_unit 0 22 o@IO6@ccRjMHNbaF]BTm?3
+R4
+r1
+!s85 0
+31
+!i10b 1
+!s100 B3[Xh]TFloWT^dHA3HcQ53
+IaHS9SLCldS57?4e_f96hE0
+!s105 decode_stage_sv_unit
+S1
+R0
+Z27 w1763036947
+Z28 8../SystemVerilog/Design/decode_stage.sv
+Z29 F../SystemVerilog/Design/decode_stage.sv
+L0 6
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Xdecode_stage_sv_unit
+R2
+R3
+Vo@IO6@ccRjMHNbaF]BTm?3
+r1
+!s85 0
+31
+!i10b 1
+!s100 zQePLZ==`EA1ICA4oOgnA2
+Io@IO6@ccRjMHNbaF]BTm?3
+!i103 1
+S1
+R0
+R27
+R28
+R29
+L0 3
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vexecute_stage
+R2
+R3
+DXx4 work 21 execute_stage_sv_unit 0 22 d_US>24eEf[dJmFPEimMD3
+R4
+r1
+!s85 0
+31
+!i10b 1
+!s100 ZeUODPa<4Y^4N_<R8Cj6h2
+I6eD_=3BC99A4BGJXS@GcW0
+!s105 execute_stage_sv_unit
+S1
+R0
+R5
+Z30 8../SystemVerilog/Design/execute_stage.sv
+Z31 F../SystemVerilog/Design/execute_stage.sv
+L0 6
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Xexecute_stage_sv_unit
+R2
+R3
+Vd_US>24eEf[dJmFPEimMD3
+r1
+!s85 0
+31
+!i10b 1
+!s100 oTJ3B1[?B=kg0@M_?4S9J2
+Id_US>24eEf[dJmFPEimMD3
+!i103 1
+S1
+R0
+R5
+R30
+R31
+L0 3
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vfetch_stage
+R2
+R3
+DXx4 work 19 fetch_stage_sv_unit 0 22 ^3IGLN=KHBE9z?ef]BT<70
+R4
+r1
+!s85 0
+31
+!i10b 1
+!s100 Mk6LaQIbaF8gAOE04L5@n1
+I1JQ=]MjXDmVW[6@Fgnhjc0
+!s105 fetch_stage_sv_unit
+S1
+R0
+Z32 w1767886072
+Z33 8../SystemVerilog/Design/fetch_stage.sv
+Z34 F../SystemVerilog/Design/fetch_stage.sv
+L0 5
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Xfetch_stage_sv_unit
+R2
+R3
+V^3IGLN=KHBE9z?ef]BT<70
+r1
+!s85 0
+31
+!i10b 1
+!s100 :T]?A;F7_z>C8>2kfKCX]2
+I^3IGLN=KHBE9z?ef]BT<70
+!i103 1
+S1
+R0
+R32
+R33
+R34
+L0 3
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vforwarding_unit
+R2
+R3
+DXx4 work 23 forwarding_unit_sv_unit 0 22 o7_><W2?Io?<d<:C>V:eC2
+R4
+r1
+!s85 0
+31
+!i10b 1
+!s100 ]5?P[V8ZAP44keE=XXOV^1
+INodG3[CORZTOF3FV9G4T^3
+!s105 forwarding_unit_sv_unit
+S1
+R0
+R5
+Z35 8../SystemVerilog/Design/forwarding_unit.sv
+Z36 F../SystemVerilog/Design/forwarding_unit.sv
+L0 5
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Xforwarding_unit_sv_unit
+R2
+R3
+Vo7_><W2?Io?<d<:C>V:eC2
+r1
+!s85 0
+31
+!i10b 1
+!s100 HTzk<Cl`[FWg^@DR2WTWL1
+Io7_><W2?Io?<d<:C>V:eC2
+!i103 1
+S1
+R0
+R5
+R35
+R36
+L0 3
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vgshare_predictor
+R2
+R14
+!i10b 1
+!s100 YgiDRI1b5<e9[`oAUh6o^0
+IgS?zzKnh6XJ[ia[:?Mg3d3
+R4
+!s105 gshare_predictor_sv_unit
+S1
+R0
+R5
+8../SystemVerilog/Design/gshare_predictor.sv
+F../SystemVerilog/Design/gshare_predictor.sv
+L0 3
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vinstr_decompressor
+R2
+R3
+DXx4 work 26 instr_decompressor_sv_unit 0 22 <4J4UYo3mE2bDi4>iC7jz3
+R4
+r1
+!s85 0
+31
+!i10b 1
+!s100 UZLBSlo3I1>^NWIfl?DVR3
+IgHP2Dj5YWb9Zga[ODfl8]3
+!s105 instr_decompressor_sv_unit
+S1
+R0
+R5
+Z37 8../SystemVerilog/Design/instr_decompressor.sv
+Z38 F../SystemVerilog/Design/instr_decompressor.sv
+L0 5
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Xinstr_decompressor_sv_unit
+R2
+R3
+V<4J4UYo3mE2bDi4>iC7jz3
+r1
+!s85 0
+31
+!i10b 1
+!s100 I5_9;55>nYl2iSi[lIMV83
+I<4J4UYo3mE2bDi4>iC7jz3
+!i103 1
+S1
+R0
+R5
+R37
+R38
+L0 3
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vmem_stage
+R2
+R3
+DXx4 work 17 mem_stage_sv_unit 0 22 6zEBHR>PdPBGQ1jgZ39>71
+R4
+r1
+!s85 0
+31
+!i10b 1
+!s100 >jFg`Udkjm:YfkH5;K1FQ2
+IJI@Ro2@ZgM4i7ghbzoc?70
+!s105 mem_stage_sv_unit
+S1
+R0
+R5
+Z39 8../SystemVerilog/Design/mem_stage.sv
+Z40 F../SystemVerilog/Design/mem_stage.sv
+L0 6
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Xmem_stage_sv_unit
+R2
+R3
+V6zEBHR>PdPBGQ1jgZ39>71
+r1
+!s85 0
+31
+!i10b 1
+!s100 @c2FSBSJ;<E3Ch_S0D>A23
+I6zEBHR>PdPBGQ1jgZ39>71
+!i103 1
+S1
+R0
+R5
+R39
+R40
+L0 3
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vprogram_memory
+R2
+R14
+!i10b 1
+!s100 BY1d_>1igVWOYVjH5?5:;3
+ILh;>^UD8>FF@m7Om0XkE_2
+R4
+!s105 program_memory_sv_unit
+S1
+R0
+R5
+8../SystemVerilog/Design/program_memory.sv
+F../SystemVerilog/Design/program_memory.sv
+L0 3
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vregister_file
+R2
+R3
+DXx4 work 21 register_file_sv_unit 0 22 [bcgFn;;]?S0U86^`Cn]F2
+R4
+r1
+!s85 0
+31
+!i10b 1
+!s100 ^Pd;OLNeiF3n>:GU8O[z@1
+Iin5W[hJ=b035BF@D<IY@o2
+!s105 register_file_sv_unit
+S1
+R0
+R5
+Z41 8../SystemVerilog/Design/register_file.sv
+Z42 F../SystemVerilog/Design/register_file.sv
+L0 5
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Xregister_file_sv_unit
+R2
+R3
+V[bcgFn;;]?S0U86^`Cn]F2
+r1
+!s85 0
+31
+!i10b 1
+!s100 [@Oh_LQ0]WFO5BkPEf1RZ1
+I[bcgFn;;]?S0U86^`Cn]F2
+!i103 1
+S1
+R0
+R5
+R41
+R42
+L0 3
+R8
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vstall_unit
+R2
+R14
+!i10b 1
+!s100 BZ`K^JBzJYb2AcUfe^Ab61
+IEg3gao]4T<CaRAzKTJ]SZ3
+R4
+!s105 stall_unit_sv_unit
+S1
+R0
+R5
+8../SystemVerilog/Design/stall_unit.sv
+F../SystemVerilog/Design/stall_unit.sv
+L0 4
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vuart
+R2
+R14
+!i10b 1
+!s100 enH]iPa?kkPJTI:QXWEE@3
+I:@:z__[S1SaQP?7>Te:L`2
+R4
+!s105 uart_sv_unit
+S1
+R0
+R5
+8../SystemVerilog/Design/uart.sv
+F../SystemVerilog/Design/uart.sv
+L0 4
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Yuart_if
+R2
+R14
+!i10b 1
+!s100 dKgEX5<RJfdPBC0=1XhaR1
+I6Wbg8`kL5[^11Q2?M12bg2
+R4
+!s105 uart_if_sv_unit
+S1
+R0
+w1767881043
+8tb/interfaces/uart_if.sv
+Ftb/interfaces/uart_if.sv
+L0 3
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+Xuart_pkg
+R23
+R2
+R24
+R26
+!i10b 1
+!s100 PLZ?g3Q?O=g7^]Jb0HjbP1
+IiWn]iPO2oDOTn=L<QfK9Z0
+ViWn]iPO2oDOTn=L<QfK9Z0
+S1
+R0
+w1767881101
+8tb/agents/uart/uart_pkg.sv
+Ftb/agents/uart/uart_pkg.sv
+L0 4
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
+vuart_wrapper
+R2
+R14
+!i10b 1
+!s100 4W`>mfkSmE9e^O>nfF=fH2
+II=cN8hiG?CXQYooJc3Cdg2
+R4
+!s105 uart_wrapper_sv_unit
+S1
+R0
+R5
+8../SystemVerilog/Design/uart_wrapper.sv
+F../SystemVerilog/Design/uart_wrapper.sv
+L0 4
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 0
+R12
+R13
+R1
