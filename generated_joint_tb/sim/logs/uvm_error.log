@@ -1,10 +1,1 @@
-1742:# UVM_ERROR :    0
-2058:# UVM_ERROR ../../generated_joint_tb/tb/include/joint_scoreboard.sv(353) @ 195000: uvm_test_top.m_env.m_joint_scoreboard [joint_scoreboard] Exec mismatch pc=0x2de exp(ctrl=8220 alu=0x0 mem=0x0 pc_src=0) act(ctrl=8220 alu=0x0 mem=0xffffffff pc_src=0)
-8010:# UVM_ERROR :    1
-14278:# UVM_ERROR :    0
-20546:# UVM_ERROR :    0
-26827:# UVM_ERROR :    0
-33109:# UVM_ERROR :    0
-39391:# UVM_ERROR :    0
-45674:# UVM_ERROR :    0
-51958:# UVM_ERROR :    0
+6255:# UVM_ERROR :    0

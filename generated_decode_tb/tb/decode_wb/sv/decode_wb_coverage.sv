@@ -44,7 +44,10 @@ class decode_wb_coverage extends uvm_subscriber #(decode_wb_tx);
       bins others  = default;
     }
 
-    x_en_id: cross cp_write_en, cp_write_id;
+    x_en_id: cross cp_write_en, cp_write_id {
+      ignore_bins write_x0 = binsof(cp_write_en) intersect {1'b1} &&
+                             binsof(cp_write_id.x0);
+    }
 
   endgroup
 

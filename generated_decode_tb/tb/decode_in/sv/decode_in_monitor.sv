@@ -57,7 +57,7 @@ task decode_in_monitor::run_phase(uvm_phase phase);
   super.run_phase(phase);
   forever begin
     @(posedge vif.clk);
-    if (vif.reset_n === 1'b0 || $isunknown(vif.pc_in)) begin
+    if (vif.reset_n === 1'b0 || !vif.valid || $isunknown(vif.pc_in)) begin
       continue;
     end
     tr = decode_in_tx::type_id::create("tr");

@@ -1,38 +1,9 @@
-BEGIN 3:decode_in_if:fast__2:work
-    valid :  1:joint_top_th:fast:work
-    instruction :  1:joint_top_th:fast:work
-    clk :  1:joint_top_th:fast:work
-    pc_in :  1:joint_top_th:fast:work
-    reset_n :  1:joint_top_th:fast:work
-END 
 BEGIN 3:decode_in_if:fast__1:work
-    clk :  1:decode_in_pkg:fast:work
-    instruction :  1:decode_in_pkg:fast:work
     pc_in :  1:decode_in_pkg:fast:work
     reset_n :  1:decode_in_pkg:fast:work
-END 
-BEGIN 3:decode_out_if:fast__2:work
-    reg_rd_id :  1:joint_top_th:fast:work
-    read_data2 :  1:joint_top_th:fast:work
-    pc_out :  1:joint_top_th:fast:work
-    control_signals :  1:joint_top_th:fast:work
-    valid :  1:joint_top_th:fast:work
-    read_data1 :  1:joint_top_th:fast:work
-    immediate_data :  1:joint_top_th:fast:work
-    instruction_illegal :  1:joint_top_th:fast:work
-END 
-BEGIN 3:execute_out_if:fast__1:work
-    control_out :  1:execute_out_pkg:fast:work
-    reset :  1:execute_out_pkg:fast:work
-    overflow :  1:execute_out_pkg:fast:work
-    jalr_target_offset :  1:execute_out_pkg:fast:work
-    jalr_flag :  1:execute_out_pkg:fast:work
-    alu_data :  1:execute_out_pkg:fast:work
-    clock :  1:execute_out_pkg:fast:work
-    memory_data :  1:execute_out_pkg:fast:work
-    valid :  1:execute_out_pkg:fast:work
-    pc_out :  1:execute_out_pkg:fast:work
-    pc_src :  1:execute_out_pkg:fast:work
+    valid :  1:decode_in_pkg:fast:work
+    clk :  1:decode_in_pkg:fast:work
+    instruction :  1:decode_in_pkg:fast:work
 END 
 BEGIN 3:decode_wb_if:fast__2:work
     write_en :  1:joint_top_th:fast:work
@@ -53,16 +24,36 @@ BEGIN 3:decode_out_if:fast__1:work
     reg_rd_id :  1:decode_out_pkg:fast:work
     clk :  1:decode_out_pkg:fast:work
 END 
+BEGIN 3:decode_in_if:fast__2:work
+    pc_in :  1:joint_top_th:fast:work
+    reset_n :  1:joint_top_th:fast:work
+    valid :  1:joint_top_th:fast:work
+    instruction :  1:joint_top_th:fast:work
+    clk :  1:joint_top_th:fast:work
+END 
 BEGIN 3:execute_out_if:fast__2:work
-    control_out :  1:joint_top_th:fast:work
-    memory_data :  1:joint_top_th:fast:work
-    jalr_target_offset :  1:joint_top_th:fast:work
     pc_out :  1:joint_top_th:fast:work
     alu_data :  1:joint_top_th:fast:work
     valid :  1:joint_top_th:fast:work
     pc_src :  1:joint_top_th:fast:work
     jalr_flag :  1:joint_top_th:fast:work
     overflow :  1:joint_top_th:fast:work
+    control_out :  1:joint_top_th:fast:work
+    memory_data :  1:joint_top_th:fast:work
+    jalr_target_offset :  1:joint_top_th:fast:work
+END 
+BEGIN 3:execute_out_if:fast__1:work
+    pc_src :  1:execute_out_pkg:fast:work
+    control_out :  1:execute_out_pkg:fast:work
+    reset :  1:execute_out_pkg:fast:work
+    overflow :  1:execute_out_pkg:fast:work
+    jalr_target_offset :  1:execute_out_pkg:fast:work
+    jalr_flag :  1:execute_out_pkg:fast:work
+    alu_data :  1:execute_out_pkg:fast:work
+    clock :  1:execute_out_pkg:fast:work
+    memory_data :  1:execute_out_pkg:fast:work
+    valid :  1:execute_out_pkg:fast:work
+    pc_out :  1:execute_out_pkg:fast:work
 END 
 BEGIN 3:decode_wb_if:fast__1:work
     reset_n :  1:decode_wb_pkg:fast:work
@@ -70,4 +61,14 @@ BEGIN 3:decode_wb_if:fast__1:work
     write_data :  1:decode_wb_pkg:fast:work
     clk :  1:decode_wb_pkg:fast:work
     write_en :  1:decode_wb_pkg:fast:work
+END 
+BEGIN 3:decode_out_if:fast__2:work
+    control_signals :  1:joint_top_th:fast:work
+    valid :  1:joint_top_th:fast:work
+    read_data1 :  1:joint_top_th:fast:work
+    immediate_data :  1:joint_top_th:fast:work
+    instruction_illegal :  1:joint_top_th:fast:work
+    reg_rd_id :  1:joint_top_th:fast:work
+    read_data2 :  1:joint_top_th:fast:work
+    pc_out :  1:joint_top_th:fast:work
 END 
