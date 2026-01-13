@@ -26,6 +26,7 @@ interface decode_in_if();
 
   logic clk;
   logic reset_n;
+  logic valid;
   instruction_type instruction;
   logic [31:0] pc_in;
 

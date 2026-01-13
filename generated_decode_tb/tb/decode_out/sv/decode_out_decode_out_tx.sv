@@ -32,6 +32,7 @@ class decode_out_tx extends uvm_sequence_item;
   logic [31:0]  immediate_data;
   logic [31:0]  pc_out;
   logic [31:0]  pc_tag;
+  logic [31:0]  seq_id;
   logic         instruction_illegal;
   control_type  control_signals;
 

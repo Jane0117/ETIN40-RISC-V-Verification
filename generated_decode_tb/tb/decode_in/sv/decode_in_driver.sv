@@ -61,6 +61,7 @@ task decode_in_driver::run_phase(uvm_phase phase);
   if (vif.reset_n === 1'b0) begin
     @(posedge vif.reset_n);
   end
+  vif.valid <= 1'b0;
   forever begin
     seq_item_port.get_next_item(req);
     drive_transaction(req);
@@ -77,8 +78,11 @@ task decode_in_driver::drive_transaction(decode_in_tx tr);
     return;
   end
   @(posedge vif.clk);
+  vif.valid       <= 1'b1;
   vif.instruction <= tr.instruction;
   vif.pc_in       <= tr.pc_in;
+  @(posedge vif.clk);
+  vif.valid       <= 1'b0;
 endtask : drive_transaction
 
 

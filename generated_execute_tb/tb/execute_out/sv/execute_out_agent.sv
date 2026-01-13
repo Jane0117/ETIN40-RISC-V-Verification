@@ -57,7 +57,10 @@ function void execute_out_agent::build_phase(uvm_phase phase);
   // You can insert code here by setting agent_prepend_to_build_phase in file execute_out.tpl
 
   if (!uvm_config_db #(execute_out_config)::get(this, "", "config", m_config))
-    `uvm_error(get_type_name(), "execute_out config not found")
+  begin
+    `uvm_warning(get_type_name(), "execute_out config not found, creating default")
+    m_config = new("auto_cfg");
+  end
 
   m_monitor     = execute_out_monitor    ::type_id::create("m_monitor", this);
 

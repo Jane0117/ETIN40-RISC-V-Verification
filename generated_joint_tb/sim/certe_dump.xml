@@ -1,0 +1,203 @@
+<certe_dump>
+  <instance type=" joint_top_test "> 
+     uvm_test_top 
+  
+     <instance type=" joint_top_env "> 
+        m_env 
+  
+        <instance type=" decode_in_agent "> 
+           m_decode_in_agent 
+  
+           <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+              analysis_port 
+              <connection>  uvm_test_top.m_env.m_joint_scoreboard.dec_in_imp  </connection> 
+           </port> 
+  
+           <instance type=" decode_in_driver "> 
+              m_driver 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 rsp_port 
+                 <connection>  uvm_test_top.m_env.m_decode_in_agent.m_sequencer.rsp_export  </connection> 
+              </port> 
+  
+              <port if_type = "uvm_seq_item_pull_port" txn_type = "anonymous"> 
+                 seq_item_port 
+                 <connection>  uvm_test_top.m_env.m_decode_in_agent.m_sequencer.seq_item_export  </connection> 
+              </port> 
+           </instance> 
+  
+  
+           <instance type=" decode_in_monitor "> 
+              m_monitor 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 analysis_port 
+                 <connection>  uvm_test_top.m_env.m_decode_in_agent.analysis_port  </connection> 
+              </port> 
+           </instance> 
+  
+  
+           <instance type=" decode_in_sequencer "> 
+              m_sequencer 
+  
+              <export if_type = "uvm_analysis_export" txn_type = "anonymous"> 
+                 rsp_export 
+                 <connection>  uvm_test_top.m_env.m_decode_in_agent.m_sequencer.sqr_rsp_analysis_fifo.analysis_export  </connection> 
+              </export> 
+  
+              <imp if_type = "uvm_seq_item_pull_imp" txn_type = "anonymous"> 
+                 seq_item_export 
+              </imp> 
+           </instance> 
+  
+        </instance> 
+  
+  
+        <instance type=" decode_out_agent "> 
+           m_decode_out_agent 
+  
+           <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+              analysis_port 
+              <connection>  uvm_test_top.m_env.m_joint_coverage.dec_imp  </connection> 
+              <connection>  uvm_test_top.m_env.m_joint_ref_model.dec_imp  </connection> 
+              <connection>  uvm_test_top.m_env.m_joint_scoreboard.dec_imp  </connection> 
+           </port> 
+  
+           <instance type=" decode_out_monitor "> 
+              m_monitor 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 analysis_port 
+                 <connection>  uvm_test_top.m_env.m_decode_out_agent.analysis_port  </connection> 
+              </port> 
+           </instance> 
+  
+        </instance> 
+  
+  
+        <instance type=" decode_wb_agent "> 
+           m_decode_wb_agent 
+  
+           <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+              analysis_port 
+              <connection>  uvm_test_top.m_env.m_joint_scoreboard.wb_imp  </connection> 
+           </port> 
+  
+           <instance type=" decode_wb_driver "> 
+              m_driver 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 rsp_port 
+              </port> 
+  
+              <port if_type = "uvm_seq_item_pull_port" txn_type = "anonymous"> 
+                 seq_item_port 
+                 <connection>  uvm_test_top.m_env.m_decode_wb_agent.m_sequencer.seq_item_export  </connection> 
+              </port> 
+           </instance> 
+  
+  
+           <instance type=" decode_wb_monitor "> 
+              m_monitor 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 analysis_port 
+                 <connection>  uvm_test_top.m_env.m_decode_wb_agent.analysis_port  </connection> 
+              </port> 
+           </instance> 
+  
+  
+           <instance type=" decode_wb_sequencer "> 
+              m_sequencer 
+  
+              <export if_type = "uvm_analysis_export" txn_type = "anonymous"> 
+                 rsp_export 
+                 <connection>  uvm_test_top.m_env.m_decode_wb_agent.m_sequencer.sqr_rsp_analysis_fifo.analysis_export  </connection> 
+              </export> 
+  
+              <imp if_type = "uvm_seq_item_pull_imp" txn_type = "anonymous"> 
+                 seq_item_export 
+              </imp> 
+           </instance> 
+  
+        </instance> 
+  
+  
+        <instance type=" execute_out_agent "> 
+           m_execute_out_agent 
+  
+           <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+              analysis_port 
+              <connection>  uvm_test_top.m_env.m_joint_coverage.analysis_imp  </connection> 
+              <connection>  uvm_test_top.m_env.m_joint_scoreboard.exec_imp  </connection> 
+           </port> 
+  
+           <instance type=" execute_out_monitor "> 
+              m_monitor 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 analysis_port 
+                 <connection>  uvm_test_top.m_env.m_execute_out_agent.analysis_port  </connection> 
+              </port> 
+           </instance> 
+  
+        </instance> 
+  
+  
+        <instance type=" joint_coverage "> 
+           m_joint_coverage 
+  
+           <imp if_type = "uvm_analysis_imp" txn_type = "anonymous"> 
+              analysis_imp 
+           </imp> 
+  
+           <imp if_type = "uvm_analysis_imp_dec_cov" txn_type = "anonymous"> 
+              dec_imp 
+           </imp> 
+        </instance> 
+  
+  
+        <instance type=" joint_ref_model "> 
+           m_joint_ref_model 
+  
+           <imp if_type = "uvm_analysis_imp_dec_ref" txn_type = "anonymous"> 
+              dec_imp 
+           </imp> 
+  
+           <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+              exp_ap 
+              <connection>  uvm_test_top.m_env.m_joint_scoreboard.exp_imp  </connection> 
+           </port> 
+        </instance> 
+  
+  
+        <instance type=" joint_scoreboard "> 
+           m_joint_scoreboard 
+  
+           <imp if_type = "uvm_analysis_imp_dec" txn_type = "anonymous"> 
+              dec_imp 
+           </imp> 
+  
+           <imp if_type = "uvm_analysis_imp_dec_in" txn_type = "anonymous"> 
+              dec_in_imp 
+           </imp> 
+  
+           <imp if_type = "uvm_analysis_imp_exec" txn_type = "anonymous"> 
+              exec_imp 
+           </imp> 
+  
+           <imp if_type = "uvm_analysis_imp_exp" txn_type = "anonymous"> 
+              exp_imp 
+           </imp> 
+  
+           <imp if_type = "uvm_analysis_imp_wb" txn_type = "anonymous"> 
+              wb_imp 
+           </imp> 
+        </instance> 
+  
+     </instance> 
+  
+  </instance> 
+  
+  </certe_dump>

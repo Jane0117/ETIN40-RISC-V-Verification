@@ -60,6 +60,8 @@ function void execute_out_agent::build_phase(uvm_phase phase);
     `uvm_error(get_type_name(), "execute_out config not found")
 
   m_monitor     = execute_out_monitor    ::type_id::create("m_monitor", this);
+  // pass config down early to avoid monitor warning
+  m_monitor.m_config = m_config;
 
   if (get_is_active() == UVM_ACTIVE)
   begin

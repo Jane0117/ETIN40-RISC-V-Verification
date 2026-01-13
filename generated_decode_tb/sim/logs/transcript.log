@@ -9626,3 +9626,5 @@ source compile_questa.do
 # ** Note: $finish    : E:/questasim64_2024.1/win64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
 #    Time: 4070 ns  Iteration: 68  Instance: /decode_top_tb
 # Break in Task uvm_pkg/uvm_root::run_test at E:/questasim64_2024.1/win64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh line 430
+# End time: 14:22:33 on Jan 08,2026, Elapsed time: 133:52:41
+# Errors: 0, Warnings: 6

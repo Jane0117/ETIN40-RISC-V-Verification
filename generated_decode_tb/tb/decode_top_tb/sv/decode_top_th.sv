@@ -40,6 +40,7 @@ module decode_top_th;
 
   assign decode_in_if_0.clk     = clock;
   assign decode_wb_if_0.clk     = clock;
+  assign decode_out_if_0.valid  = decode_in_if_0.valid;
 
   // You can insert code here by setting th_inc_inside_module in file decode_common.tpl
 

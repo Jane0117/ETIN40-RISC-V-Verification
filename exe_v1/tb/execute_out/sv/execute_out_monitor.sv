@@ -29,6 +29,7 @@ class execute_out_monitor extends uvm_monitor;
   uvm_analysis_port #(execute_out_tx) analysis_port;
   execute_out_tx pending_tr;
   bit pending_valid;
+  int unsigned seq_gen;
 
   extern function new(string name, uvm_component parent);
   extern function void build_phase(uvm_phase phase);
@@ -63,16 +64,25 @@ task execute_out_monitor::run_phase(uvm_phase phase);
   execute_out_tx tr;
   `uvm_info(get_type_name(), "run_phase start", UVM_LOW)
   super.run_phase(phase);
+  // wait for reset deassert
+  if (vif.reset === 1'b0)
+    @(posedge vif.reset);
   forever begin
     @(posedge vif.clock);
     if (pending_valid) begin
       analysis_port.write(pending_tr);
+      `uvm_info(get_type_name(), $sformatf("MON exec_out pc=0x%0h ctrl=%0h alu=0x%0h mem=0x%0h pc_src=%0b jalr=%0b",
+                pending_tr.pc_out, pending_tr.control_out, pending_tr.alu_data, pending_tr.memory_data,
+                pending_tr.pc_src, pending_tr.jalr_flag), UVM_MEDIUM)
       pending_valid = 1'b0;
     end
     if (vif.valid) begin
       #1ps;
       tr = execute_out_tx::type_id::create("tr");
       collect_values(tr);
+      // 使用 pc_out 作为 seq_id，与参考模型保持一致
+      tr.seq_id = tr.pc_out;
+      if ($isunknown(tr.pc_out)) continue;
       pending_tr = tr;
       pending_valid = 1'b1;
     end

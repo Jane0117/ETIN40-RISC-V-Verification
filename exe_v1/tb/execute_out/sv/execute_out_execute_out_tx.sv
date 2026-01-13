@@ -34,6 +34,7 @@ class execute_out_tx extends uvm_sequence_item;
   logic       jalr_flag;
   logic [31:0] pc_out;
   logic       overflow;
+  logic [31:0] seq_id;
 
 
   extern function new(string name = "");

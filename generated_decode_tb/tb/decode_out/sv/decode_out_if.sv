@@ -35,6 +35,7 @@ interface decode_out_if(input clock, input reset_n);
   logic [31:0]  read_data2;
   logic [31:0]  immediate_data;
   logic [31:0]  pc_out;
+  logic         valid;
   logic         instruction_illegal;
   control_type  control_signals;
 

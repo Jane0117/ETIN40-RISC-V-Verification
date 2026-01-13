@@ -54,7 +54,7 @@ class decode_in_default_seq extends uvm_sequence #(decode_in_tx);
   localparam logic [2:0] FUNCT3_SH  = 3'b001;
 
   decode_in_config  m_config;
-  int unsigned      m_seq_count = 40; // more transactions per run to hit coverage
+  int unsigned      m_seq_count = 1000; // more transactions per run to hit coverage
 
   extern function new(string name = "");
   extern task body();
@@ -76,7 +76,15 @@ endfunction : new
 task decode_in_default_seq::body();
   `uvm_info(get_type_name(), "Default sequence starting", UVM_HIGH)
 
+  // 打印当前 m_seq_count，便于观察激励长度
+  `uvm_info(get_type_name(),
+            $sformatf("decode_in_default_seq m_seq_count=%0d", m_seq_count),
+            UVM_MEDIUM)
+
   for (int unsigned i = 0; i < m_seq_count; i++) begin
+    `uvm_info(get_type_name(),
+              $sformatf("seq item %0d / total %0d", i, m_seq_count),
+              UVM_MEDIUM)
     req = decode_in_tx::type_id::create($sformatf("req_%0d", i));
     start_item(req);
     req.instruction = '0;

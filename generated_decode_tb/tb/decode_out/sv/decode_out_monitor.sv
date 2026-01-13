@@ -62,8 +62,8 @@ task decode_out_monitor::run_phase(uvm_phase phase);
     @(posedge vif.rst_n);
   forever begin
     @(posedge vif.clk);
-    // skip unstable cycles with X pc_out (avoids scoreboard X tag warning)
-    if ($isunknown(vif.pc_out))
+    // every cycle sample; skip only when pc_out is X
+    if (!vif.valid || $isunknown(vif.pc_out))
       continue;
 
     tr = decode_out_tx::type_id::create("tr");
@@ -91,6 +91,7 @@ task decode_out_monitor::collect_values(decode_out_tx tr);
   tr.pc_out             = vif.pc_out;
   tr.instruction_illegal= vif.instruction_illegal;
   tr.control_signals    = vif.control_signals;
+  tr.seq_id             = sample_cnt; // 序号标记
 endtask : collect_values
 
 
