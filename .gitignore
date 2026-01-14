@@ -1,3 +1,8 @@
 # Simulator outputs
 RISC-V-main/
+work/
+exe_v1/work/
+generated_alu_tb/sim/work/
+generated_decode_tb/sim/work/
+generated_execute_tb/sim/work/
 generated_joint_tb/sim/work/
