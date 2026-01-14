@@ -76,7 +76,14 @@ vsim -voptargs=+acc -solvefaildebug -uvmcontrol=all -classdebug \
 run -all
 
 # ============================================================
-# 5. 保存 transcript 并提取 UVM_WARNING / UVM_ERROR
+# 5. 保存 coverage 报告到 log
+# ============================================================
+set cov_db "logs/coverage.ucdb"
+catch {coverage save $cov_db}
+catch {vcover report -details -output "logs/coverage_report.txt" $cov_db}
+
+# ============================================================
+# 6. 保存 transcript 并提取 UVM_WARNING / UVM_ERROR
 # ============================================================
 set transcript_src [file normalize logs/transcript.log]
 if {![file exists $transcript_src]} {

@@ -10,6 +10,7 @@
   
            <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
               analysis_port 
+              <connection>  uvm_test_top.m_env.m_joint_coverage.dec_in_imp  </connection> 
               <connection>  uvm_test_top.m_env.m_joint_scoreboard.dec_in_imp  </connection> 
            </port> 
   
@@ -81,6 +82,7 @@
   
            <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
               analysis_port 
+              <connection>  uvm_test_top.m_env.m_joint_coverage.wb_imp  </connection> 
               <connection>  uvm_test_top.m_env.m_joint_scoreboard.wb_imp  </connection> 
            </port> 
   
@@ -154,6 +156,14 @@
   
            <imp if_type = "uvm_analysis_imp_dec_cov" txn_type = "anonymous"> 
               dec_imp 
+           </imp> 
+  
+           <imp if_type = "uvm_analysis_imp_dec_in_cov" txn_type = "anonymous"> 
+              dec_in_imp 
+           </imp> 
+  
+           <imp if_type = "uvm_analysis_imp_wb_cov" txn_type = "anonymous"> 
+              wb_imp 
            </imp> 
         </instance> 
   

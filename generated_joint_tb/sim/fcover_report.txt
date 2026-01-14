@@ -1,0 +1,212 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /joint_top_pkg
+=== Design Unit: work.joint_top_pkg
+=================================================================================
+
+Covergroup Coverage:
+    Covergroups                      1        na        na    78.94%
+        Coverpoints/Crosses          1        na        na        na
+            Covergroup Bins         38        30         8    78.94%
+----------------------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal       Bins    Status               
+                                                                                                         
+----------------------------------------------------------------------------------------------------------
+ TYPE /joint_top_pkg/joint_coverage/cg_instr           78.94%        100          -    Uncovered            
+    covered/total bins:                                    30         38          -                      
+    missing/total bins:                                     8         38          -                      
+    % Hit:                                             78.94%        100          -                      
+    Coverpoint cp_instr                                78.94%        100          -    Uncovered            
+        covered/total bins:                                30         38          -                      
+        missing/total bins:                                 8         38          -                      
+        % Hit:                                         78.94%        100          -                      
+        bin add                                           108          1          -    Covered              
+        bin sub                                            54          1          -    Covered              
+        bin sll                                             1          1          -    Covered              
+        bin srl                                             1          1          -    Covered              
+        bin sra                                            54          1          -    Covered              
+        bin slt                                            11          1          -    Covered              
+        bin sltu                                           12          1          -    Covered              
+        bin xor_b                                          11          1          -    Covered              
+        bin or_b                                           12          1          -    Covered              
+        bin and_b                                          12          1          -    Covered              
+        bin addi                                           54          1          -    Covered              
+        bin slli                                            0          1          -    ZERO                 
+        bin srli                                            0          1          -    ZERO                 
+        bin srai                                            0          1          -    ZERO                 
+        bin slti                                            0          1          -    ZERO                 
+        bin sltiu                                           0          1          -    ZERO                 
+        bin xori                                            0          1          -    ZERO                 
+        bin ori                                             0          1          -    ZERO                 
+        bin andi                                            0          1          -    ZERO                 
+        bin lb                                             55          1          -    Covered              
+        bin lh                                              1          1          -    Covered              
+        bin lw                                              1          1          -    Covered              
+        bin lbu                                             1          1          -    Covered              
+        bin lhu                                            55          1          -    Covered              
+        bin sb                                            109          1          -    Covered              
+        bin sh                                              1          1          -    Covered              
+        bin sw                                              1          1          -    Covered              
+        bin beq                                            55          1          -    Covered              
+        bin bne                                            54          1          -    Covered              
+        bin blt                                            54          1          -    Covered              
+        bin bge                                             2          1          -    Covered              
+        bin bltu                                            2          1          -    Covered              
+        bin bgeu                                           55          1          -    Covered              
+        bin jal                                            55          1          -    Covered              
+        bin jalr                                           55          1          -    Covered              
+        bin lui                                            54          1          -    Covered              
+        bin auipc                                          54          1          -    Covered              
+        bin illegal                                         3          1          -    Covered              
+ Covergroup instance \/joint_top_pkg::joint_coverage::cg_instr  
+                                                       78.94%        100          -    Uncovered            
+    covered/total bins:                                    30         38          -                      
+    missing/total bins:                                     8         38          -                      
+    % Hit:                                             78.94%        100          -                      
+    Coverpoint cp_instr                                78.94%        100          -    Uncovered            
+        covered/total bins:                                30         38          -                      
+        missing/total bins:                                 8         38          -                      
+        % Hit:                                         78.94%        100          -                      
+        bin add                                           108          1          -    Covered              
+        bin sub                                            54          1          -    Covered              
+        bin sll                                             1          1          -    Covered              
+        bin srl                                             1          1          -    Covered              
+        bin sra                                            54          1          -    Covered              
+        bin slt                                            11          1          -    Covered              
+        bin sltu                                           12          1          -    Covered              
+        bin xor_b                                          11          1          -    Covered              
+        bin or_b                                           12          1          -    Covered              
+        bin and_b                                          12          1          -    Covered              
+        bin addi                                           54          1          -    Covered              
+        bin slli                                            0          1          -    ZERO                 
+        bin srli                                            0          1          -    ZERO                 
+        bin srai                                            0          1          -    ZERO                 
+        bin slti                                            0          1          -    ZERO                 
+        bin sltiu                                           0          1          -    ZERO                 
+        bin xori                                            0          1          -    ZERO                 
+        bin ori                                             0          1          -    ZERO                 
+        bin andi                                            0          1          -    ZERO                 
+        bin lb                                             55          1          -    Covered              
+        bin lh                                              1          1          -    Covered              
+        bin lw                                              1          1          -    Covered              
+        bin lbu                                             1          1          -    Covered              
+        bin lhu                                            55          1          -    Covered              
+        bin sb                                            109          1          -    Covered              
+        bin sh                                              1          1          -    Covered              
+        bin sw                                              1          1          -    Covered              
+        bin beq                                            55          1          -    Covered              
+        bin bne                                            54          1          -    Covered              
+        bin blt                                            54          1          -    Covered              
+        bin bge                                             2          1          -    Covered              
+        bin bltu                                            2          1          -    Covered              
+        bin bgeu                                           55          1          -    Covered              
+        bin jal                                            55          1          -    Covered              
+        bin jalr                                           55          1          -    Covered              
+        bin lui                                            54          1          -    Covered              
+        bin auipc                                          54          1          -    Covered              
+        bin illegal                                         3          1          -    Covered              
+
+COVERGROUP COVERAGE:
+----------------------------------------------------------------------------------------------------------
+Covergroup                                             Metric       Goal       Bins    Status               
+                                                                                                         
+----------------------------------------------------------------------------------------------------------
+ TYPE /joint_top_pkg/joint_coverage/cg_instr           78.94%        100          -    Uncovered            
+    covered/total bins:                                    30         38          -                      
+    missing/total bins:                                     8         38          -                      
+    % Hit:                                             78.94%        100          -                      
+    Coverpoint cp_instr                                78.94%        100          -    Uncovered            
+        covered/total bins:                                30         38          -                      
+        missing/total bins:                                 8         38          -                      
+        % Hit:                                         78.94%        100          -                      
+        bin add                                           108          1          -    Covered              
+        bin sub                                            54          1          -    Covered              
+        bin sll                                             1          1          -    Covered              
+        bin srl                                             1          1          -    Covered              
+        bin sra                                            54          1          -    Covered              
+        bin slt                                            11          1          -    Covered              
+        bin sltu                                           12          1          -    Covered              
+        bin xor_b                                          11          1          -    Covered              
+        bin or_b                                           12          1          -    Covered              
+        bin and_b                                          12          1          -    Covered              
+        bin addi                                           54          1          -    Covered              
+        bin slli                                            0          1          -    ZERO                 
+        bin srli                                            0          1          -    ZERO                 
+        bin srai                                            0          1          -    ZERO                 
+        bin slti                                            0          1          -    ZERO                 
+        bin sltiu                                           0          1          -    ZERO                 
+        bin xori                                            0          1          -    ZERO                 
+        bin ori                                             0          1          -    ZERO                 
+        bin andi                                            0          1          -    ZERO                 
+        bin lb                                             55          1          -    Covered              
+        bin lh                                              1          1          -    Covered              
+        bin lw                                              1          1          -    Covered              
+        bin lbu                                             1          1          -    Covered              
+        bin lhu                                            55          1          -    Covered              
+        bin sb                                            109          1          -    Covered              
+        bin sh                                              1          1          -    Covered              
+        bin sw                                              1          1          -    Covered              
+        bin beq                                            55          1          -    Covered              
+        bin bne                                            54          1          -    Covered              
+        bin blt                                            54          1          -    Covered              
+        bin bge                                             2          1          -    Covered              
+        bin bltu                                            2          1          -    Covered              
+        bin bgeu                                           55          1          -    Covered              
+        bin jal                                            55          1          -    Covered              
+        bin jalr                                           55          1          -    Covered              
+        bin lui                                            54          1          -    Covered              
+        bin auipc                                          54          1          -    Covered              
+        bin illegal                                         3          1          -    Covered              
+ Covergroup instance \/joint_top_pkg::joint_coverage::cg_instr  
+                                                       78.94%        100          -    Uncovered            
+    covered/total bins:                                    30         38          -                      
+    missing/total bins:                                     8         38          -                      
+    % Hit:                                             78.94%        100          -                      
+    Coverpoint cp_instr                                78.94%        100          -    Uncovered            
+        covered/total bins:                                30         38          -                      
+        missing/total bins:                                 8         38          -                      
+        % Hit:                                         78.94%        100          -                      
+        bin add                                           108          1          -    Covered              
+        bin sub                                            54          1          -    Covered              
+        bin sll                                             1          1          -    Covered              
+        bin srl                                             1          1          -    Covered              
+        bin sra                                            54          1          -    Covered              
+        bin slt                                            11          1          -    Covered              
+        bin sltu                                           12          1          -    Covered              
+        bin xor_b                                          11          1          -    Covered              
+        bin or_b                                           12          1          -    Covered              
+        bin and_b                                          12          1          -    Covered              
+        bin addi                                           54          1          -    Covered              
+        bin slli                                            0          1          -    ZERO                 
+        bin srli                                            0          1          -    ZERO                 
+        bin srai                                            0          1          -    ZERO                 
+        bin slti                                            0          1          -    ZERO                 
+        bin sltiu                                           0          1          -    ZERO                 
+        bin xori                                            0          1          -    ZERO                 
+        bin ori                                             0          1          -    ZERO                 
+        bin andi                                            0          1          -    ZERO                 
+        bin lb                                             55          1          -    Covered              
+        bin lh                                              1          1          -    Covered              
+        bin lw                                              1          1          -    Covered              
+        bin lbu                                             1          1          -    Covered              
+        bin lhu                                            55          1          -    Covered              
+        bin sb                                            109          1          -    Covered              
+        bin sh                                              1          1          -    Covered              
+        bin sw                                              1          1          -    Covered              
+        bin beq                                            55          1          -    Covered              
+        bin bne                                            54          1          -    Covered              
+        bin blt                                            54          1          -    Covered              
+        bin bge                                             2          1          -    Covered              
+        bin bltu                                            2          1          -    Covered              
+        bin bgeu                                           55          1          -    Covered              
+        bin jal                                            55          1          -    Covered              
+        bin jalr                                           55          1          -    Covered              
+        bin lui                                            54          1          -    Covered              
+        bin auipc                                          54          1          -    Covered              
+        bin illegal                                         3          1          -    Covered              
+
+TOTAL COVERGROUP COVERAGE: 78.94%  COVERGROUP TYPES: 1
+
+Total Coverage By Instance (filtered view): 78.94%
+

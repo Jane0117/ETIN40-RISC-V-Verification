@@ -47,10 +47,10 @@ task decode_wb_default_seq::body();
     req = decode_wb_tx::type_id::create($sformatf("req_%0d", i));
     start_item(req); 
     if (i == 0) begin
-      // Explicitly hit x0 with write_en=0 for coverage
-      req.write_en   = 1'b0;
+      // Explicitly attempt write to x0; should be ignored by regfile
+      req.write_en   = 1'b1;
       req.write_id   = 5'h00;
-      req.write_data = 32'h0000_0000;
+      req.write_data = 32'hDEAD_BEEF;
     end else if (i < 3) begin
       // Seed deterministic values for branch comparisons
       req.write_en   = 1'b1;

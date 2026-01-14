@@ -37,6 +37,7 @@ class decode_scoreboard extends uvm_component;
 
   // Simple regfile model
   logic [31:0] regfile[0:31];
+  bit x0_write_attempted;
 
   function new(string name, uvm_component parent);
     super.new(name, parent);
@@ -45,6 +46,7 @@ class decode_scoreboard extends uvm_component;
     wb_imp  = new("wb_imp",  this);
     // init regfile to zero
     foreach (regfile[ii]) regfile[ii] = '0;
+    x0_write_attempted = 1'b0;
   endfunction
 
   // Reference decode function mirroring control.sv
@@ -250,6 +252,12 @@ class decode_scoreboard extends uvm_component;
     end else begin
       `uvm_info(get_type_name(), $sformatf("read_data2 match rs2=%0d val=0x%0h", exp.rs2, t.read_data2), UVM_LOW);
     end
+    if (x0_write_attempted) begin
+      if (exp.rs1 == 0 && t.read_data1 !== 32'h0)
+        `uvm_error(get_type_name(), $sformatf("x0 changed after write attempt: read_data1=0x%0h", t.read_data1))
+      if (exp.rs2 == 0 && t.read_data2 !== 32'h0)
+        `uvm_error(get_type_name(), $sformatf("x0 changed after write attempt: read_data2=0x%0h", t.read_data2))
+    end
 
     // immediate
     if (t.immediate_data !== exp.imm) begin
@@ -296,6 +304,10 @@ class decode_scoreboard extends uvm_component;
 
   // writeback stream updates regfile model
   function void write_wb(decode_wb_tx t);
+    if (t.write_en && t.write_id == 0) begin
+      x0_write_attempted = 1'b1;
+      `uvm_info(get_type_name(), "Write to x0 attempted; expecting x0 to remain 0", UVM_LOW)
+    end
     if (t.write_en && t.write_id != 0) begin
       regfile[t.write_id] = t.write_data;
       `uvm_info(get_type_name(), $sformatf("WB update rd=%0d data=0x%0h", t.write_id, t.write_data), UVM_LOW)

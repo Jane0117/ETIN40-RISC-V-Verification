@@ -107,7 +107,7 @@ task decode_in_default_seq::body();
       finish_item(req);
       continue;
     end
-    if (i < 34) begin
+    if (i < 42) begin
       case (i)
         3:  req.instruction = {FUNCT7_ADD,5'h01,5'h02,FUNCT3_ADD,5'h03,OPC_RTYPE}; // ADD
         4:  req.instruction = {FUNCT7_SUB,5'h04,5'h05,FUNCT3_SUB,5'h06,OPC_RTYPE}; // SUB
@@ -140,6 +140,14 @@ task decode_in_default_seq::body();
         31: req.instruction = {7'h0,5'h00,5'h00,FUNCT3_BLTU,5'h00,OPC_BRANCH}; // bltu x0,x0 -> not taken
         32: req.instruction = {7'h0,5'h00,5'h00,FUNCT3_BGEU,5'h00,OPC_BRANCH}; // bgeu x0,x0 -> taken
         33: req.instruction = {7'h0,5'h00,5'h01,FUNCT3_BGE, 5'h00,OPC_BRANCH}; // bge x1,x0 -> taken
+        34: req.instruction = {7'b0000000,5'h02,5'h01,3'b001,5'h03,OPC_ITYPE}; // SLLI
+        35: req.instruction = {7'b0000000,5'h02,5'h01,3'b101,5'h04,OPC_ITYPE}; // SRLI
+        36: req.instruction = {7'b0100000,5'h02,5'h01,3'b101,5'h05,OPC_ITYPE}; // SRAI
+        37: req.instruction = {12'h001,5'h06,3'b010,5'h07,OPC_ITYPE}; // SLTI
+        38: req.instruction = {12'h001,5'h06,3'b011,5'h08,OPC_ITYPE}; // SLTIU
+        39: req.instruction = {12'h001,5'h06,3'b100,5'h09,OPC_ITYPE}; // XORI
+        40: req.instruction = {12'h001,5'h06,3'b110,5'h0a,OPC_ITYPE}; // ORI
+        41: req.instruction = {12'h001,5'h06,3'b111,5'h0b,OPC_ITYPE}; // ANDI
         default: req.instruction = $urandom;
       endcase
       req.pc_in = $urandom_range(0, 1024);

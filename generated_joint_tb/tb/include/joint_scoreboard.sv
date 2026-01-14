@@ -49,6 +49,7 @@ class joint_scoreboard extends uvm_component;
 
   // regfile model for basic sanity (write port only)
   logic [31:0] regfile[0:31];
+  bit x0_write_attempted;
 
   // summary counters
   int unsigned dec_count;
@@ -67,6 +68,7 @@ class joint_scoreboard extends uvm_component;
     exp_imp  = new("exp_imp",  this);
     dec_in_imp = new("dec_in_imp", this);
     foreach (regfile[ii]) regfile[ii] = '0;
+    x0_write_attempted = 1'b0;
     dec_count   = 0;
     exec_total  = 0;
     exec_pass   = 0;
@@ -230,6 +232,10 @@ class joint_scoreboard extends uvm_component;
   // Analysis imps
   // -----------------------------------------------------------------------
   function void write_wb(decode_wb_tx t);
+    if (t.write_en && t.write_id == 0) begin
+      x0_write_attempted = 1'b1;
+      `uvm_info(get_type_name(), "Write to x0 attempted; expecting x0 to remain 0", UVM_LOW)
+    end
     if (t.write_en && t.write_id != 0)
       regfile[t.write_id] = t.write_data;
   endfunction
@@ -287,6 +293,12 @@ class joint_scoreboard extends uvm_component;
         if (t.read_data2 !== exp_data2)
           rd_check_fail++;
       end
+    end
+    if (x0_write_attempted) begin
+      if (rs1 == 0 && t.read_data1 !== 32'h0)
+        `uvm_error(get_type_name(), $sformatf("x0 changed after write attempt: read_data1=0x%0h", t.read_data1))
+      if (rs2 == 0 && t.read_data2 !== 32'h0)
+        `uvm_error(get_type_name(), $sformatf("x0 changed after write attempt: read_data2=0x%0h", t.read_data2))
     end
     if (!$isunknown(t.pc_out) && !$isunknown(t.seq_id))
       dec_seq_q_by_pc[t.pc_out].push_back(t.seq_id);

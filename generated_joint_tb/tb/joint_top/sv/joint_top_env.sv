@@ -35,11 +35,13 @@ class joint_top_env extends uvm_env;
     m_decode_out_agent.analysis_port.connect(m_joint_coverage.dec_imp);
     // decode_in monitor provides instruction/pc to scoreboard
     m_decode_in_agent.analysis_port.connect(m_joint_scoreboard.dec_in_imp);
+    m_decode_in_agent.analysis_port.connect(m_joint_coverage.dec_in_imp);
     // execute_out agent passive monitor connects to joint scoreboard
     m_execute_out_agent.analysis_port.connect(m_joint_scoreboard.exec_imp);
     m_execute_out_agent.analysis_port.connect(m_joint_coverage.analysis_export);
     // wb agent drives writeback updates
     m_decode_wb_agent.analysis_port.connect(m_joint_scoreboard.wb_imp);
+    m_decode_wb_agent.analysis_port.connect(m_joint_coverage.wb_imp);
     // ref model expected -> scoreboard
     m_joint_ref_model.exp_ap.connect(m_joint_scoreboard.exp_imp);
   endfunction

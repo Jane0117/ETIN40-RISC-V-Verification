@@ -1,0 +1,287 @@
+# do compile_questa.do
+# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+# Start time: 23:48:09 on Nov 13,2025
+# vlog ../dut/common.sv 
+# -- Compiling package common
+# 
+# Top level modules:
+# 	--none--
+# End time: 23:48:09 on Nov 13,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -F ../dut/files.f
+# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+# Start time: 23:48:09 on Nov 13,2025
+# vlog -F ../dut/files.f 
+# -- Compiling package alu_sv_unit
+# -- Importing package common
+# -- Compiling module alu
+# -- Compiling package common
+# ** Warning: D:\IC-Project\ICP2-Verification\phase-2\easier_uvm_gen-2017-01-19\generated_execute_tb\dut\control.sv(7): (vlog-13314) Defaulting port 'instruction' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package control_sv_unit
+# -- Compiling module control
+# ** Warning: D:\IC-Project\ICP2-Verification\phase-2\easier_uvm_gen-2017-01-19\generated_execute_tb\dut\control.sv(7): (vlog-13314) Defaulting port 'instruction' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package cpu_sv_unit
+# -- Compiling module cpu
+# -- Compiling package cpu_ILA_sv_unit
+# -- Compiling module cpu_ILA
+# -- Compiling module data_memory
+# ** Warning: D:\IC-Project\ICP2-Verification\phase-2\easier_uvm_gen-2017-01-19\generated_execute_tb\dut\decode_stage.sv(9): (vlog-13314) Defaulting port 'instruction' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: D:\IC-Project\ICP2-Verification\phase-2\easier_uvm_gen-2017-01-19\generated_execute_tb\dut\decode_stage.sv(72): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# -- Compiling package decode_stage_sv_unit
+# -- Compiling module decode_stage
+# ** Warning: D:\IC-Project\ICP2-Verification\phase-2\easier_uvm_gen-2017-01-19\generated_execute_tb\dut\decode_stage.sv(9): (vlog-13314) Defaulting port 'instruction' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: D:\IC-Project\ICP2-Verification\phase-2\easier_uvm_gen-2017-01-19\generated_execute_tb\dut\decode_stage.sv(72): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: D:\IC-Project\ICP2-Verification\phase-2\easier_uvm_gen-2017-01-19\generated_execute_tb\dut\execute_stage.sv(11): (vlog-13314) Defaulting port 'control_in' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package execute_stage_sv_unit
+# -- Compiling module execute_stage
+# ** Warning: D:\IC-Project\ICP2-Verification\phase-2\easier_uvm_gen-2017-01-19\generated_execute_tb\dut\execute_stage.sv(11): (vlog-13314) Defaulting port 'control_in' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: D:\IC-Project\ICP2-Verification\phase-2\easier_uvm_gen-2017-01-19\generated_execute_tb\dut\fetch_stage.sv(8): (vlog-13314) Defaulting port 'data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package fetch_stage_sv_unit
+# -- Compiling module fetch_stage
+# ** Warning: D:\IC-Project\ICP2-Verification\phase-2\easier_uvm_gen-2017-01-19\generated_execute_tb\dut\fetch_stage.sv(8): (vlog-13314) Defaulting port 'data' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package forwarding_unit_sv_unit
+# -- Compiling module forwarding_unit
+# -- Compiling module gshare_predictor
+# -- Compiling package instr_decompressor_sv_unit
+# -- Compiling module instr_decompressor
+# ** Warning: D:\IC-Project\ICP2-Verification\phase-2\easier_uvm_gen-2017-01-19\generated_execute_tb\dut\mem_stage.sv(11): (vlog-13314) Defaulting port 'control_in' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package mem_stage_sv_unit
+# -- Compiling module mem_stage
+# ** Warning: D:\IC-Project\ICP2-Verification\phase-2\easier_uvm_gen-2017-01-19\generated_execute_tb\dut\mem_stage.sv(11): (vlog-13314) Defaulting port 'control_in' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling module program_memory
+# -- Compiling package register_file_sv_unit
+# -- Compiling module register_file
+# -- Compiling module stall_unit
+# -- Compiling module TOP
+# -- Compiling module uart
+# -- Compiling module uart_wrapper
+# 
+# Top level modules:
+# 	cpu_ILA
+# 	TOP
+# End time: 23:48:10 on Nov 13,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 12
+# execute_top
+# \ 
+#     execute_in  forward  execute_out  
+# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+# Start time: 23:48:10 on Nov 13,2025
+# vlog -sv "+incdir+../dut" "+incdir+../tb/include" "+incdir+../tb/execute_in/sv" ../tb/execute_in/sv/execute_in_pkg.sv ../tb/execute_in/sv/execute_in_if.sv 
+# -- Compiling package execute_in_pkg
+# ** Note: (vlog-2286) ../tb/execute_in/sv/execute_in_pkg.sv(18): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package common
+# -- Compiling interface execute_in_if
+# -- Importing package execute_in_pkg
+# 
+# Top level modules:
+# 	--none--
+# End time: 23:48:10 on Nov 13,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+# Start time: 23:48:10 on Nov 13,2025
+# vlog -sv "+incdir+../dut" "+incdir+../tb/include" "+incdir+../tb/forward/sv" ../tb/forward/sv/forward_pkg.sv ../tb/forward/sv/forward_if.sv 
+# -- Compiling package forward_pkg
+# ** Note: (vlog-2286) ../tb/forward/sv/forward_pkg.sv(18): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package common
+# ** Warning: ../tb/forward/sv/forward_forward_tx.sv(115): (vlog-8386) An enum variable 'this.forward_rs1' of type 'forward_type' may only be assigned the same enum typed variable or one of its values. Variable tmp__ requires an explicit cast.
+# ** Warning: ../tb/forward/sv/forward_forward_tx.sv(115): (vlog-8386) An enum variable 'this.forward_rs1' of type 'forward_type' may only be assigned the same enum typed variable or one of its values. Value 'packer.m_bits[packer.count+:2]' requires an explicit cast.
+# ** Warning: ../tb/forward/sv/forward_forward_tx.sv(116): (vlog-8386) An enum variable 'this.forward_rs2' of type 'forward_type' may only be assigned the same enum typed variable or one of its values. Variable tmp__ requires an explicit cast.
+# ** Warning: ../tb/forward/sv/forward_forward_tx.sv(116): (vlog-8386) An enum variable 'this.forward_rs2' of type 'forward_type' may only be assigned the same enum typed variable or one of its values. Value 'packer.m_bits[packer.count+:2]' requires an explicit cast.
+# -- Compiling interface forward_if
+# -- Importing package forward_pkg
+# 
+# Top level modules:
+# 	--none--
+# End time: 23:48:11 on Nov 13,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 4
+# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+# Start time: 23:48:11 on Nov 13,2025
+# vlog -sv "+incdir+../dut" "+incdir+../tb/include" "+incdir+../tb/execute_out/sv" ../tb/execute_out/sv/execute_out_pkg.sv ../tb/execute_out/sv/execute_out_if.sv 
+# -- Compiling package execute_out_pkg
+# ** Note: (vlog-2286) ../tb/execute_out/sv/execute_out_pkg.sv(18): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package common
+# -- Compiling interface execute_out_if
+# -- Importing package execute_out_pkg
+# 
+# Top level modules:
+# 	--none--
+# End time: 23:48:11 on Nov 13,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv +incdir+../dut +incdir+../tb/include +incdir+../tb/
+# vlog -sv +incdir+../dut +incdir+../tb/include +incdir+../tb/execute_top/sv ../tb/execute_top/sv/execute_top_pkg.sv
+# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+# Start time: 23:48:12 on Nov 13,2025
+# vlog -sv "+incdir+../dut" "+incdir+../tb/include" "+incdir+../tb/execute_top/sv" ../tb/execute_top/sv/execute_top_pkg.sv 
+# -- Compiling package execute_top_pkg
+# ** Note: (vlog-2286) ../tb/execute_top/sv/execute_top_pkg.sv(18): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package execute_in_pkg
+# -- Importing package common
+# -- Importing package forward_pkg
+# -- Importing package execute_out_pkg
+# 
+# Top level modules:
+# 	--none--
+# End time: 23:48:12 on Nov 13,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv +incdir+../dut +incdir+../tb/include +incdir+../tb/
+# vlog -sv +incdir+../dut +incdir+../tb/include +incdir+../tb/execute_top_test/sv ../tb/execute_top_test/sv/execute_top_test_pkg.sv
+# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+# Start time: 23:48:12 on Nov 13,2025
+# vlog -sv "+incdir+../dut" "+incdir+../tb/include" "+incdir+../tb/execute_top_test/sv" ../tb/execute_top_test/sv/execute_top_test_pkg.sv 
+# -- Compiling package execute_top_test_pkg
+# ** Note: (vlog-2286) ../tb/execute_top_test/sv/execute_top_test_pkg.sv(21): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package execute_in_pkg
+# -- Importing package common
+# -- Importing package forward_pkg
+# -- Importing package execute_out_pkg
+# -- Importing package execute_top_pkg
+# 
+# Top level modules:
+# 	--none--
+# End time: 23:48:13 on Nov 13,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -sv -timescale 1ns/1ps +incdir+../dut +incdir+../tb/include +incdir+../tb/
+# vlog -sv -timescale 1ns/1ps +incdir+../dut +incdir+../tb/include +incdir+../tb/execute_top_tb/sv ../tb/execute_top_tb/sv/execute_top_th.sv
+# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+# Start time: 23:48:13 on Nov 13,2025
+# vlog -sv -timescale 1ns/1ps "+incdir+../dut" "+incdir+../tb/include" "+incdir+../tb/execute_top_tb/sv" ../tb/execute_top_tb/sv/execute_top_th.sv 
+# -- Compiling module execute_top_th
+# 
+# Top level modules:
+# 	execute_top_th
+# End time: 23:48:13 on Nov 13,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -timescale 1ns/1ps +incdir+../dut +incdir+../tb/include +incdir+../tb/
+# vlog -sv -timescale 1ns/1ps +incdir+../dut +incdir+../tb/include +incdir+../tb/execute_top_tb/sv ../tb/execute_top_tb/sv/execute_top_tb.sv
+# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
+# Start time: 23:48:13 on Nov 13,2025
+# vlog -sv -timescale 1ns/1ps "+incdir+../dut" "+incdir+../tb/include" "+incdir+../tb/execute_top_tb/sv" ../tb/execute_top_tb/sv/execute_top_tb.sv 
+# -- Compiling module execute_top_tb
+# ** Note: (vlog-2286) ../tb/execute_top_tb/sv/execute_top_tb.sv(21): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+# -- Importing package execute_top_test_pkg
+# -- Importing package execute_in_pkg
+# -- Importing package common
+# -- Importing package forward_pkg
+# -- Importing package execute_out_pkg
+# -- Importing package execute_top_pkg
+# 
+# Top level modules:
+# 	execute_top_tb
+# End time: 23:48:13 on Nov 13,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim execute_top_tb "+UVM_TESTNAME=execute_top_test" "+UVM_VERBOSITY=UVM_MEDIUM" -voptargs="+acc" -solvefaildebug -uvmcontrol=all -classdebug 
+# Start time: 23:48:13 on Nov 13,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
+# Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
+# ** Warning: D:\IC-Project\ICP2-Verification\phase-2\easier_uvm_gen-2017-01-19\generated_execute_tb\dut\execute_stage.sv(11): (vopt-13314) Defaulting port 'control_in' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=2.
+# //  Questa Sim-64
+# //  Version 2024.1 win64 Feb  1 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.execute_in_if(fast)
+# Loading work.forward_if(fast)
+# Loading work.execute_out_if(fast)
+# Loading work.common(fast)
+# Loading mtiUvm.uvm_pkg(fast)
+# Loading work.execute_out_pkg(fast)
+# Loading work.forward_pkg(fast)
+# Loading work.execute_in_pkg(fast)
+# Loading work.execute_top_pkg(fast)
+# Loading work.execute_top_test_pkg(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading work.execute_top_tb(fast)
+# Loading work.execute_top_th(fast)
+# Loading work.execute_in_if(fast__2)
+# Loading work.forward_if(fast__2)
+# Loading work.execute_out_if(fast__2)
+# Loading work.execute_stage_sv_unit(fast)
+# Loading work.execute_stage(fast)
+# Loading work.alu_sv_unit(fast)
+# Loading work.alu(fast)
+# ** Warning: (vsim-8386) Illegal assignment to type 'enum reg[1:0] common::forward_type' from type 'bit[0:1]': An enum variable may only be assigned the same enum typed variable or one of its values.
+#    Time: 0 ps  Iteration: 0  Region: /forward_pkg File: ../tb/forward/sv/forward_forward_tx.sv Line: 115
+# ** Warning: (vsim-8386) Illegal assignment to type 'enum reg[1:0] common::forward_type' from type 'reg signed[4095:0]': An enum variable may only be assigned the same enum typed variable or one of its values.
+#    Time: 0 ps  Iteration: 0  Region: /forward_pkg File: ../tb/forward/sv/forward_forward_tx.sv Line: 115
+# Loading E:/questasim64_2024.1/uvm-1.1d\win64\uvm_dpi.dll
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(all)
+# UVM_INFO @ 0: reporter [RNTST] Running test execute_top_test...
+# UVM_INFO ../tb/execute_in/sv/execute_in_driver.sv(45) @ 0: uvm_test_top.m_env.m_execute_in_agent.m_driver [execute_in_driver] build_phase is called
+# UVM_WARNING ../tb/execute_in/sv/execute_in_driver.sv(50) @ 0: uvm_test_top.m_env.m_execute_in_agent.m_driver [execute_in_driver] execute_in_config not provided to driver
+# UVM_INFO ../tb/execute_in/sv/execute_in_monitor.sv(48) @ 0: uvm_test_top.m_env.m_execute_in_agent.m_monitor [execute_in_monitor] build_phase start
+# UVM_WARNING ../tb/execute_in/sv/execute_in_monitor.sv(53) @ 0: uvm_test_top.m_env.m_execute_in_agent.m_monitor [execute_in_monitor] execute_in_config not provided to monitor
+# UVM_INFO ../tb/execute_in/sv/execute_in_monitor.sv(56) @ 0: uvm_test_top.m_env.m_execute_in_agent.m_monitor [execute_in_monitor] build_phase end
+# UVM_INFO ../tb/forward/sv/forward_driver.sv(45) @ 0: uvm_test_top.m_env.m_forward_agent.m_driver [forward_driver] build_phase start
+# UVM_WARNING ../tb/forward/sv/forward_driver.sv(50) @ 0: uvm_test_top.m_env.m_forward_agent.m_driver [forward_driver] forward_config not provided to driver
+# UVM_INFO ../tb/forward/sv/forward_driver.sv(53) @ 0: uvm_test_top.m_env.m_forward_agent.m_driver [forward_driver] build_phase end
+# UVM_INFO ../tb/forward/sv/forward_monitor.sv(47) @ 0: uvm_test_top.m_env.m_forward_agent.m_monitor [forward_monitor] build_phase start
+# UVM_WARNING ../tb/forward/sv/forward_monitor.sv(50) @ 0: uvm_test_top.m_env.m_forward_agent.m_monitor [forward_monitor] forward_config not provided to monitor
+# UVM_INFO ../tb/forward/sv/forward_monitor.sv(53) @ 0: uvm_test_top.m_env.m_forward_agent.m_monitor [forward_monitor] build_phase end
+# UVM_ERROR @ 0: m_execute_out_fifo.get_peek_export [Connection Error] uvm_test_top.m_env.m_ref_model.port (of type uvm_blocking_get_port) does not provide the complete interface required of this port (type uvm_get_peek_imp)
+# UVM_ERROR @ 0: m_scoreboard_act_fifo.get_peek_export [Connection Error] uvm_test_top.m_env.m_scoreboard.act_port (of type uvm_blocking_get_port) does not provide the complete interface required of this port (type uvm_get_peek_imp)
+# UVM_ERROR @ 0: m_scoreboard_exp_fifo.get_peek_export [Connection Error] uvm_test_top.m_env.m_scoreboard.exp_port (of type uvm_blocking_get_port) does not provide the complete interface required of this port (type uvm_get_peek_imp)
+# UVM_ERROR @ 0: uvm_test_top.m_env.m_ref_model.port [Connection Error] connection count of 0 does not meet required minimum of 1
+# UVM_ERROR @ 0: uvm_test_top.m_env.m_scoreboard.act_port [Connection Error] connection count of 0 does not meet required minimum of 1
+# UVM_ERROR @ 0: uvm_test_top.m_env.m_scoreboard.exp_port [Connection Error] connection count of 0 does not meet required minimum of 1
+# UVM_FATAL @ 0: reporter [BUILDERR] stopping due to build errors
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   10
+# UVM_WARNING :    4
+# UVM_ERROR :    6
+# UVM_FATAL :    1
+# ** Report counts by id
+# [BUILDERR]     1
+# [Connection Error]     6
+# [Questa UVM]     2
+# [RNTST]     1
+# [execute_in_driver]     2
+# [execute_in_monitor]     3
+# [forward_driver]     3
+# [forward_monitor]     3
+# ** Note: $finish    : E:/questasim64_2024.1/win64/../verilog_src/uvm-1.1d/src/base/uvm_report_object.svh(292)
+#    Time: 0 ps  Iteration: 22  Region: /uvm_pkg::uvm_phase::m_run_phases
+# End time: 23:48:20 on Nov 13,2025, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 4
