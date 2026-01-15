@@ -125,6 +125,7 @@ module cpu(
             id_ex_reg_next.reg_rs1_id = if_id_reg.instruction.rs1;
             id_ex_reg_next.reg_rs2_id = if_id_reg.instruction.rs2;
             id_ex_reg_next.reg_rd_id = decode_reg_rd_id;
+            id_ex_reg_next.funct3 = if_id_reg.instruction.funct3;
             id_ex_reg_next.data1 = decode_data1;
             id_ex_reg_next.data2 = decode_data2;
             id_ex_reg_next.pc = decode_pc_out;

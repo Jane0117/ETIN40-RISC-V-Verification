@@ -4,7 +4,7 @@ import common::*;
 
 
 module control(
-    input instruction_type instruction,
+    input wire instruction_type instruction,
     output control_type control,
     output logic decode_failed
 );  

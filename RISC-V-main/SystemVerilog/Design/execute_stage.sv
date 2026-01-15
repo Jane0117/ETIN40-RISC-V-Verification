@@ -8,7 +8,7 @@ module execute_stage(
     input [31:0] data2,
     input [31:0] immediate_data,
     input logic [31:0] pc_in,
-    input control_type control_in,
+    input wire control_type control_in,
     input logic [31:0] wb_forward_data,
     input logic [31:0] mem_forward_data,
     input forward_type forward_rs1,

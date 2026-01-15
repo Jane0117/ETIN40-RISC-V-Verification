@@ -1,0 +1,1 @@
+vlib work;vlog -cover bcesft -sv -timescale 1ns/1ps -f filelist.f;vsim -coverage -onfinish stop -voptargs=+acc -solvefaildebug -uvmcontrol=all -classdebug work.cpu_tb_top +UVM_TESTNAME=cpu_opcode_funct3_sweep_test +MAX_CYCLES=40000 +UVM_MAX_QUIT_COUNT=0 +UVM_VERBOSITY=UVM_MEDIUM -do "run -all; coverage save coverage_cpu_opcode_funct3_sweep_test_new.ucdb; quit -code 0"

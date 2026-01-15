@@ -74,7 +74,12 @@ class execute_in_coverage extends uvm_subscriber #(execute_tx);
       bins branch_ops[] = {B_BNE, B_BLT, B_BGE, B_LTU, B_GEU};
     }
 
-    cp_alu_src: coverpoint m_item.control_in.alu_src;
+    // ALU 源显式 bins，过滤未知值
+    cp_alu_src: coverpoint m_item.control_in.alu_src {
+      bins src_reg = {1'b0};
+      bins src_imm = {1'b1};
+      illegal_bins unknown = default;
+    }
     cp_is_branch: coverpoint m_item.control_in.is_branch;
 
 
@@ -101,7 +106,15 @@ class execute_in_coverage extends uvm_subscriber #(execute_tx);
     cp_reg_write: coverpoint m_item.control_in.reg_write;
 
 
-    cross_encoding_mem:      cross cp_encoding,   cp_mem_dir;
+    // 过滤不可能的编码×访存组合（如 S_TYPE 不会 mem_dir=none，J/U/R/None 不会 load/store）
+    cross_encoding_mem:      cross cp_encoding,   cp_mem_dir {
+      ignore_bins s_none   = binsof(cp_encoding) intersect {S_TYPE}    && binsof(cp_mem_dir) intersect {2'b00};
+      ignore_bins j_mem    = binsof(cp_encoding) intersect {J_TYPE}    && binsof(cp_mem_dir) intersect {2'b01, 2'b10};
+      ignore_bins u_mem    = binsof(cp_encoding) intersect {U_TYPE}    && binsof(cp_mem_dir) intersect {2'b01, 2'b10};
+      ignore_bins r_mem    = binsof(cp_encoding) intersect {R_TYPE}    && binsof(cp_mem_dir) intersect {2'b01, 2'b10};
+      ignore_bins none_mem = binsof(cp_encoding) intersect {NONE_TYPE} && binsof(cp_mem_dir) intersect {2'b01, 2'b10};
+    }
+
     cross_encoding_alu_src:  cross cp_encoding,   cp_alu_src;
     cross_branch_type:       cross cp_encoding,   cp_is_branch;
     cross_mem_size_and_sign: cross cp_mem_size,   cp_mem_sign;

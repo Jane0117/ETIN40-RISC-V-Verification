@@ -40,10 +40,10 @@ set agent_list { execute_in forward execute_out }
 foreach ele $agent_list {
     set cmd "vlog -sv \
         +incdir+../dut \
-        +incdir+../tb/include \
-        +incdir+../tb/${ele}/sv \
-        ../tb/${ele}/sv/${ele}_pkg.sv \
-        ../tb/${ele}/sv/${ele}_if.sv"
+        +incdir+./tb/include \
+        +incdir+./tb/${ele}/sv \
+        ./tb/${ele}/sv/${ele}_pkg.sv \
+        ./tb/${ele}/sv/${ele}_if.sv"
     eval $cmd
 }
 
@@ -53,9 +53,9 @@ foreach ele $agent_list {
 
 set cmd "vlog -sv \
         +incdir+../dut \
-        +incdir+../tb/include \
-        +incdir+../tb/${tb_name}/sv \
-        ../tb/${tb_name}/sv/${tb_name}_pkg.sv"
+        +incdir+./tb/include \
+        +incdir+./tb/${tb_name}/sv \
+        ./tb/${tb_name}/sv/${tb_name}_pkg.sv"
 eval $cmd
 
 # ============================================================
@@ -64,9 +64,9 @@ eval $cmd
 
 set cmd "vlog -sv \
         +incdir+../dut \
-        +incdir+../tb/include \
-        +incdir+../tb/${tb_name}_test/sv \
-        ../tb/${tb_name}_test/sv/${tb_name}_test_pkg.sv"
+        +incdir+./tb/include \
+        +incdir+./tb/${tb_name}_test/sv \
+        ./tb/${tb_name}_test/sv/${tb_name}_test_pkg.sv"
 eval $cmd
 
 # ============================================================
@@ -75,16 +75,16 @@ eval $cmd
 
 set cmd "vlog -sv -timescale 1ns/1ps \
         +incdir+../dut \
-        +incdir+../tb/include \
-        +incdir+../tb/${tb_name}_tb/sv \
-        ../tb/${tb_name}_tb/sv/${tb_name}_th.sv"
+        +incdir+./tb/include \
+        +incdir+./tb/${tb_name}_tb/sv \
+        ./tb/${tb_name}_tb/sv/${tb_name}_th.sv"
 eval $cmd
 
 set cmd "vlog -sv -timescale 1ns/1ps \
         +incdir+../dut \
-        +incdir+../tb/include \
-        +incdir+../tb/${tb_name}_tb/sv \
-        ../tb/${tb_name}_tb/sv/${tb_name}_tb.sv"
+        +incdir+./tb/include \
+        +incdir+./tb/${tb_name}_tb/sv \
+        ./tb/${tb_name}_tb/sv/${tb_name}_tb.sv"
 eval $cmd
 
 # ============================================================

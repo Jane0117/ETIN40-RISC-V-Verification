@@ -11,7 +11,8 @@ interface cpu_mon_if(input logic clk);
   id_ex_type  id_ex;
   ex_mem_type ex_mem;
   mem_wb_type mem_wb;
-
+  //手动添加写回阶段的指令信号
+  logic [31:0] mem_wb_instr;
   logic if_id_flush;
   logic id_ex_flush;
   logic ex_mem_flush;

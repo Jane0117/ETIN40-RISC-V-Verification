@@ -10,6 +10,8 @@ Tests:
   cpu_compress_test
   cpu_hazard_test
   cpu_random_alu_test
+  cpu_opcode_fill_test
+  cpu_predictor_cov_test
 
 Optional plusargs:
   +MAX_CYCLES=<n>

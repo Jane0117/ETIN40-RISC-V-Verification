@@ -1,0 +1,1 @@
+vdel -lib work -all;vlib work;vlog -cover bcesft -sv -timescale 1ns/1ps -f filelist.f;vsim -coverage -voptargs=+acc -solvefaildebug -uvmcontrol=all -classdebug work.cpu_tb_top +UVM_TESTNAME=cpu_random_safe_test +MAX_CYCLES=50000 +UVM_MAX_QUIT_COUNT=0 +UVM_VERBOSITY=UVM_MEDIUM -do "run -all; coverage save coverage_cpu_random_safe_test.ucdb; quit -code 0"

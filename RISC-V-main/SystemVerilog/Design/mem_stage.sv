@@ -8,7 +8,7 @@ module mem_stage(
     input reset_n,
     input [31:0] alu_data_in,
     input [31:0] memory_data_in,
-    input control_type control_in,
+    input wire control_type control_in,
     input logic [31:0] pc_in,
     output control_type control_out,
     output logic [31:0] memory_data_out,

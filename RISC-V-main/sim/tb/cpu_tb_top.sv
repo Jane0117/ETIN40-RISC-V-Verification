@@ -12,6 +12,7 @@ module cpu_tb_top;
   logic indication;
 
   uart_if uart_vif(.clk(clk));
+  // 实例化 Monitor Interface
   cpu_mon_if mon_if(.clk(clk));
 
   // 40MHz clock
@@ -35,6 +36,7 @@ module cpu_tb_top;
     .indication(indication)
   );
 
+  // 将 DUT 内部信号绑定到 Interface
   bind cpu cpu_mon_bind u_cpu_mon_bind(
     .mon_if($root.cpu_tb_top.mon_if),
     .reset_n(reset_n),
@@ -66,6 +68,18 @@ module cpu_tb_top;
     .program_mem_write_data(program_mem_write_data),
     .uart_write_address(uart_write_address)
   );
+
+  // =========================================================================
+  // [关键修改] 手动连接写回阶段的指令 (wb_instr)
+  // =========================================================================
+  // 既然 Interface 中 mem_wb 结构体里没有指令码，我们就用 PC 去内存里取！
+  // 
+  // ⚠️⚠️⚠️ 请注意：下面的路径 "dut.program_mem.ram" 可能需要修改！！！ ⚠️⚠️⚠️
+  // 请在波形里确认你的指令内存叫什么名字 (例如: dut.u_imem.mem, dut.dmem.ram 等)
+  // pc[31:2] 是因为内存通常是按字(Word)寻址，而 PC 是按字节寻址
+
+  assign mon_if.mem_wb_instr = dut.inst_mem.ram[mon_if.mem_wb.pc[31:2]];
+  // =========================================================================
 
   initial begin
     uvm_config_db#(virtual uart_if)::set(null, "*", "uart_vif", uart_vif);

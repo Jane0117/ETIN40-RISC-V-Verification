@@ -5,7 +5,7 @@ import common::*;
 module fetch_stage(
     input clk,
     input reset_n,
-    input instruction_type data,
+    input wire instruction_type data,
     input pc_src,
     input pc_write,
     input prediction,

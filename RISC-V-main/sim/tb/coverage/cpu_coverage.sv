@@ -11,7 +11,18 @@ class cpu_coverage extends uvm_component;
 
   covergroup issue_cg with function sample(issue_tx t);
     option.per_instance = 1;
-    cp_opcode: coverpoint t.instr.opcode {
+    // 仅对支持的 opcode 采样，过滤 default 避免不可达 bin
+    cp_opcode: coverpoint t.instr.opcode
+      iff (t.instr.opcode inside {7'b0110011, // R
+                                  7'b0010011, // I-ALU
+                                  7'b0000011, // LOAD
+                                  7'b0100011, // STORE
+                                  7'b1100011, // BRANCH
+                                  7'b1101111, // JAL
+                                  7'b1100111, // JALR
+                                  7'b0110111, // LUI
+                                  7'b0010111  // AUIPC
+                                 }) {
       bins r_type  = {7'b0110011};
       bins i_alu   = {7'b0010011};
       bins i_load  = {7'b0000011};
@@ -21,11 +32,17 @@ class cpu_coverage extends uvm_component;
       bins i_jalr  = {7'b1100111};
       bins u_lui   = {7'b0110111};
       bins u_auipc = {7'b0010111};
-      bins other   = default;
     }
-    cp_funct3: coverpoint t.instr.funct3 { bins all[] = {[0:7]}; }
+    // funct3 仅关注合法 0-7，非法组合由 ignore_bins 过滤
+    cp_funct3: coverpoint t.instr.funct3 { bins legal[] = {[0:7]}; }
     cp_funct7b5: coverpoint t.instr.funct7[5] { bins zero = {0}; bins one = {1}; }
-    opc_f3_cross: cross cp_opcode, cp_funct3;
+    // 过滤非法 opcode/funct3 组合，减少不可达 bin
+    opc_f3_cross: cross cp_opcode, cp_funct3 {
+      ignore_bins j_like    = binsof(cp_opcode) intersect {7'b1101111, 7'b1100111, 7'b0110111, 7'b0010111};
+      ignore_bins load_inv  = binsof(cp_opcode) intersect {7'b0000011} && binsof(cp_funct3) intersect {3,6,7};
+      ignore_bins store_inv = binsof(cp_opcode) intersect {7'b0100011} && binsof(cp_funct3) intersect {[3:7]};
+      ignore_bins branch_inv= binsof(cp_opcode) intersect {7'b1100011} && binsof(cp_funct3) intersect {3'b010,3'b011};
+    }
   endgroup
 
   covergroup wb_cg with function sample(wb_tx t);
@@ -67,6 +84,19 @@ class cpu_coverage extends uvm_component;
     cp_mispredict: coverpoint (vif.pc_src ^ vif.fetch_prediction) { bins miss = {1}; bins hit = {0}; }
   endgroup
 
+  // 压缩指令覆盖：当前取到的半字是否压缩，以及解压是否失败
+  covergroup compress_cg;
+    option.per_instance = 1;
+    cp_is_compressed: coverpoint (vif.program_mem_read_data[1:0] != 2'b11)
+      iff (vif.reset_n && vif.pc_write) {
+      bins compressed = {1'b1};
+      bins normal     = {1'b0};
+    }
+    cp_decomp_fail: coverpoint vif.fetch_decompress_failed
+      iff (vif.reset_n && vif.pc_write) { bins ok = {0}; bins fail = {1}; }
+    iscomp_x_fail: cross cp_is_compressed, cp_decomp_fail;
+  endgroup
+
   function new(string name, uvm_component parent);
     super.new(name, parent);
     issue_imp = new("issue_imp", this);
@@ -75,7 +105,7 @@ class cpu_coverage extends uvm_component;
     branch_imp = new("branch_imp", this);
     mem_imp = new("mem_imp", this);
     issue_cg = new(); wb_cg = new(); store_cg = new(); branch_cg = new(); mem_cg = new();
-    pipe_cg = new();
+    pipe_cg = new(); compress_cg = new();
   endfunction
 
   function void build_phase(uvm_phase phase);
@@ -91,6 +121,10 @@ class cpu_coverage extends uvm_component;
   function void write_mem(mem_tx t); mem_cg.sample(t); endfunction
 
   task run_phase(uvm_phase phase);
-    forever begin @(posedge vif.clk); if (vif.reset_n === 1'b0) continue; pipe_cg.sample(); end
+    forever begin @(posedge vif.clk);
+      if (vif.reset_n === 1'b0) continue;
+      pipe_cg.sample();
+      compress_cg.sample();
+    end
   endtask
 endclass

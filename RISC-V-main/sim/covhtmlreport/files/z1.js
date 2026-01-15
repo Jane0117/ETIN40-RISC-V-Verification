@@ -1,0 +1,2 @@
+var g_data = {"57":{"st":"inst","pa":0,"n":"/cpu_tb_pkg","l":"SystemVerilog","sn":7,"du":{"n":"work.cpu_tb_pkg","s":5,"b":1},"bc":[{"n":"cpu_tb_pkg","s":57,"z":1}],"loc":{"cp":79.39,"data":{"gb":[128,94],"cvpc":[25],"g":[6,79.39]}}},"5":{"st":"du","pa":0,"n":"work.cpu_tb_pkg","l":"SystemVerilog","sn":7,"one_inst":57,"loc":{"cp":79.39,"data":{"gb":[128,94],"cvpc":[25],"g":[6,79.39]}}}};
+processSummaryData(g_data);

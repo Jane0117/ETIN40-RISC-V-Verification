@@ -8,13 +8,55 @@ class cpu_issue_monitor extends uvm_component;
   task run_phase(uvm_phase phase); issue_tx tx; forever begin @(negedge vif.clk); if (vif.reset_n === 1'b0) continue; if (vif.id_ex_write && !vif.id_ex_flush) begin tx = issue_tx::type_id::create("tx", this); tx.pc = vif.if_id.pc; tx.instr = vif.if_id.instruction; analysis_port.write(tx); end end endtask
 endclass
 
+//修改了cpu_wb_monitor，采集mem_size时改为从指令的funct3字段获取
 class cpu_wb_monitor extends uvm_component;
   `uvm_component_utils(cpu_wb_monitor)
-  virtual cpu_mon_if vif; uvm_analysis_port #(wb_tx) analysis_port;
-  function new(string name, uvm_component parent); super.new(name, parent); analysis_port = new("analysis_port", this); endfunction
-  function void build_phase(uvm_phase phase); super.build_phase(phase); if (!uvm_config_db#(virtual cpu_mon_if)::get(this, "", "cpu_mon_vif", vif)) `uvm_fatal(get_type_name(), "cpu_mon_if not found") endfunction
-  task run_phase(uvm_phase phase); wb_tx tx; forever begin @(posedge vif.clk); if (vif.reset_n === 1'b0) continue; if (vif.mem_wb.control.reg_write && vif.mem_wb.reg_rd_id != 0) begin tx = wb_tx::type_id::create("tx", this); tx.pc = vif.mem_wb.pc; tx.rd = vif.mem_wb.reg_rd_id; tx.is_load = vif.mem_wb.control.mem_read; tx.mem_size = vif.mem_wb.control.mem_size; tx.mem_sign = vif.mem_wb.control.mem_sign; tx.data = vif.mem_wb.control.mem_read ? vif.mem_wb.memory_data : vif.mem_wb.alu_data; analysis_port.write(tx); end end endtask
+  virtual cpu_mon_if vif; 
+  uvm_analysis_port #(wb_tx) analysis_port;
+
+  function new(string name, uvm_component parent); 
+    super.new(name, parent); 
+    analysis_port = new("analysis_port", this); 
+  endfunction
+
+  function void build_phase(uvm_phase phase); 
+    super.build_phase(phase); 
+    if (!uvm_config_db#(virtual cpu_mon_if)::get(this, "", "cpu_mon_vif", vif)) 
+      `uvm_fatal(get_type_name(), "cpu_mon_if not found") 
+  endfunction
+
+  task run_phase(uvm_phase phase); 
+    wb_tx tx; 
+    forever begin 
+      @(posedge vif.clk); 
+      if (vif.reset_n === 1'b0) continue; 
+      
+      if (vif.mem_wb.control.reg_write && vif.mem_wb.reg_rd_id != 0) begin 
+        tx = wb_tx::type_id::create("tx", this); 
+        tx.pc       = vif.mem_wb.pc; 
+        tx.rd       = vif.mem_wb.reg_rd_id; 
+        tx.is_load  = vif.mem_wb.control.mem_read; 
+        
+        // ======================================================
+        // [关键修改] 不要采 control.mem_size，改采指令的 [14:12]
+        // ======================================================
+        // 注意：请确认你的接口里指令叫 'instr' 还是 'instruction'
+        tx.mem_size = vif.mem_wb_instr[14:12]; 
+
+        tx.mem_sign = vif.mem_wb.control.mem_sign; 
+        tx.data     = vif.mem_wb.control.mem_read ? vif.mem_wb.memory_data : vif.mem_wb.alu_data; 
+        analysis_port.write(tx); 
+      end 
+    end 
+  endtask
 endclass
+// class cpu_wb_monitor extends uvm_component;
+//   `uvm_component_utils(cpu_wb_monitor)
+//   virtual cpu_mon_if vif; uvm_analysis_port #(wb_tx) analysis_port;
+//   function new(string name, uvm_component parent); super.new(name, parent); analysis_port = new("analysis_port", this); endfunction
+//   function void build_phase(uvm_phase phase); super.build_phase(phase); if (!uvm_config_db#(virtual cpu_mon_if)::get(this, "", "cpu_mon_vif", vif)) `uvm_fatal(get_type_name(), "cpu_mon_if not found") endfunction
+//   task run_phase(uvm_phase phase); wb_tx tx; forever begin @(posedge vif.clk); if (vif.reset_n === 1'b0) continue; if (vif.mem_wb.control.reg_write && vif.mem_wb.reg_rd_id != 0) begin tx = wb_tx::type_id::create("tx", this); tx.pc = vif.mem_wb.pc; tx.rd = vif.mem_wb.reg_rd_id; tx.is_load = vif.mem_wb.control.mem_read; tx.mem_size = vif.mem_wb.control.mem_size; tx.mem_sign = vif.mem_wb.control.mem_sign; tx.data = vif.mem_wb.control.mem_read ? vif.mem_wb.memory_data : vif.mem_wb.alu_data; analysis_port.write(tx); end end endtask
+// endclass
 
 class cpu_store_monitor extends uvm_component;
   `uvm_component_utils(cpu_store_monitor)
@@ -37,5 +79,5 @@ class cpu_exec_monitor extends uvm_component;
   virtual cpu_mon_if vif; uvm_analysis_port #(branch_tx) analysis_port;
   function new(string name, uvm_component parent); super.new(name, parent); analysis_port = new("analysis_port", this); endfunction
   function void build_phase(uvm_phase phase); super.build_phase(phase); if (!uvm_config_db#(virtual cpu_mon_if)::get(this, "", "cpu_mon_vif", vif)) `uvm_fatal(get_type_name(), "cpu_mon_if not found") endfunction
-  task run_phase(uvm_phase phase); branch_tx tx; forever begin @(posedge vif.clk); if (vif.reset_n === 1'b0) continue; if (vif.id_ex.control.encoding == B_TYPE) begin tx = branch_tx::type_id::create("tx", this); tx.pc = vif.execute_pc; tx.taken = vif.pc_src; tx.funct3 = 3'b000; analysis_port.write(tx); end end endtask
+  task run_phase(uvm_phase phase); branch_tx tx; forever begin @(posedge vif.clk); if (vif.reset_n === 1'b0) continue; if (vif.id_ex.control.encoding == B_TYPE) begin tx = branch_tx::type_id::create("tx", this); tx.pc = vif.execute_pc; tx.taken = vif.pc_src; tx.funct3 = vif.id_ex.funct3; analysis_port.write(tx); end end endtask
 endclass

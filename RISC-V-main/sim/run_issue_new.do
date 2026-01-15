@@ -1,0 +1,1 @@
+vlib work;vlog -cover bcesft -sv -timescale 1ns/1ps -f filelist.f;vsim -coverage -onfinish stop -voptargs=+acc -solvefaildebug -uvmcontrol=all -classdebug work.cpu_tb_top  -do "run -all; coverage save coverage_cpu_issue_sweep_safe_new.ucdb; quit -code 0"

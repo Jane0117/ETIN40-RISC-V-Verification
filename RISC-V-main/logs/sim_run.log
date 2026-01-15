@@ -1,10 +1,138 @@
-# vsim -voptargs="+acc" -solvefaildebug -uvmcontrol=all -classdebug -l D:/learning/lund/learning_resources/ETIN40/sem2/RISC-V-main/logs/sim_run.log -do "run -all; quit -code 0" work.cpu_tb_top "+UVM_TESTNAME=cpu_full_cov_test" "+INCLUDE_COMPRESS=0" 
-# Start time: 17:05:40 on Jan 08,2026
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Error: (vopt-13130) Failed to find design unit cpu_tb_top.
-#         Searched libraries:
-#             work
-# Optimization failed
-# Error loading design
-# End time: 17:05:41 on Jan 08,2026, Elapsed time: 0:00:01
-# Errors: 1, Warnings: 0
+# vsim -coverage -onfinish stop -c -l logs/sim_run.log work.cpu_tb_top "+UVM_TESTNAME=cpu_store_align_test" "+MAX_CYCLES=20000" "+UVM_VERBOSITY=UVM_MEDIUM" -do "run -all; coverage save coverage_store.ucdb; quit -code 0" 
+# Start time: 14:24:54 on Jan 13,2026
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# //  Questa Sim-64
+# //  Version 2024.1 win64 Feb  1 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# Loading sv_std.std
+# Loading work.common(fast)
+# Loading work.cpu_mon_bind_sv_unit(fast)
+# Loading work.forwarding_unit_sv_unit(fast)
+# Loading work.mem_stage_sv_unit(fast)
+# Loading work.alu_sv_unit(fast)
+# Loading work.execute_stage_sv_unit(fast)
+# Loading work.control_sv_unit(fast)
+# Loading work.register_file_sv_unit(fast)
+# Loading work.decode_stage_sv_unit(fast)
+# Loading work.instr_decompressor_sv_unit(fast)
+# Loading work.fetch_stage_sv_unit(fast)
+# Loading work.cpu_sv_unit(fast)
+# Loading work.cpu_mon_if(fast)
+# Loading work.uart_if(fast)
+# Loading mtiUvm.uvm_pkg(fast)
+# Loading work.uart_pkg(fast)
+# Loading work.cpu_tb_pkg(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading work.cpu_tb_top(fast)
+# Loading C:/questasim64_2024.1/uvm-1.1d\win64\uvm_dpi.dll
+# run -all
+# ----------------------------------------------------------------
+# UVM-1.1d
+# (C) 2007-2013 Mentor Graphics Corporation
+# (C) 2007-2013 Cadence Design Systems, Inc.
+# (C) 2006-2013 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
+# UVM_INFO @ 0: reporter [RNTST] Running test cpu_store_align_test...
+# UVM_INFO tb/tests/cpu_tests.sv(16) @ 362500: uvm_test_top [cpu_store_align_test] Program size: 21 words, max_cycles=20000
+# [1075088000] UART WRITE byte_addr=3 word_idx=0 data=00000513
+# [1943088000] UART WRITE byte_addr=7 word_idx=1 data=0aa00a13
+# [2811088000] UART WRITE byte_addr=11 word_idx=2 data=12300a93
+# [3679088000] UART WRITE byte_addr=15 word_idx=3 data=56700b13
+# [4547088000] UART WRITE byte_addr=19 word_idx=4 data=01450023
+# [5415088000] UART WRITE byte_addr=23 word_idx=5 data=014500a3
+# [6283088000] UART WRITE byte_addr=27 word_idx=6 data=01450123
+# [7151088000] UART WRITE byte_addr=31 word_idx=7 data=014501a3
+# [8019088000] UART WRITE byte_addr=35 word_idx=8 data=01551023
+# [8887088000] UART WRITE byte_addr=39 word_idx=9 data=015510a3
+# [9755088000] UART WRITE byte_addr=43 word_idx=10 data=01551123
+# [10623088000] UART WRITE byte_addr=47 word_idx=11 data=015511a3
+# [11491088000] UART WRITE byte_addr=51 word_idx=12 data=01652023
+# [12359088000] UART WRITE byte_addr=55 word_idx=13 data=016520a3
+# [13227088000] UART WRITE byte_addr=59 word_idx=14 data=01652123
+# [14095088000] UART WRITE byte_addr=63 word_idx=15 data=016521a3
+# [14963088000] UART WRITE byte_addr=67 word_idx=16 data=00050283
+# [15831088000] UART WRITE byte_addr=71 word_idx=17 data=00151303
+# [16699088000] UART WRITE byte_addr=75 word_idx=18 data=00252383
+# [17567088000] UART WRITE byte_addr=79 word_idx=19 data=00354403
+# [18435088000] UART WRITE byte_addr=83 word_idx=20 data=00455483
+# [19303088000] UART WRITE byte_addr=87 word_idx=21 data=00001111
+# [19303113000] RUN_FLAG asserted (UART sentinel seen)
+# [19303663000] RUN_FINISHED asserted, PC=00000050
+# UVM_INFO tb/tests/cpu_tests.sv(28) @ 19313362500: uvm_test_top [cpu_store_align_test] run_finished asserted
+# UVM_WARNING tb/tests/cpu_tests.sv(38) @ 19313862500: uvm_test_top [cpu_store_align_test] indication not asserted when expected
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 19313862500: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO tb/scoreboard/cpu_scoreboard.sv(56) @ 19313862500: uvm_test_top.m_env.m_scoreboard [cpu_scoreboard] WB matches=9 mismatches=0
+# UVM_INFO tb/scoreboard/cpu_scoreboard.sv(57) @ 19313862500: uvm_test_top.m_env.m_scoreboard [cpu_scoreboard] STORE matches=12 mismatches=0
+# UVM_INFO tb/scoreboard/cpu_scoreboard.sv(58) @ 19313862500: uvm_test_top.m_env.m_scoreboard [cpu_scoreboard] BRANCH matches=0 mismatches=0
+# UVM_INFO tb/tests/cpu_tests.sv(44) @ 19313862500: uvm_test_top [cpu_store_align_test] TEST PASSED
+# 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   10
+# UVM_WARNING :    1
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [Questa UVM]     2
+# [RNTST]     1
+# [TEST_DONE]     1
+# [cpu_scoreboard]     3
+# [cpu_store_align_test]     4
+# ** Note: $finish    : C:/questasim64_2024.1/win64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
+#    Time: 19313862500 ps  Iteration: 55  Instance: /cpu_tb_top
+# Break in Task uvm_pkg/uvm_root::run_test at C:/questasim64_2024.1/win64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh line 430
+# Stopped at C:/questasim64_2024.1/win64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh line 430
+#  coverage save coverage_store.ucdb
+#  quit -code 0
+# End time: 14:25:04 on Jan 13,2026, Elapsed time: 0:00:10
+# Errors: 0, Warnings: 0
+QuestaSim-64 vcover 2024.1 Coverage Utility 2024.02 Feb  1 2024
+Start time: 14:25:17 on Jan 13,2026
+vcover report -summary -code bcesf -assert -cvg coverage_merged_passed.ucdb 
+Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
+Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
+Coverage Report Totals BY INSTANCES: Number of Instances 34
+
+    Enabled Coverage              Bins      Hits    Misses    Weight  Coverage
+    ----------------              ----      ----    ------    ------  --------
+    Branches                       777       446       331         1    57.40%
+    Conditions                     161        66        95         1    40.99%
+    Covergroups                      6        na        na         1    90.10%
+        Coverpoints/Crosses         23        na        na         1        na
+            Covergroup Bins        170       115        55         1    67.64%
+    Expressions                     34        18        16         1    52.94%
+    FSM States                       8         7         1         1    87.50%
+    FSM Transitions                 15         8         7         1    53.33%
+    Statements                    1650      1005       645         1    60.90%
+Total coverage (filtered view): 63.31%
+
+End time: 14:25:17 on Jan 13,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

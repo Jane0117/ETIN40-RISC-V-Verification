@@ -100,6 +100,7 @@ package common;
         logic [4:0] reg_rs1_id;
         logic [4:0] reg_rs2_id;
         logic [4:0] reg_rd_id;
+        logic [2:0] funct3;
         logic [31:0] data1;
         logic [31:0] data2;
         logic [31:0] immediate_data;
