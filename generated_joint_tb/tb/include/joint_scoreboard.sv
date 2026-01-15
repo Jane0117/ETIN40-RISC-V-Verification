@@ -275,8 +275,7 @@ class joint_scoreboard extends uvm_component;
     exp.rd       = t.reg_rd_id;
     exp.pc_in    = t.pc_out;
     exp.instruction_illegal = t.instruction_illegal;
-    exp.data1    = t.read_data1;
-    exp.data2    = t.read_data2;
+     -,
     exp_by_pc[t.pc_tag] = exp;
     rs1 = instr.rs1;
     rs2 = instr.rs2;
