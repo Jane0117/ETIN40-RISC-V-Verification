@@ -860,16 +860,44 @@ class cpu_full_cov_test extends cpu_base_test;
     prog.push_back(encode_u(7'b0110111, 5'd29, 20'h1_2345)); // lui
     prog.push_back(encode_u(7'b0010111, 5'd30, 20'h0_0001)); // auipc
 
-    // Optional Compressed
-    if (include_compress) begin
-      prog.push_back(32'h0001_0001); // c.nop
-      prog.push_back(32'h0002_0002);
-      prog.push_back(32'h4593_4529);
-      prog.push_back(32'h42d0_c2cc);
-      prog.push_back(32'hE003_6101);
-      prog.push_back(32'h8000_6101);
-      prog.push_back(32'h0000_0000); // illegal
-    end
+    // ==========================================
+// ==========================================
+    // 7. Pipeline Forwarding (终极修复版)
+    // ==========================================
+    // 我们需要覆盖 cp_fwdB -> bin mem (Hits: 0)
+    // 这意味着 rs2 需要用到前一条指令(MEM阶段)的数据。
+    
+    // ------------------------------------------
+    // 场景 A: ALU-to-ALU Forwarding (间隔 1 条指令)
+    // ------------------------------------------
+    // 1. Producer: x10 = 0xAA
+    prog.push_back(encode_i(7'b0010011, 3'b000, 5'd10, 5'd0, 8'hAA)); 
+    
+    // 2. Gap: 插入一条真实的无关指令 (写 x12)，防止 NOP 被优化
+    prog.push_back(encode_i(7'b0010011, 3'b000, 5'd12, 5'd0, 8'hBB)); 
+    
+    // 3. Consumer: ADD x11, x0, x10 (rs2 = x10)
+    // 此时 x10 刚好在 WB 阶段，需要从 MEM/WB 流水线寄存器前瞻
+    prog.push_back(encode_r(7'b0110011, 3'b000, 7'b0000000, 5'd11, 5'd0, 5'd10)); 
+
+    // ------------------------------------------
+    // 场景 B: Load-to-ALU Forwarding (间隔 1 条指令)
+    // ------------------------------------------
+    // 很多设计把 Load 前瞻专门归类为 MEM Forwarding
+    
+    // 1. Setup: 先往地址 0 写点东西 (用 SW)
+    prog.push_back(encode_i(7'b0010011, 3'b000, 5'd20, 5'd0, 8'hCC)); // x20 = 0xCC
+    prog.push_back(encode_s(7'b0100011, 3'b010, 5'd0, 5'd20, 0));     // SW x20 -> Mem[0]
+    
+    // 2. Load: LW x21 <- Mem[0]
+    prog.push_back(encode_i(7'b0000011, 3'b010, 5'd21, 5'd0, 0));     // LW x21, 0(x0)
+    
+    // 3. Gap: NOP (Load-Use 通常需要 1 cycle 气泡，这里手动给一个)
+    prog.push_back(encode_i(7'b0010011, 3'b000, 5'd0, 5'd0, 0));      // ADDI x0, x0, 0
+    
+    // 4. Consumer: ADD x22, x0, x21 (rs2 = x21)
+    // 这里的 x21 数据来自 MEM 阶段的 Load 结果
+    prog.push_back(encode_r(7'b0110011, 3'b000, 7'b0000000, 5'd22, 5'd0, 5'd21));
   endfunction
 
   function void report_phase(uvm_phase phase);

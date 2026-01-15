@@ -62,7 +62,7 @@ class cpu_coverage extends uvm_component;
   covergroup branch_cg with function sample(branch_tx t);
     option.per_instance = 1;
     cp_taken: coverpoint t.taken { bins taken = {1}; bins not_taken = {0}; }
-    cp_f3: coverpoint t.funct3 { bins all[] = {[0:7]}; }
+    cp_f3: coverpoint t.funct3 { bins all[] = {[0:7]}; ignore_bins invalid_ops = {3'b010, 3'b011}; }
     branch_cross: cross cp_f3, cp_taken;
   endgroup
 
