@@ -1,5 +1,5 @@
 <certe_dump>
-  <instance type=" cpu_full_cov_compress_test "> 
+  <instance type=" cpu_smoke_test "> 
      uvm_test_top 
   
      <instance type=" cpu_env "> 

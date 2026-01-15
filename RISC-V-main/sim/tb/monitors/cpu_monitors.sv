@@ -37,5 +37,5 @@ class cpu_exec_monitor extends uvm_component;
   virtual cpu_mon_if vif; uvm_analysis_port #(branch_tx) analysis_port;
   function new(string name, uvm_component parent); super.new(name, parent); analysis_port = new("analysis_port", this); endfunction
   function void build_phase(uvm_phase phase); super.build_phase(phase); if (!uvm_config_db#(virtual cpu_mon_if)::get(this, "", "cpu_mon_vif", vif)) `uvm_fatal(get_type_name(), "cpu_mon_if not found") endfunction
-  task run_phase(uvm_phase phase); branch_tx tx; forever begin @(posedge vif.clk); if (vif.reset_n === 1'b0) continue; if (vif.id_ex.control.encoding == B_TYPE) begin tx = branch_tx::type_id::create("tx", this); tx.pc = vif.execute_pc; tx.taken = vif.pc_src; tx.funct3 = 3'b000; analysis_port.write(tx); end end endtask
+  task run_phase(uvm_phase phase); branch_tx tx; forever begin @(posedge vif.clk); if (vif.reset_n === 1'b0) continue; if (vif.id_ex.control.encoding == B_TYPE) begin tx = branch_tx::type_id::create("tx", this); tx.pc = vif.execute_pc; tx.taken = vif.pc_src; tx.funct3 = vif.if_id.instruction.funct3; analysis_port.write(tx); end end endtask
 endclass

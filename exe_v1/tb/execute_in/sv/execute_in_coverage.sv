@@ -102,9 +102,37 @@ class execute_in_coverage extends uvm_subscriber #(execute_tx);
     cp_forward_rs1: coverpoint m_item.forward_rs1;
     cp_forward_rs2: coverpoint m_item.forward_rs2;
 
-    cross_encoding_mem:      cross cp_encoding,   cp_mem_dir;
-    cross_encoding_alu_src:  cross cp_encoding,   cp_alu_src;
-    cross_branch_type:       cross cp_encoding,   cp_is_branch;
+    cross_encoding_mem:      cross cp_encoding,   cp_mem_dir {
+      // S_TYPE 只能 store
+      ignore_bins s_none  = binsof(cp_encoding) intersect {S_TYPE} &&
+                            binsof(cp_mem_dir.none);
+      ignore_bins s_load  = binsof(cp_encoding) intersect {S_TYPE} &&
+                            binsof(cp_mem_dir.load);
+      // I_TYPE 不会 store
+      ignore_bins i_store = binsof(cp_encoding) intersect {I_TYPE} &&
+                            binsof(cp_mem_dir.store);
+      // R/B/U/J 不会有 load/store
+      ignore_bins rbu_load  = binsof(cp_encoding) intersect {R_TYPE, B_TYPE, U_TYPE, J_TYPE} &&
+                              binsof(cp_mem_dir.load);
+      ignore_bins rbu_store = binsof(cp_encoding) intersect {R_TYPE, B_TYPE, U_TYPE, J_TYPE} &&
+                              binsof(cp_mem_dir.store);
+    }
+
+    cross_encoding_alu_src:  cross cp_encoding,   cp_alu_src {
+      ignore_bins r_alu_src1 = binsof(cp_encoding) intersect {R_TYPE} &&
+                               binsof(cp_alu_src) intersect {1'b1};
+      ignore_bins i_alu_src0 = binsof(cp_encoding) intersect {I_TYPE} &&
+                               binsof(cp_alu_src) intersect {1'b0};
+      ignore_bins s_alu_src0 = binsof(cp_encoding) intersect {S_TYPE} &&
+                               binsof(cp_alu_src) intersect {1'b0};
+    }
+
+    cross_branch_type:       cross cp_encoding,   cp_is_branch {
+      ignore_bins b_nonbranch = binsof(cp_encoding) intersect {B_TYPE} &&
+                                binsof(cp_is_branch) intersect {1'b0};
+      ignore_bins risu_branch = binsof(cp_encoding) intersect {R_TYPE, I_TYPE, S_TYPE, U_TYPE} &&
+                                binsof(cp_is_branch) intersect {1'b1};
+    }
     cross_mem_size_and_sign: cross cp_mem_size,   cp_mem_sign;
     cross_forward_use:       cross cp_encoding,   cp_forward_rs1, cp_forward_rs2;
   endgroup

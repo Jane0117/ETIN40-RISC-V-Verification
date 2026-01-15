@@ -7,7 +7,8 @@ module cpu_tb_top;
   import common::*;
 
   logic clk;
-  logic reset_n;
+  logic reset_n_cpu;
+  logic reset_n_uart;
   logic io_rx;
   logic indication;
 
@@ -18,26 +19,36 @@ module cpu_tb_top;
   initial clk = 1'b0;
   always #12.5 clk = ~clk;
 
+  // Allow separate UART/CPU复位时序：先放开 UART 以便装载程序，后放开 CPU。
   initial begin
-    reset_n = 1'b0;
+    int uart_reset_cycles;
+    int cpu_reset_cycles;
+    uart_reset_cycles = 10;
+    cpu_reset_cycles  = 50000; // 默认保持 CPU 更长复位，确保UART可先完成装载
+    reset_n_uart = 1'b0;
+    reset_n_cpu  = 1'b0;
     uart_vif.io_rx = 1'b1;
-    repeat (10) @(posedge clk);
-    reset_n = 1'b1;
+    if ($value$plusargs("RESET_CYCLES_UART=%d", uart_reset_cycles)) begin end
+    if ($value$plusargs("RESET_CYCLES_CPU=%d",  cpu_reset_cycles))  begin end
+    repeat (uart_reset_cycles) @(posedge clk);
+    reset_n_uart = 1'b1; // 开始允许 UART 传输
+    repeat (cpu_reset_cycles) @(posedge clk);
+    reset_n_cpu  = 1'b1; // 同步释放 CPU
   end
 
-  assign uart_vif.reset_n = reset_n;
+  assign uart_vif.reset_n = reset_n_uart;
   assign io_rx = uart_vif.io_rx;
 
   cpu dut(
     .clk(clk),
-    .reset_n(reset_n),
+    .reset_n(reset_n_cpu),
     .io_rx(io_rx),
     .indication(indication)
   );
 
   bind cpu cpu_mon_bind u_cpu_mon_bind(
     .mon_if($root.cpu_tb_top.mon_if),
-    .reset_n(reset_n),
+    .reset_n(reset_n_cpu),
     .io_rx(io_rx),
     .indication(indication),
     .if_id_reg(if_id_reg),
