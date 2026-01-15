@@ -62,6 +62,10 @@ module execute_stage(
             FORWARD_FROM_MEM: store_data = wb_forward_data;
             default: store_data = data2;
         endcase
+
+        // AUIPC 需要 PC + 立即数，覆盖左操作数为 pc_in
+        if (control_in.encoding == U_TYPE && control_in.alu_op == ALU_ADD)
+            left_operand = pc_in;
     end
 
     always_comb begin: J_target_address

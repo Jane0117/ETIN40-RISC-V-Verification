@@ -84,17 +84,33 @@ class cpu_coverage extends uvm_component;
     cp_mispredict: coverpoint (vif.pc_src ^ vif.fetch_prediction) { bins miss = {1}; bins hit = {0}; }
   endgroup
 
-  // 压缩指令覆盖：当前取到的半字是否压缩，以及解压是否失败
-  covergroup compress_cg;
+covergroup compress_cg;
     option.per_instance = 1;
+
+    // 1. 监测是否为压缩指令
+    // [修改] 去掉了 && vif.pc_write
+    // 原因：必须在报错(此时pc_write可能为0)时也能采样，否则 Cross 无法命中
     cp_is_compressed: coverpoint (vif.program_mem_read_data[1:0] != 2'b11)
-      iff (vif.reset_n && vif.pc_write) {
+      iff (vif.reset_n) {
       bins compressed = {1'b1};
       bins normal     = {1'b0};
     }
+
+    // 2. 监测解压是否失败
+    // [修改] 去掉了 && vif.pc_write
+    // 原因：解压失败时 CPU 会停止更新 PC (pc_write=0)，必须去掉此条件才能采到错误
     cp_decomp_fail: coverpoint vif.fetch_decompress_failed
-      iff (vif.reset_n && vif.pc_write) { bins ok = {0}; bins fail = {1}; }
-    iscomp_x_fail: cross cp_is_compressed, cp_decomp_fail;
+      iff (vif.reset_n) { 
+      bins ok   = {0}; 
+      bins fail = {1}; 
+    }
+
+    // 3. 交叉覆盖
+    iscomp_x_fail: cross cp_is_compressed, cp_decomp_fail {
+      // 忽略 <normal, fail> 组合
+      // 原因：普通指令(normal)不经过解压逻辑，因此永远不可能报解压失败。
+      ignore_bins normal_fail = binsof(cp_is_compressed.normal) && binsof(cp_decomp_fail.fail);
+    }
   endgroup
 
   function new(string name, uvm_component parent);

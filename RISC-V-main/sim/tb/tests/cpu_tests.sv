@@ -934,7 +934,7 @@ class cpu_full_cov_compress_test extends cpu_full_cov_test;
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
     include_compress = 1;
-    expect_indication = 1;
+    expect_indication = 1; // 避免未触发 indication 的警告
   endfunction
 endclass
 

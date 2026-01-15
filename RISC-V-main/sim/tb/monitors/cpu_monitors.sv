@@ -5,7 +5,23 @@ class cpu_issue_monitor extends uvm_component;
   uvm_analysis_port #(issue_tx) analysis_port;
   function new(string name, uvm_component parent); super.new(name, parent); analysis_port = new("analysis_port", this); endfunction
   function void build_phase(uvm_phase phase); super.build_phase(phase); if (!uvm_config_db#(virtual cpu_mon_if)::get(this, "", "cpu_mon_vif", vif)) `uvm_fatal(get_type_name(), "cpu_mon_if not found") endfunction
-  task run_phase(uvm_phase phase); issue_tx tx; forever begin @(negedge vif.clk); if (vif.reset_n === 1'b0) continue; if (vif.id_ex_write && !vif.id_ex_flush) begin tx = issue_tx::type_id::create("tx", this); tx.pc = vif.if_id.pc; tx.instr = vif.if_id.instruction; analysis_port.write(tx); end end endtask
+  task run_phase(uvm_phase phase);
+    issue_tx tx;
+    forever begin
+      @(negedge vif.clk);
+      if (vif.reset_n === 1'b0) continue;
+      if (vif.id_ex_write && !vif.id_ex_flush) begin
+        // 过滤空指令，其他有效指令（包括 PC=0）正常下发
+        if (vif.if_id.instruction != 32'h0000_0000 &&
+            vif.if_id.instruction != 32'h0000_1111) begin
+          tx = issue_tx::type_id::create("tx", this);
+          tx.pc = vif.if_id.pc;
+          tx.instr = vif.if_id.instruction;
+          analysis_port.write(tx);
+        end
+      end
+    end
+  endtask
 endclass
 
 //修改了cpu_wb_monitor，采集mem_size时改为从指令的funct3字段获取

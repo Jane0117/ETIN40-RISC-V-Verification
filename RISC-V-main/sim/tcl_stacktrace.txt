@@ -1,0 +1,31 @@
+Thu Jan 15 16:05:20 CET 2026
+Trace back: list element in quotes followed by ":" instead of space
+    while executing
+"foreach val $retval { 
+						set wobj [$vsimPriv(windowmgr) FindWindowObj $val]
+						if { $wobj ne "" && [lsearch $windowobj_list $wobj] < 0 } {
+				..."
+    (procedure "view" line 144)
+    invoked from within
+"view source"
+    (procedure "Action" line 429)
+    invoked from within
+"Action .main_pane.structure view_declaration"
+    (in namespace inscope "::QStructure" script line 1)
+    invoked from within
+"namespace inscope ::QStructure {Action .main_pane.structure view_declaration}"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel "#0" $cmd"
+    (object "::.main_pane.structure.interior.cs.body.struct" method "::vsimwidgets::Hierarchy::_evalCmd" body line 45)
+    invoked from within
+"_evalCmd $itk_option(-command) $node -column $c"
+    (object "::.main_pane.structure.interior.cs.body.struct" method "::vsimwidgets::Hierarchy::_doublebutton1" body line 15)
+    invoked from within
+"::.main_pane.structure.interior.cs.body.struct _doublebutton1 .main_pane.structure.interior.cs.body.struct.lwchildsite.clipper.canvas.sfchildsite.list..."
+    (in namespace inscope "::vsimwidgets::Hierarchy" script line 1)
+    invoked from within
+"namespace inscope ::vsimwidgets::Hierarchy {::.main_pane.structure.interior.cs.body.struct _doublebutton1 .main_pane.structure.interior.cs.body.struct..."
+    (command bound to event)
+  <2:C:/questasim64_2024.1/win64/tk8.6/bgerror.tcl:106: ::tkerror {list element in quotes followed by ":" instead of space}
+  <1:eval:1: ::tk::dialog::error::bgerror {list element in quotes followed by ":" instead of space}

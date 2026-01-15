@@ -1,5 +1,5 @@
 <certe_dump>
-  <instance type=" cpu_full_cov_nocompress_test "> 
+  <instance type=" cpu_full_cov_compress_test "> 
      uvm_test_top 
   
      <instance type=" cpu_env "> 
@@ -72,6 +72,7 @@
               analysis_port 
               <connection>  uvm_test_top.m_env.issue_fifo.analysis_export  </connection> 
               <connection>  uvm_test_top.m_env.m_coverage.issue_imp  </connection> 
+              <connection>  uvm_test_top.m_env.m_scoreboard.act_issue_fifo.analysis_export  </connection> 
            </port> 
         </instance> 
   
@@ -82,6 +83,7 @@
            <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
               analysis_port 
               <connection>  uvm_test_top.m_env.m_coverage.mem_imp  </connection> 
+              <connection>  uvm_test_top.m_env.m_scoreboard.act_mem_fifo.analysis_export  </connection> 
            </port> 
         </instance> 
   
@@ -93,6 +95,16 @@
               exp_branch_ap 
               <connection>  uvm_test_top.m_env.m_coverage.branch_imp  </connection> 
               <connection>  uvm_test_top.m_env.m_scoreboard.exp_branch_fifo.analysis_export  </connection> 
+           </port> 
+  
+           <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+              exp_issue_ap 
+              <connection>  uvm_test_top.m_env.m_scoreboard.exp_issue_fifo.analysis_export  </connection> 
+           </port> 
+  
+           <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+              exp_mem_ap 
+              <connection>  uvm_test_top.m_env.m_scoreboard.exp_mem_fifo.analysis_export  </connection> 
            </port> 
   
            <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
@@ -117,6 +129,56 @@
   
            <instance type=" uvm_tlm_analysis_fifo #(T) "> 
               act_branch_fifo 
+  
+              <imp if_type = "uvm_analysis_imp" txn_type = "anonymous"> 
+                 analysis_export 
+              </imp> 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 get_ap 
+              </port> 
+  
+              <imp if_type = "uvm_get_peek_imp" txn_type = "anonymous"> 
+                 get_peek_export 
+              </imp> 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 put_ap 
+              </port> 
+  
+              <imp if_type = "uvm_put_imp" txn_type = "anonymous"> 
+                 put_export 
+              </imp> 
+           </instance> 
+  
+  
+           <instance type=" uvm_tlm_analysis_fifo #(T) "> 
+              act_issue_fifo 
+  
+              <imp if_type = "uvm_analysis_imp" txn_type = "anonymous"> 
+                 analysis_export 
+              </imp> 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 get_ap 
+              </port> 
+  
+              <imp if_type = "uvm_get_peek_imp" txn_type = "anonymous"> 
+                 get_peek_export 
+              </imp> 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 put_ap 
+              </port> 
+  
+              <imp if_type = "uvm_put_imp" txn_type = "anonymous"> 
+                 put_export 
+              </imp> 
+           </instance> 
+  
+  
+           <instance type=" uvm_tlm_analysis_fifo #(T) "> 
+              act_mem_fifo 
   
               <imp if_type = "uvm_analysis_imp" txn_type = "anonymous"> 
                  analysis_export 
@@ -192,6 +254,56 @@
   
            <instance type=" uvm_tlm_analysis_fifo #(T) "> 
               exp_branch_fifo 
+  
+              <imp if_type = "uvm_analysis_imp" txn_type = "anonymous"> 
+                 analysis_export 
+              </imp> 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 get_ap 
+              </port> 
+  
+              <imp if_type = "uvm_get_peek_imp" txn_type = "anonymous"> 
+                 get_peek_export 
+              </imp> 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 put_ap 
+              </port> 
+  
+              <imp if_type = "uvm_put_imp" txn_type = "anonymous"> 
+                 put_export 
+              </imp> 
+           </instance> 
+  
+  
+           <instance type=" uvm_tlm_analysis_fifo #(T) "> 
+              exp_issue_fifo 
+  
+              <imp if_type = "uvm_analysis_imp" txn_type = "anonymous"> 
+                 analysis_export 
+              </imp> 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 get_ap 
+              </port> 
+  
+              <imp if_type = "uvm_get_peek_imp" txn_type = "anonymous"> 
+                 get_peek_export 
+              </imp> 
+  
+              <port if_type = "uvm_analysis_port" txn_type = "anonymous"> 
+                 put_ap 
+              </port> 
+  
+              <imp if_type = "uvm_put_imp" txn_type = "anonymous"> 
+                 put_export 
+              </imp> 
+           </instance> 
+  
+  
+           <instance type=" uvm_tlm_analysis_fifo #(T) "> 
+              exp_mem_fifo 
   
               <imp if_type = "uvm_analysis_imp" txn_type = "anonymous"> 
                  analysis_export 

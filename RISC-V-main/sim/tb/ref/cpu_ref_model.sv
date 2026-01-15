@@ -4,9 +4,11 @@ class cpu_ref_model extends uvm_component;
 
   virtual cpu_mon_if vif;
   uvm_get_port #(issue_tx) issue_port;
+  uvm_analysis_port #(issue_tx) exp_issue_ap;
   uvm_analysis_port #(wb_tx) exp_wb_ap;
   uvm_analysis_port #(store_tx) exp_store_ap;
   uvm_analysis_port #(branch_tx) exp_branch_ap;
+  uvm_analysis_port #(mem_tx) exp_mem_ap;
 
   logic [31:0] regs [0:31];
   byte unsigned mem [0:1023];
@@ -14,9 +16,11 @@ class cpu_ref_model extends uvm_component;
   function new(string name, uvm_component parent);
     super.new(name, parent);
     issue_port = new("issue_port", this);
+    exp_issue_ap = new("exp_issue_ap", this);
     exp_wb_ap = new("exp_wb_ap", this);
     exp_store_ap = new("exp_store_ap", this);
     exp_branch_ap = new("exp_branch_ap", this);
+    exp_mem_ap = new("exp_mem_ap", this);
   endfunction
 
   function void build_phase(uvm_phase phase);
@@ -80,10 +84,18 @@ class cpu_ref_model extends uvm_component;
   task execute_one(issue_tx tx);
     instruction_type instr; logic [31:0] rs1_val; logic [31:0] rs2_val; logic [31:0] imm;
     logic [31:0] result; logic [31:0] addr; logic [31:0] word; encoding_type enc;
-    wb_tx wb; store_tx st; branch_tx br;
+    wb_tx wb; store_tx st; branch_tx br; mem_tx mt;
+    issue_tx itx;
 
     instr = tx.instr; word = instr_to_word(instr);
+    // 非法/空指令直接丢弃，不计入期望 issue
     if (word == 32'h0000_0000 || word == 32'h0000_1111) return;
+
+    // 期望 issue 事务下发（与实际 issue 对齐，仅对有效指令）
+    itx = issue_tx::type_id::create("itx", this);
+    itx.instr = instr;
+    itx.pc    = tx.pc;
+    exp_issue_ap.write(itx);
 
     enc = decode_encoding(instr);
     rs1_val = regs[instr.rs1];
@@ -137,6 +149,13 @@ class cpu_ref_model extends uvm_component;
           3'b101: result = mem_read(addr, 2'b01, 1'b0);
           default: result = 32'b0;
         endcase
+        mt = mem_tx::type_id::create("mt_load", this);
+        mt.addr = addr;
+        mt.is_read = 1'b1;
+        mt.is_write = 1'b0;
+        mt.mem_size = (instr.funct3[1:0] == 2'b00) ? 2'b00 : (instr.funct3[1:0] == 2'b01) ? 2'b01 : 2'b10;
+        mt.mem_sign = (instr.funct3[2] == 1'b0);
+        exp_mem_ap.write(mt);
         if (instr.rd != 0) begin
           regs[instr.rd] = result;
           wb = wb_tx::type_id::create("wb"); wb.pc = tx.pc; wb.rd = instr.rd; wb.data = result; wb.is_load = 1; wb.mem_size = (instr.funct3[1:0] == 2'b00) ? 2'b00 : (instr.funct3[1:0] == 2'b01) ? 2'b01 : 2'b10; wb.mem_sign = (instr.funct3[2] == 1'b0); exp_wb_ap.write(wb);
@@ -151,6 +170,13 @@ class cpu_ref_model extends uvm_component;
           3'b010: mem_write(addr, 2'b10, rs2_val);
           default: mem_write(addr, 2'b00, rs2_val);
         endcase
+        mt = mem_tx::type_id::create("mt_store", this);
+        mt.addr = addr;
+        mt.is_read = 1'b0;
+        mt.is_write = 1'b1;
+        mt.mem_size = (instr.funct3 == 3'b000) ? 2'b00 : (instr.funct3 == 3'b001) ? 2'b01 : 2'b10;
+        mt.mem_sign = 1'b0;
+        exp_mem_ap.write(mt);
         st = store_tx::type_id::create("st"); st.pc = tx.pc; st.addr = addr; st.data = rs2_val; st.mem_size = (instr.funct3 == 3'b000) ? 2'b00 : (instr.funct3 == 3'b001) ? 2'b01 : 2'b10; exp_store_ap.write(st);
       end
 

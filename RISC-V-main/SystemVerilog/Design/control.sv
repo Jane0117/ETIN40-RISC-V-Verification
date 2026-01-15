@@ -141,8 +141,8 @@ module control(
             7'b0010111: begin
                 control.encoding = U_TYPE;
                 control.reg_write = 1'b1;
-
-                control.alu_op = ALU_ADD;   //PC + imm
+                control.alu_src = 1'b1;     // 使用 U 型立即数
+                control.alu_op = ALU_ADD;   // PC + imm
             end
 
             default: begin

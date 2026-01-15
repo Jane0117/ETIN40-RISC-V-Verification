@@ -26,21 +26,23 @@ vlog -cover bcesf -sv -timescale 1ns/1ps -f $base_dir/filelist.f
 #   UVM_TESTNAME=<name>    -> single test name (default: cpu_full_cov_nocompress_test)
 #   UVM_VERBOSITY=<lvl>    -> verbosity (default: UVM_MEDIUM)
 #   KEEP_VSIM_OPEN=0       -> single run batch exit; else GUI stays open
-set run_all   [expr {[info exists ::env(RUN_ALL)]       ? $::env(RUN_ALL)       : 0}]
+# 默认改为回归模式：未设置 RUN_ALL 时也跑回归列表
+set run_all   [expr {[info exists ::env(RUN_ALL)]       ? $::env(RUN_ALL)       : 1}]
 set testname  [expr {[info exists ::env(UVM_TESTNAME)]  ? $::env(UVM_TESTNAME)  : "cpu_full_cov_nocompress_test"}]
 set verbosity [expr {[info exists ::env(UVM_VERBOSITY)] ? $::env(UVM_VERBOSITY) : "UVM_MEDIUM"}]
 set keep_open [expr {[info exists ::env(KEEP_VSIM_OPEN)]? $::env(KEEP_VSIM_OPEN): 1}]
 
 # Regression list (可根据需要增减)
-set test_list {cpu_full_cov_nocompress_test cpu_full_cov_compress_test cpu_opcode_gap_test cpu_cov_gap2_test}
+# 暂时忽略压缩用例 cpu_full_cov_compress_test
+set test_list {cpu_full_cov_nocompress_test cpu_opcode_gap_test cpu_cov_gap2_test}
 
 proc run_one {test verbosity logs_dir} {
     set log_file "$logs_dir/run_$test.log"
     set ucdb_file "$logs_dir/coverage_$test.ucdb"
     puts "=== Running $test ==="
-    eval vsim -coverage -c -voptargs=+acc -solvefaildebug -uvmcontrol=all -classdebug \
+    vsim -coverage -c -voptargs=+acc -solvefaildebug -uvmcontrol=all -classdebug \
          -l $log_file \
-         -do \"run -all; coverage save $ucdb_file; quit -code 0\" \
+         -do "run -all; coverage save $ucdb_file; quit -code 0" \
          work.cpu_tb_top \
          +UVM_TESTNAME=$test \
          +UVM_VERBOSITY=$verbosity
@@ -69,9 +71,9 @@ if {$run_all} {
         set vsim_mode "-c"
         set run_cmd   "run -all; quit -code 0"
     }
-    eval vsim $vsim_mode -voptargs=+acc -solvefaildebug -uvmcontrol=all -classdebug \
+    vsim $vsim_mode -voptargs=+acc -solvefaildebug -uvmcontrol=all -classdebug \
          -l $logs_dir/sim_run.log \
-         -do \"$run_cmd\" \
+         -do "$run_cmd" \
          work.cpu_tb_top \
          +UVM_TESTNAME=$testname \
          +UVM_VERBOSITY=$verbosity

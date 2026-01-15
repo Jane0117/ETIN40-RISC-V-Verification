@@ -44,6 +44,8 @@ class cpu_env extends uvm_env;
   function void connect_phase(uvm_phase phase);
     m_issue_mon.analysis_port.connect(issue_fifo.analysis_export);
     m_ref_model.issue_port.connect(issue_fifo.get_peek_export);
+    m_ref_model.exp_issue_ap.connect(m_scoreboard.exp_issue_fifo.analysis_export);
+    m_issue_mon.analysis_port.connect(m_scoreboard.act_issue_fifo.analysis_export);
 
     m_ref_model.exp_wb_ap.connect(m_scoreboard.exp_wb_fifo.analysis_export);
     m_wb_mon.analysis_port.connect(m_scoreboard.act_wb_fifo.analysis_export);
@@ -53,6 +55,8 @@ class cpu_env extends uvm_env;
 
     m_ref_model.exp_branch_ap.connect(m_scoreboard.exp_branch_fifo.analysis_export);
     m_exec_mon.analysis_port.connect(m_scoreboard.act_branch_fifo.analysis_export);
+    m_ref_model.exp_mem_ap.connect(m_scoreboard.exp_mem_fifo.analysis_export);
+    m_mem_mon.analysis_port.connect(m_scoreboard.act_mem_fifo.analysis_export);
 
     m_issue_mon.analysis_port.connect(m_coverage.issue_imp);
     m_wb_mon.analysis_port.connect(m_coverage.wb_imp);
