@@ -103,7 +103,7 @@ class cpu_ref_model extends uvm_component;
     imm = immediate_extension(instr, enc);
 
     case (instr.opcode)
-      7'b0110011: begin
+      7'b0110011: begin // R-type ALU ops (add/sub/sll/slt/sltu/xor/srl/sra/or/and)
         case (instr.funct3)
           3'b000: result = (instr.funct7[5]) ? (rs1_val - rs2_val) : (rs1_val + rs2_val);
           3'b001: result = rs1_val << rs2_val[4:0];
@@ -121,7 +121,7 @@ class cpu_ref_model extends uvm_component;
         end
       end
 
-      7'b0010011: begin
+      7'b0010011: begin // I-type ALU ops with immediate
         case (instr.funct3)
           3'b000: result = rs1_val + imm;
           3'b001: result = rs1_val << instr.rs2;
@@ -139,7 +139,7 @@ class cpu_ref_model extends uvm_component;
         end
       end
 
-      7'b0000011: begin
+      7'b0000011: begin // LOAD: LB/LH/LW/LBU/LHU
         addr = rs1_val + imm;
         case (instr.funct3)
           3'b000: result = mem_read(addr, 2'b00, 1'b1);
@@ -162,7 +162,7 @@ class cpu_ref_model extends uvm_component;
         end
       end
 
-      7'b0100011: begin
+      7'b0100011: begin // STORE: SB/SH/SW
         addr = rs1_val + imm;
         case (instr.funct3)
           3'b000: mem_write(addr, 2'b00, rs2_val);
@@ -180,7 +180,7 @@ class cpu_ref_model extends uvm_component;
         st = store_tx::type_id::create("st"); st.pc = tx.pc; st.addr = addr; st.data = rs2_val; st.mem_size = (instr.funct3 == 3'b000) ? 2'b00 : (instr.funct3 == 3'b001) ? 2'b01 : 2'b10; exp_store_ap.write(st);
       end
 
-      7'b1100011: begin
+      7'b1100011: begin // BRANCH: BEQ/BNE/BLT/BGE/BLTU/BGEU
         bit taken;
         case (instr.funct3)
           3'b000: taken = (rs1_val == rs2_val);
@@ -194,22 +194,22 @@ class cpu_ref_model extends uvm_component;
         br = branch_tx::type_id::create("br"); br.pc = tx.pc; br.taken = taken; br.funct3 = instr.funct3; exp_branch_ap.write(br);
       end
 
-      7'b1101111: begin
+      7'b1101111: begin // JAL: write return addr (pc+4) to rd
         result = tx.pc + 32'd4;
         if (instr.rd != 0) begin regs[instr.rd] = result; wb = wb_tx::type_id::create("wb"); wb.pc = tx.pc; wb.rd = instr.rd; wb.data = result; wb.is_load = 0; wb.mem_size = 2'b10; wb.mem_sign = 1'b0; exp_wb_ap.write(wb); end
       end
 
-      7'b1100111: begin
+      7'b1100111: begin // JALR: write return addr (pc+4) to rd
         result = tx.pc + 32'd4;
         if (instr.rd != 0) begin regs[instr.rd] = result; wb = wb_tx::type_id::create("wb"); wb.pc = tx.pc; wb.rd = instr.rd; wb.data = result; wb.is_load = 0; wb.mem_size = 2'b10; wb.mem_sign = 1'b0; exp_wb_ap.write(wb); end
       end
 
-      7'b0110111: begin
+      7'b0110111: begin // LUI: load upper immediate to rd
         result = imm;
         if (instr.rd != 0) begin regs[instr.rd] = result; wb = wb_tx::type_id::create("wb"); wb.pc = tx.pc; wb.rd = instr.rd; wb.data = result; wb.is_load = 0; wb.mem_size = 2'b10; wb.mem_sign = 1'b0; exp_wb_ap.write(wb); end
       end
 
-      7'b0010111: begin
+      7'b0010111: begin // AUIPC: rd = pc + imm
         result = tx.pc + imm;
         if (instr.rd != 0) begin regs[instr.rd] = result; wb = wb_tx::type_id::create("wb"); wb.pc = tx.pc; wb.rd = instr.rd; wb.data = result; wb.is_load = 0; wb.mem_size = 2'b10; wb.mem_sign = 1'b0; exp_wb_ap.write(wb); end
       end
