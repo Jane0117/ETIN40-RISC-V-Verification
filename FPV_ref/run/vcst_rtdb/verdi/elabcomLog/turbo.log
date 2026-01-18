@@ -1,0 +1,3 @@
+Command Line: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/vcs-mx/linux64/bin/elabcom -simflow -KDBRESOLVER -simvdaidir /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/design/traffic.exe.daidir -logdir /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/verdi/elabcomLog -Xprefer_tech_lib -saveLevel -ssy -ssv -ssz -silent +disable_message+C00373 -partialdesign -q -logdir /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/design/traffic.exe.daidir/kdbresolverLog
+uname(Linux subaida 4.18.0-553.58.1.el8_10.x86_64 #1 SMP Thu Jun 26 15:50:39 UTC 2025 x86_64)
+au time 0.305051 0.007922 0.012738 delta 83288064 83288064 total 365502464 365502464

@@ -1,0 +1,10 @@
+13:36:00 : action aaMonetBanffPrepareTrace -trace {traffic.chk.assert_honor_waiting_first|property}
+13:36:00 : beginFsdbExtract Time:1760960160.521425
+13:36:00 : endFsdbExtract Time:1760960160.826737
+13:36:01 : beginEViewWaveTask Time:1760960161.127361
+13:36:01 : action aaMonetBanffPrepareTrace -trace {traffic.chk.assert_honor_waiting_first|property}
+13:36:02 : beginFsdbExtract Time:1760960162.54893
+13:36:02 : endFsdbExtract Time:1760960162.172261
+13:36:08 : endEViewWaveTask Time:1760960168.34375
+13:36:08 : beginEViewWaveTask Time:1760960168.834405
+13:36:14 : endEViewWaveTask Time:1760960174.620259

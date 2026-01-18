@@ -1,0 +1,53 @@
+13:39:21 : gui:krok:45255
+13:39:21 : ___vcstRenameMan
+13:39:22 : ___vcDumpDefMsgColor
+13:39:22 : ___vcChangeMsgColor msg_color_warn magenta
+13:39:22 : ___vcChangeMsgColor msg_color_info black
+13:39:23 : MasterSourceFile run.tcl
+13:39:35 : ___fvSavePropDBToStream
+13:39:35 : ___vcDisplayAbstractSrcFromAutoBBox
+13:39:35 : get_blackbox -designs -verdi
+13:39:35 : get_glassbox -verdi
+13:39:35 : get_snips -verdi
+13:39:35 : ___fvWaitAnnotation
+13:39:35 : ___fvSetReuseWave
+13:39:35 : action aaVerdiRestoreClipboard -trigger
+13:39:35 : ___fvSavePropDBToStream
+13:39:36 : ___fvSyncSignoffCovParam {action aaMonetSyncSignoffCovParam -effortIndex 0 -trigger}
+13:40:02 : action aaMonetSetupWizard -trigger
+13:40:02 : ___vcReportAppVar -dump
+13:40:02 : ___vcReportFmlVar -dump
+13:40:47 : ___vcSetIncludeCovDesity 0 0;
+13:40:47 : ___fvSetupConfig /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/fv_setup_config_ret { clock  comb_loop  glitch  multi_driver  osc_loop  osc_seq  reset } {}
+13:41:38 : ___fvGetTooltip {assert_green_no_waiting_first: assert property ( @(posedge clk)
+        (!waiting_main && red_first && waiting_first) |-> green_first) }
+13:41:42 : ___fvGetTooltip {assert_gyr_oh_first: assert property ( @(posedge clk)
+        $onehot({green_first,red_first,yellow_first})) }
+13:41:42 : ___fvGetTooltip {assert_green_no_waiting_main: assert property ( @(posedge clk)
+        (!waiting_first && red_main && waiting_first) |-> green_main) }
+13:41:43 : ___fvGetTooltip {assert_gyr_oh_first: assert property ( @(posedge clk)
+        $onehot({green_first,red_first,yellow_first})) }
+13:41:43 : ___fvGetTooltip {assert_gyr_oh_first: assert property ( @(posedge clk)
+        $onehot({green_first,red_first,yellow_first})) }
+13:41:44 : ___fvGetTooltip {assert_gyr_oh_first: assert property ( @(posedge clk)
+        $onehot({green_first,red_first,yellow_first})) }
+13:41:45 : ___fvGetTooltip {assert_hazard_in_main: assert property( @(posedge clk) 
+        (green_main || yellow_main) |-> red_first) }
+13:41:45 : ___fvGetTooltip {assert_hazard_in_main: assert property( @(posedge clk) 
+        (green_main || yellow_main) |-> red_first) }
+13:41:45 : ___fvGetTooltip {assert_hazard_in_main: assert property( @(posedge clk) 
+        (green_main || yellow_main) |-> red_first) }
+13:41:45 : ___fvGetTooltip {assert_honor_waiting_first: assert property( @(posedge clk) 
+        $rose(waiting_first) |-> ##[0:MAX_WAIT] green_first) }
+13:41:45 : ___fvGetTooltip {assert_honor_waiting_first: assert property( @(posedge clk) 
+        $rose(waiting_first) |-> ##[0:MAX_WAIT] green_first) }
+13:41:45 : ___fvGetTooltip {assert_honor_waiting_first: assert property( @(posedge clk) 
+        $rose(waiting_first) |-> ##[0:MAX_WAIT] green_first) }
+13:41:45 : ___fvGetTooltip {assert_honor_waiting_first: assert property( @(posedge clk) 
+        $rose(waiting_first) |-> ##[0:MAX_WAIT] green_first) }
+13:41:45 : ___fvGetTooltip {assert_honor_waiting_first: assert property( @(posedge clk) 
+        $rose(waiting_first) |-> ##[0:MAX_WAIT] green_first) }
+13:41:45 : ___fvGetTooltip {assert_honor_waiting_first: assert property( @(posedge clk) 
+        $rose(waiting_first) |-> ##[0:MAX_WAIT] green_first) }
+13:43:06 : report_fv_complexity -verdi  -design
+13:43:06 : ___vcGetConstantComplexity {/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/constant.xml}

@@ -1,0 +1,4 @@
+  assert_green_no_waiting_main: assert property ( @(posedge clk)
+        (!waiting_first && red_main && waiting_first) |-> green_main);
+
+// 5)   Traffic must not wait more than 5 ticks at a red light, even if the cross street has traffic.

@@ -1,0 +1,12 @@
+Check Configurations
+
+     Check         Status       AutoRun     Msg Severity   Msg Verbosity
+---------------- -----------  ------------- -------------- ---------------
+reset              enabled    not_set          warning        summary       
+clock              enabled    not_set          warning        summary       
+glitch             enabled    not_set          warning        summary       
+osc_loop           enabled    not_set          warning        summary       
+osc_seq            enabled    not_set          warning        summary       
+comb_loop          enabled    design_load      warning        summary       
+multi_driver       enabled    design_load      warning        summary       
+

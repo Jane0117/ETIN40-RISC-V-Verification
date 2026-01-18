@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<Global Formal_Problem_Id="1">
+	<Static>
+		<StaticGC GC_ID="0" GC_Type="1" GC_SubType="2" Prop_Name="traffic.chk.assert_green_no_waiting_main" Prop_Type="1" Source_Type="2" Script_Type="0" Structural_Type="0" Coverage_Type="0" Deterministic="1" Hot="1" SamplePS="0" IsMgNames="0" GC_Net="chk._SVAC_9_ended_reg_1" Fail_Value="0" Vacuity_GC_ID="0" Assist_Order="0" Register_Count="1">
+			<Initial_Constraints />
+			<State_Invariance />
+			<Fairness_Constraints />
+			<Non_Deterministic_Registers />
+		</StaticGC>
+		<StaticGC GC_ID="1" GC_Type="2" GC_SubType="0" Prop_Name="traffic.chk.assume_continuous_waiting_first" Prop_Type="1" Source_Type="1" Script_Type="0" Structural_Type="0" Coverage_Type="0" Deterministic="1" Hot="0" SamplePS="0" IsMgNames="0" GC_Net="" Fail_Value="0" Assist_Order="0" Register_Count="5">
+			<Initial_Constraints />
+			<State_Invariance>
+				<Signal Name="chk._SVAC_17_ended_reg_0" />
+			</State_Invariance>
+			<Fairness_Constraints />
+			<Non_Deterministic_Registers />
+		</StaticGC>
+		<StaticGC GC_ID="2" GC_Type="2" GC_SubType="0" Prop_Name="traffic.chk.assume_continuous_waiting_main" Prop_Type="1" Source_Type="1" Script_Type="0" Structural_Type="0" Coverage_Type="0" Deterministic="1" Hot="0" SamplePS="0" IsMgNames="0" GC_Net="" Fail_Value="0" Assist_Order="0" Register_Count="5">
+			<Initial_Constraints />
+			<State_Invariance>
+				<Signal Name="chk._SVAC_16_ended_reg_0" />
+			</State_Invariance>
+			<Fairness_Constraints />
+			<Non_Deterministic_Registers />
+		</StaticGC>
+	</Static>
+	<Dynamic>
+		<DynamicGC GC_ID="0" Status="0" Vacuity_Status="0" Witness_Status="0" CEX_Name="" BMC_Depth="-1" />
+		<DynamicGC GC_ID="1" Status="0" Vacuity_Status="0" Witness_Status="0" CEX_Name="" BMC_Depth="-1" />
+		<DynamicGC GC_ID="2" Status="0" Vacuity_Status="0" Witness_Status="0" CEX_Name="" BMC_Depth="-1" />
+	</Dynamic>
+</Global>

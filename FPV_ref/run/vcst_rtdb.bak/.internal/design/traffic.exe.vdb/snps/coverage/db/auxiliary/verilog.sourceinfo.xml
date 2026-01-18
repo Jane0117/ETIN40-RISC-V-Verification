@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE cov SYSTEM "ucdb_srcinfo.dtd">
+  <srcinfo name="/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run"  >
+    <ucapi_version  major_ver="13"  minor_ver="1"  patch_str="V-2023.12"  />
+      <fileinfo name=".mhdlinst.dat"  id="0"  />
+      <fileinfo name="/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/design/undef_vcs.v"  id="1"  timestamp="1760957897"  />
+      <fileinfo name="../design/traffic.v"  id="2"  timestamp="1700885566"  />
+      <fileinfo name="../design/vlog_street_ctrl_fsm.v"  id="3"  timestamp="1700885566"  />
+      <fileinfo name="../sva/traffic.sva"  id="4"  timestamp="1760707188"  />
+      <fileinfo name="../sva/bind_traffic.sva"  id="5"  timestamp="1700885566"  />
+    </srcinfo>

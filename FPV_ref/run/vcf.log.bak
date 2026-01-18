@@ -1,0 +1,153 @@
+
+                                   VC Static 
+
+                 Version V-2023.12 for linux64 - Nov 24, 2023 
+
+                    Copyright (c) 2010 - 2023 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+restore_session -level default
+MasterSourceFile run_batch.tcl
+#------------------------------------------------------------
+# VC Formal Lab 5 - Traffic Light Controller
+#------------------------------------------------------------
+# Enable Formal Property Verification mode
+set_fml_appmode FPV
+# Set top module name
+set design traffic
+# Read RTL and SVA files
+analyze -format sverilog \
+   -vcs {-f ../design/filelist +define+INLINE_SVA \
+   ../sva/traffic.sva ../sva/bind_traffic.sva}
+Warning-[LNX_OS_VERUN] Unsupported Linux version
+  Linux version 'Rocky Linux release 8.10 (Green Obsidian)' is not supported 
+  on 'x86_64' officially, assuming linux compatibility by default. Set 
+  VCS_ARCH_OVERRIDE to linux or suse32 to override.
+  Please refer to release notes for information on supported platforms.
+
+# Elaborate design (expand hierarchy and bind SVA)
+elaborate $design -sva
+[Warning] COM_OPT009: 'search_path' has not been set.
+[Warning] COM_OPT010: 'link_library' has not been set.
+Warning-[LNX_OS_VERUN] Unsupported Linux version
+  Linux version 'Rocky Linux release 8.10 (Green Obsidian)' is not supported 
+  on 'x86_64' officially, assuming linux compatibility by default. Set 
+  VCS_ARCH_OVERRIDE to linux or suse32 to override.
+  Please refer to release notes for information on supported platforms.
+
+Doing common elaboration 
+Info: Invoking New SVA Compiler Instrument...
+Info: SVAC-NC Start
+Info: SVAC-NC Finished
+Info: Invoking Simon...
+Info: Simon VCS Start
+=======================================================
+VCS CPU Time(s)     :0.16
+SIMON CPU Time(s)   :0.09
+SIMON Total Time(s) :0.16
+Peak Memory(MB)     :470
+=======================================================
+Info: Simon VCS Finished
+Info: Simon call complete 
+Info: Exiting after Simon Analysis 
+Verdi KDB elaboration done and the database successfully generated: 0 error(s), 0 warning(s)
+[Info] PROP_I_COLLECT: Collecting Source Properties from the view:traffic.
+# Gate Counts 
+Number of Flat Instances = 621
+Number of Operator = 621
+Number of Libcells = 0
+Number of Black-Box Instances = 0
+
+#Add missing clk and rst
+create_clock clk -period 100
+create_reset rst -sense high
+# Initialize DUT
+sim_run -stable
+[Info] SIM_I_CREATE: Create Simulation Model.
+sim_save_reset
+#save results
+check_fv -block
+[Info] FORMAL_I_CREATE: Create Formal Model:traffic.
+[Warning] POTENTIAL_SETUP_ISSUES: There are potential setup issues. Please run check_fv_setup to confirm.
+	  Reset: 1  Clock: 0  Glitch: 0  Osc_loop: 0  Osc_seq: 0
+[Info] FORMAL_I_RUN: Starting formal verification for check_fv
+	  Id: 0  Goals: 34  Constraints: 2  Block Mode: true
+[Info] LIC_UNUSED_WORKERS: 8 unused worker(s) based 1 licenses needed to support 4 workers requested.
+	Use 'set_grid_usage' to maximize worker usage and improve performance, if there are sufficient compute resources to support more workers.
+	Each runtime license supports 12 workers.
+[Info] LIC_RT_CHECKOUT: VC Formal run time license checkout. Base:1  FPV:1.
+[Info] RETRIEVE_LEARN_DATA: Retrieved learned data from (local directory) traffic_learn_dir to /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/retrieved_result.
+[Info] PROP_I_RESULT: traffic.chk.assert_green_no_waiting_first  non_vacuous  vacuity  00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_green_no_waiting_first  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_green_no_waiting_first  proven    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_green_no_waiting_main  vacuous  vacuity  00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_green_no_waiting_main  vacuous    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_gyr_oh_first  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_gyr_oh_first  proven    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_gyr_oh_main  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_gyr_oh_main  proven    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_hazard_in_first  non_vacuous  vacuity  00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_hazard_in_first  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_hazard_in_first  proven    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_hazard_in_main  non_vacuous  vacuity  00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_hazard_in_main  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_hazard_in_main  proven    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_honor_waiting_first  non_vacuous  vacuity  00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_honor_waiting_first  falsified:5    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_honor_waiting_main  non_vacuous  vacuity  00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_honor_waiting_main  falsified:7    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_no_both_green  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_no_both_green  proven    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_no_both_yellow  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_no_both_yellow  proven    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_signal_sequencing_on_first  non_vacuous  vacuity  00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_signal_sequencing_on_first  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_signal_sequencing_on_first  proven    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_signal_sequencing_on_main  non_vacuous  vacuity  00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_signal_sequencing_on_main  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_signal_sequencing_on_main  proven    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_state_oh_first  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_state_oh_first  proven    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_state_oh_main  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assert_state_oh_main  proven    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assume_continuous_waiting_first  non_vacuous  vacuity  00:00:00
+[Info] PROP_I_RESULT: traffic.chk.assume_continuous_waiting_main  non_vacuous  vacuity  00:00:00
+[Info] PROP_I_RESULT: traffic.chk.cov_both_red  covered:1    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.cov_green_first_for_one_cycle  covered:6    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.cov_green_main_for_one_cycle  covered:3    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.cov_green_with_waiting_on_first  covered:4    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.cov_green_with_waiting_on_main  covered:2    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.cov_green_without_waiting_on_first  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.cov_green_without_waiting_on_first  uncoverable    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.cov_green_without_waiting_on_main  covered:2    00:00:00
+[Info] PROP_I_RESULT: traffic.chk.cov_waiting_on_both_streets_for_max_wait  covered:4    00:00:00
+[Info] PROP_I_RESULT: traffic.main.oh_state_out  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.main.oh_state_out  proven    00:00:00
+[Info] PROP_I_RESULT: traffic.first.oh_state_out  checking    00:00:00
+[Info] PROP_I_RESULT: traffic.first.oh_state_out  proven    00:00:00
+report_fv -list > results.txt
+#save session
+save_session -session batch_results
+[Info] REMOVED_EXISTING_SESSION: Existing saved-session archive (batch_results_rtdb) is removed.
+[Info] SAVED_SESSION: Saved session (vcst_rtdb (as batch_results_rtdb)).
+
+=======================================================
+Total Time(S)  :23.42
+CPU Time(S)    :4.86
+Peak Memory(MB):1798
+========================Formal=========================
+Engine Wall Time(S)    :5.63
+Engine Peak Memory(MB) :303
+=======================================================

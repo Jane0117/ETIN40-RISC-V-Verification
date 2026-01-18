@@ -1,0 +1,45 @@
+action aaMonetActionReplayMode -trigger
+
+action aaMonetViewDone:0 -reset
+action aaMonetView:0 -dock {1} -sgWorkMode {0} -tag {all} -title {___SNPS_NONE} -trigger
+waitfor aaMonetViewDone:0
+
+action aaMonetSetSyncScope:0 -set {0} -trigger
+action aaMonetVerdiMode:0 -reset
+action aaMonetVerdiMode:0 -trigger
+waitfor aaMonetVerdiMode:0
+
+action aaHierViewSrc:0 -reset
+action aaHierViewSrc:0 -trigger
+waitfor aaHierViewSrc:0
+
+action aaMonetAvClickedDone:0 -reset
+action aaMonetAvClicked:0 -trigger
+waitfor aaMonetAvClickedDone:0
+
+action aaHierViewSrc:0 -reset
+action aaHierViewSrc:0 -inst {traffic.chk.assume_continuous_waiting_main} -trigger
+waitfor aaHierViewSrc:0
+
+action aaMonetAvClickedDone:0 -reset
+action aaMonetAvClicked:0 -itemPath {FPV} -row {0} -trigger
+waitfor aaMonetAvClickedDone:0
+
+action aaMonetHandleTask:0 -actionName {Start Check} -taskName {FPV} -trigger
+action aaHierViewSrc:0 -reset
+action aaHierViewSrc:0 -inst {traffic.chk.assert_green_no_waiting_main} -pline {../sva/traffic.sva:37} -trigger
+waitfor aaHierViewSrc:0
+
+action aaMonetPropPopup:0 -actionName {Check Selected Properties} -curTask {FPV} -id {{1 }} -nameList {traffic.chk.assert_green_no_waiting_main} -propList {1} -selectedPropList {traffic.chk.assert_green_no_waiting_main} -trigger
+action aaMonetEvFormalCoreFinished:0 -reset
+action aaMonetRunFormalCore:0 -constraints {true} -liveness {true} -property {traffic.chk.assert_green_no_waiting_main} -subtype {vacuity} -supportType {10} -verboseLevel {1} -trigger
+waitfor aaMonetEvFormalCoreFinished:0
+
+action aaVerdiViewTraceDone:0 -reset
+action aaMonetExecViewTrace:0 -composite {1} -engine {rq1} -goal {6} -goalname {traffic.chk.assert_honor_waiting_first} -type {assert} -trigger
+waitfor aaVerdiViewTraceDone:0
+
+action aaVerdiViewTraceDone:0 -reset
+action aaMonetExecViewTrace:0 -composite {1} -engine {rq1} -goal {6} -goalname {traffic.chk.assert_honor_waiting_first} -type {assert} -trigger
+waitfor aaVerdiViewTraceDone:0
+

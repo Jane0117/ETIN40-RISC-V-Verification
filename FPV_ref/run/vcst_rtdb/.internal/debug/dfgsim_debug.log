@@ -1,0 +1,127 @@
+Dfgsim command : 
+m_dfgfile : 
+m_tracefile : 
+m_fsdbfile : 
+m_auxfile : 
+m_seq_mapping_file : 
+m_seq_rca_size: 5
+m_addphases : 0
+m_timing : 0
+m_nox : 0
+m_inputdelay : -1
+m_timescale : 10
+m_glitchdelay : -1
+m_instrumented : 0
+m_instrumented_reg : 0
+m_interactive : 1
+m_exit : 0
+m_force : 1
+m_signalgroup : 1
+m_signalgroup_max_size : 20
+m_xprop : 0
+m_fsv : 0
+m_fault_id : 0
+m_fsv_bbox: m_fxp : 0
+m_debug : 0
+m_lp_xml : 
+m_snapshot_time : -1
+m_sdp : 0
+m_seq_rca_path : 0
+
+===============
+ReplayCmd=/usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/linux64/dfgsim/bin/dfgsim -interactive -reset /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/reset.xml -trace /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml -dfg /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/design.dfg.sim -fsdb /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb -aux_output /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb.xml -nox  -time_scale 50 -input_delay 25 
+Load new dfgfile: /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/design.dfg.sim
+
+Info DFR-003: Format version (19) doesn't match default version (21).
+
+Info DFGSIM-001: Successfully read DFG from file '/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/design.dfg.sim'.
+read dfg time elapsed: 0seconds
+
+Info DFGSIM-003: Reading trace information file '/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml'.
+
+Info DFGSIM-003: Simulation trace '/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml' successfully read.
+
+Info DFGSIM-002: Attaching reset information in file '/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/reset.xml' to DFG.
+Load new reset file.
+
+Warning DFGSIM-009: Cannot find reset state for undriven/x-fail-node '_atZero$driver_TMP_0$U'.
+Warning DFGSIM-002: Cannot find reset state for present-state port 'main._SVAC_1_disable_iff_sampled'.
+Warning DFGSIM-002: Cannot find reset state for present-state port 'main._SVAC_1_disable_iff_0_sampled'.
+Warning DFGSIM-002: Cannot find reset state for present-state port 'first._SVAC_26_disable_iff_sampled'.
+Warning DFGSIM-002: Cannot find reset state for present-state port 'first._SVAC_26_disable_iff_0_sampled'.
+Warning DFGSIM-009: Cannot find reset state for undriven/x-fail-node 'main.I_5bx_@DONTCARE_70$X'.
+Warning DFGSIM-009: Cannot find reset state for undriven/x-fail-node 'first.I_5bx_@DONTCARE_70$X'.
+Info DFGSIM-002: Reset state successfully attached.
+read reset file elapsed: 0seconds
+read trace file elapsed: 0seconds
+Writing waveforms to FSDB file '/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb'.
+simcex time elapsed: 0seconds
+
+Info DFGSIM-014: Property assert_honor_waiting_first triggered at time 500.
+
+Info DFGSIM-018: All properties sucessfully replayed.
+Coarse COI: 
+chk._SVAC_11_ended_reg_0
+first.green
+first.state_out
+main.timer
+rst
+_BM_CLKGEN_.CSR0_2
+waiting_main
+chk._SVAC_11_states_0
+first.timer
+undef
+waiting_first
+chk.prev_rose_12
+main.state_out
+undef
+undef
+
+COI size: 8
+Toggled Inputs size = 1
+Toggled Seqs size = 5
+debug signal group time elapsed: 0seconds
+Writing out aux XML data to : /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb.xml
+DFG_SIM_REPLAY_DONE
+
+===============
+ReplayCmd=/usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/linux64/dfgsim/bin/dfgsim -interactive -reset /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/reset.xml -trace /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml -dfg /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/design.dfg.sim -fsdb /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb -aux_output /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb.xml -nox  -time_scale 50 -input_delay 25 
+
+Info DFGSIM-003: Reading trace information file '/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml'.
+
+Info DFGSIM-003: Simulation trace '/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml' successfully read.
+
+Info DFGSIM-002: Attaching reset information in file '/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/reset.xml' to DFG.
+
+Info DFGSIM-002: Reset state successfully attached.
+read reset file elapsed: 0seconds
+read trace file elapsed: 0seconds
+Writing waveforms to FSDB file '/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb'.
+simcex time elapsed: 0seconds
+
+Info DFGSIM-014: Property assert_honor_waiting_first triggered at time 500.
+
+Info DFGSIM-018: All properties sucessfully replayed.
+Coarse COI: 
+chk._SVAC_11_ended_reg_0
+first.green
+first.state_out
+main.timer
+rst
+_BM_CLKGEN_.CSR0_2
+waiting_main
+chk._SVAC_11_states_0
+first.timer
+undef
+waiting_first
+chk.prev_rose_12
+main.state_out
+undef
+undef
+
+COI size: 8
+Toggled Inputs size = 1
+Toggled Seqs size = 5
+debug signal group time elapsed: 0seconds
+Writing out aux XML data to : /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb.xml
+DFG_SIM_REPLAY_DONE

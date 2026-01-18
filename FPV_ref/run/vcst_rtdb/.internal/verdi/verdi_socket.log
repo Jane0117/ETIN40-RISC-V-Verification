@@ -1,0 +1,921 @@
+>>>verdiWindowRestoreUserLayout -lastRunLayout
+>>>@@@Event: verdiActiveWindowChange(-win 1d699ff0)
+>>>@@@Event: verdiActiveWindowChange(-win 1e30a7f0)
+<<< Success : 1
+>>>verdiDockWidgetSetCurTab -dock windowDock_vcstConsole_2
+<<< Success : 1
+>>>::vcst::creatInstAction
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+<<< Success : 
+>>>::vcst::createAnalyzerAction
+>>>@@@Event: verdiActiveWindowChange(-win 1d699ff0)
+<<< Success : 
+>>>::vcst::creatResetLayoutAction
+<<< Success : 
+>>>::vcst::creatAssertAnalyzerAction
+<<< Success : 
+>>>set ::vcst::EnableUDWin 0
+<<< Success : 0
+>>>qwConfig -type nWave -cmds [list {qwAddToolBarGroup -group "UDWinGroup"} {qwAddToolBarGroup -group "AssertAnalyzer"}]
+<<< Success : 
+>>>srcSetOptions -lockActView on
+<<< Success : 1
+>>>::vcst::createAddTraceToWaveAction
+<<< Success : 
+>>>source /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/auxx/monet/tcl/menu.tcl
+
+<<< Success : 1
+>>>verdiWindowPrependTitle -win $_nTrace1 -preTitle {}
+<<< Success : 0
+>>>verdiAboutDlg -banner {
+VC Static
+
+Version V-2023.12 for linux64 - Nov 24, 2023
+
+Copyright (c) 2010 - 2023 Synopsys, Inc.
+}
+<<< Success : 1
+>>>set ::vcst::_top "traffic"
+set ::vcst::_elab ""
+set ::vcst::_elabOpts {}
+set ::vcst::_rtdbDir {/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb}
+set ::vcst::_hiddenDir {.internal}
+set ::vcst::_masterMode false
+set ::vcst::_workLib "work"
+set ::vcst::_upfOpts " -upf "
+set ::vcst::_enableKdb "true"
+set ::vcst::_simBinPath "traffic.exe"
+set ::vcst::_goldenUpfConfig {}
+set ::vcst::_nldmNschema {false}
+set ::vcst::_kdbAlias {true}
+set ::vcst::_covDut {}
+set ::vcst::_splitbus {false}
+set ::vcst::_enableVerdiLog {1}
+set ::vcst::_fml_max_proof_depth {}
+set ::vcst::_smartLoad {true}
+set ::vcst::_compositeTrace {1}
+set ::vcst::_strategyFilePath {}
+set ::vcst::_enableVnrWriteKdb {false}
+set ::vcst::_bIsFormalFlow {true}
+set ::vcst::_bGlobalFsdbPresent {false}
+set ::vcst::_sRunModes {}
+set ::vcst::_enableVnrWriteKdbResolve {true}
+set ::vcst::_diucFlow {false}
+set ::vcst::_libArgs ""
+set ::vcst::_seqXmlFile ""
+schSetVCSTDelimiter -VHDLGenDelim "."
+schUnifiedNetList -skipKdb
+schSetPreference -turboLibs {} -turboLibPaths {}
+verdiSetPrefEnv -bSpecifyWindowTitleForDockContainer off
+paSetPreference -brightenPowerColor on
+schSetPreference -showPassThroughNet on
+paSetPreference -AnnotateSignal off
+paSetPreference -highlightPowerObject off
+srcAssertSetOpt -addSigToWave 0 -addSigWithExpGrp 1 -maskWave 0 -ShowCycleInfo 1
+srcBlockFilelocateDlg on
+verdiRunVcst -on
+schSetVCSTDelimiter -hierDelim .
+set ::vcst::_vcstAppHierDelim "."
+srcSetXpropOption "tmerge"
+set ::vcst::_powerDbDir ""
+set ::vcst::_bRestore ""
+::vcst::loadMainWin "1"
+srcBlockFilelocateDlg off
+
+setStyleFvProgress -css {font-family:Bitstream Vera Sans monospace;font-size:11px}
+setStyleFvGoalProgress -css {font-family:Bitstream Vera Sans monospace;font-size:11px}
+verdiSetFont -font "Bitstream Vera Sans" -size "11"
+verdiSetPrefEnv -monoFontSize "11"
+verdiVcstEnableAppMode -enable FRV
+
+verdiRunVcstCmd "___fvWaitAnnotation
+" -no_wait
+verdiRunVcstCmd "___fvSetReuseWave
+" -no_wait
+<<< Success : 1
+>>>srcSetPreference -tabNum 16
+>>>@@@Event: srcImportDesign(traffic)
+>>>verdiSetStatusMsg -win Verdi_1 -color black { Design import ready }
+<<< Success : 1
+>>>@@@Event: srcChangeScope(traffic)
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic}})
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic}})
+>>>@@@Event: srcGetSnipSignal(srcGetSnipSignal)
+>>>@@@Event: srcGetBlackbox(srcGetBlackbox)
+>>>@@@Event: verdiRunVcstCmd(___fvWaitAnnotation
+ -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvWaitAnnotation
+" received="1"></Command>}
+
+<<< Success : 1
+>>>@@@Event: verdiRunVcstCmd(___fvSetReuseWave
+ -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvSetReuseWave
+" received="1"></Command>}
+
+<<< Success : 1
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+<<< Success : 1
+>>>verdiSetPrefEnv -bDockNewWindowInContainerWhenFindSameType "off"
+<<< Success : 1
+>>>set ::vcst::_bRestore ""
+<<< Success : 
+>>>verdiLayoutFreeze -off
+<<< Success : 1
+>>>verdiDockWidgetHide -dock windowDock_vcstConsole_2
+<<< Success : 1
+>>>verdiToolBar -rm toolbarHB_TOGGLE_PANEL toolbarHB_EMULATION_PANEL toolbarHB_PRODTYPE_PANEL UVM_AWARE_DEBUG AMS_CONFIG_TOOLBAR NOVAS_TBBR_INTERACTIVEVIEW_PANEL NOVAS_TBBR_DEBUG_REWIND_COMMAND NOVAS_TBBR_DEBUG_REWIND_UNDO_REDO_COMMAND NOVAS_TBBR_DEBUG_REVERSE_COMMAND NOVAS_TBBR_DEBUG_VSIM_COMMAND NOVAS_EMULATION_DEBUG_COMMAND CVG_CER_PANEL
+<<< Success : 1
+>>>verdiVcstOnPropSelectionChanged -strNum 0 -propList {}
+<<< Success : 
+>>>syncSignoffCovParamFromRcFile
+<<< Success : 1
+>>>@@@Event: verdiRunVcstCmd(___fvSyncSignoffCovParam {action aaMonetSyncSignoffCovParam -effortIndex 0 -trigger} -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvSyncSignoffCovParam" received="1"></Command>}
+
+<<< Success : 1
+>>>verdiLayoutFreeze -off
+<<< Success : 1
+>>>::vcst::showDebugViews -1 false false 
+<<< Success : 1
+>>>verdiShowWindow
+<<< Success : 1
+>>>verdiDockWidgetSetCurTab -dock widgetDock_VCF:TaskList
+<<< Success : 0
+>>>verdiVcstChangeGoalListTabName -tabName VCF:GoalList
+<<< Success : 
+>>>verdiVcstChangeGoalListTabName -tabName VCF:GoalList(FPV)
+<<< Success : 
+>>>verdiVcstChangeGoalListTabName -tabName VCF:GoalList
+<<< Success : 
+>>>verdiVcstChangeGoalListTabName -tabName VCF:GoalList(FPV)
+<<< Success : 
+>>>verdiVcstSetAppmode -mode FPV -fromVcst
+<<< Success : 
+>>>verdiEmbedApp -winId 25166109 -label VCF:GoalList -type VcstActivityView -noCloseBtn
+verdiEmbedApp -winId 25166115 -label VCF:TaskList -type vcstActivityTree -noCloseBtn
+verdiDockWidgetMove -dock widgetDock_VCF:TaskList -dock widgetDock_<Inst._Tree>
+verdiDockWidgetSetCurTab -dock widgetDock_VCF:GoalList
+<<< Success : 1
+>>>verdiVcstSyncMsgColor -errorColor "default_red" -warningColor "default_none" -infoColor "default_none"
+<<< Success : 
+>>>srcSetBlackbox   -delim {.}
+>>>@@@Event: vcstMsgColorChange(warningColor magenta true)
+>>>@@@Event: vcstMsgColorChange(infoColor black true)
+<<< Success : 0
+>>>srcSetGlassbox  -delim {.}
+<<< Success : 0
+>>>verdiGetRCValue -section appSetting -key reuseWave 
+<<< Success : 0
+>>>verdiVcstResizeTopWin
+<<< Success : 
+>>>vcstSetPrefEnv -infoColor "black"
+<<< Success : 1
+>>>verdiSetRCValue -section appSetting -key fvSize -value {PROPERTY_ELAPSED_TIME,267:PROPERTY_ENGINE,65:PROPERTY_NAME,385:PROPERTY_STATUS,75:PROPERTY_TRACE_DEPTH,65:PROPERTY_TYPE,65:PROPERTY_VACUITY,75:PROPERTY_WITNESS,75:};
+<<< Success : 
+>>>verdiSetRCValue -section appSetting -key conSize -value {PROPERTY_CLASS,456:PROPERTY_EXPRESSION,100:PROPERTY_NAME,200:PROPERTY_TYPE,100:PROPERTY_VACUITY,100:PROPERTY_WITNESS,100:};
+<<< Success : 
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>::vcst::showSourceCodeFromInfoView {traffic.chk.assume_continuous_waiting_main}; ::vcst::showDebugViews -1 false false 
+<<< Success : 1
+>>>verdiShowWindow
+>>>@@@Event: srcChangeScope(traffic.chk)
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic.chk}})
+>>>@@@Event: verdiRunVcstCmd(___vcstCommandLog {verdi_cmd srcShowDefine -incrSearch traffic.chk.assume_continuous_waiting_main})
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___vcstCommandLog" received="1"></Command>}
+
+<<< Success : 1
+<<< Success : 1
+>>>@@@Event: srcDragSVASignal("(SVA_OBJ_ASSUME)traffic.chk.assume_continuous_waiting_main")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: srcRMBClkObj()
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic.first}})
+>>>@@@Event: srcHBTreeSyncSelection({ 1 {traffic.first}})
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: srcChangeScope(traffic.first)
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic.first}})
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic.first}})
+>>>@@@Event: srcHBTreeSyncSelection({ 1 {traffic.first}})
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic.main}})
+>>>@@@Event: srcHBTreeSyncSelection({ 1 {traffic.main}})
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: srcChangeScope(traffic.main)
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic.main}})
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic.main}})
+>>>@@@Event: srcHBTreeSyncSelection({ 1 {traffic.main}})
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic.chk}})
+>>>@@@Event: srcHBTreeSyncSelection({ 1 {traffic.chk}})
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: srcChangeScope(traffic.chk)
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic.chk}})
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic.chk}})
+>>>@@@Event: srcHBTreeSyncSelection({ 1 {traffic.chk}})
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: srcDbClkSource(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/sva/traffic.sva:10)
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>verdiVcstOnPropSelectionChanged -strNum 0 -propList {}
+<<< Success : 
+>>>verdiDockWidgetSetCurTab -dock widgetDock_VCF:GoalList
+<<< Success : 1
+>>>verdiVcstChangeGoalListTabName -tabName VCF:GoalList
+<<< Success : 
+>>>verdiVcstChangeGoalListTabName -tabName VCF:GoalList(FPV)
+<<< Success : 
+>>>verdiSetRCValue -section appSetting -key glbfilter -value {010}
+<<< Success : 
+>>>verdiVcstCheckFv -taskName FPV
+<<< Success : 1
+>>>vcstRunCovCmd -async gui_vcst_set_parameters -is_running true
+>>>@@@Event: vcstReportFvProgress(gridUsage.xml gridUsage null)
+<<< Success : 0
+>>>vcstRunCovCmd -async {gui_vcst_set_parameters -status_msg { _EnableMedHighEffort_0}}
+<<< Success : 0
+>>>verdiVcstChangeGoalListTabName -tabName VCF:GoalList
+<<< Success : 
+>>>verdiVcstChangeGoalListTabName -tabName VCF:GoalList(FPV)
+<<< Success : 
+>>>verdiSetRCValue -section appSetting -key glbfilter -value {010}
+<<< Success : 
+>>>vcstRunCovCmd -async {gui_vcst_set_parameters -status_msg { _EnableMedHighEffort_0}}
+<<< Success : 0
+>>>receiveFvProgress /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/gridUsage.xml0
+<<< Success : 1
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="check_fv" status="1" />}
+<<< Success : 1
+>>>vcstRunCovCmd -async {gui_vcst_set_parameters -status_msg { _EnableMedHighEffort_0}}
+<<< Success : 0
+>>>vcstRunCovCmd -async {gui_vcst_set_parameters -status_msg { _EnableMedHighEffort_0}}
+<<< Success : 0
+>>>verdiVcstCheckFv -taskName FPV
+<<< Success : 
+>>>vcstRunCovCmd -async gui_vcst_set_parameters -is_running false
+<<< Success : 0
+>>>vcstRunCovCmd -async {gui_vcst_set_parameters -status_msg { _EnableMedHighEffort_1}}
+<<< Success : 0
+>>>verdiSetRCValue -section appSetting -key fvSize -value {PROPERTY_ELAPSED_TIME,268:PROPERTY_ENGINE,65:PROPERTY_NAME,385:PROPERTY_STATUS,75:PROPERTY_TRACE_DEPTH,65:PROPERTY_TYPE,65:PROPERTY_VACUITY,75:PROPERTY_WITNESS,75:};
+<<< Success : 
+>>>vcstRunCovCmd -async {gui_vcst_set_parameters -status_msg { _EnableMedHighEffort_1}}
+<<< Success : 0
+>>>vcstRunCovCmd -async {gui_vcst_set_parameters -status_msg { _EnableMedHighEffort_1}}
+<<< Success : 0
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>verdiSetRCValue -section appSetting -key conSize -value {PROPERTY_CLASS,473:PROPERTY_EXPRESSION,100:PROPERTY_NAME,183:PROPERTY_TYPE,100:PROPERTY_VACUITY,100:PROPERTY_WITNESS,100:};
+<<< Success : 
+>>>verdiVcstGetTooltipByPropertyName -propName {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>@@@Event: verdiRunVcstCmd(___fvGetTooltip {assert_green_no_waiting_main: assert property ( @(posedge clk)
+        (!waiting_first && red_main && waiting_first) |-> green_main) } -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvGetTooltip" received="1"></Command>}
+
+<<< Success : 1
+>>>verdiVcstGetTooltipByPropertyName -propName {traffic.chk.assert_honor_waiting_main}
+<<< Success : 1
+>>>verdiVcstGetTooltipByPropertyName -propName {traffic.chk.assert_honor_waiting_main}
+>>>@@@Event: verdiRunVcstCmd(___fvGetTooltip {assert_honor_waiting_main: assert property( @(posedge clk) 
+        $rose(waiting_main)  |-> ##[0:MAX_WAIT] green_main) } -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvGetTooltip" received="1"></Command>}
+
+<<< Success : 1
+<<< Success : 1
+>>>@@@Event: verdiRunVcstCmd(___fvGetTooltip {assert_honor_waiting_main: assert property( @(posedge clk) 
+        $rose(waiting_main)  |-> ##[0:MAX_WAIT] green_main) } -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvGetTooltip" received="1"></Command>}
+
+<<< Success : 1
+>>>verdiVcstGetTooltipByPropertyName -propName {traffic.chk.assert_honor_waiting_main}
+<<< Success : 1
+>>>@@@Event: verdiRunVcstCmd(___fvGetTooltip {assert_honor_waiting_main: assert property( @(posedge clk) 
+        $rose(waiting_main)  |-> ##[0:MAX_WAIT] green_main) } -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvGetTooltip" received="1"></Command>}
+
+<<< Success : 1
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>srcShowDefine -incrSearch {traffic.chk.assert_green_no_waiting_main}; 
+<<< Success : 1
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic.chk}})
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: srcDragSVASignal("(SVA_OBJ_ASSERT)traffic.chk.assert_green_no_waiting_main")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>verdiVcstGetTooltipByPropertyName -propName {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>@@@Event: verdiRunVcstCmd(___fvGetTooltip {assert_green_no_waiting_main: assert property ( @(posedge clk)
+        (!waiting_first && red_main && waiting_first) |-> green_main) } -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvGetTooltip" received="1"></Command>}
+
+<<< Success : 1
+>>>verdiVcstGetTooltipByPropertyName -propName {traffic.chk.assert_honor_waiting_first}
+<<< Success : 1
+>>>@@@Event: verdiRunVcstCmd(___fvGetTooltip {assert_honor_waiting_first: assert property( @(posedge clk) 
+        $rose(waiting_first) |-> ##[0:MAX_WAIT] green_first) } -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvGetTooltip" received="1"></Command>}
+
+<<< Success : 1
+>>>verdiVcstGetTooltipByPropertyName -propName {traffic.chk.assert_honor_waiting_first}
+<<< Success : 1
+>>>@@@Event: verdiRunVcstCmd(___fvGetTooltip {assert_honor_waiting_first: assert property( @(posedge clk) 
+        $rose(waiting_first) |-> ##[0:MAX_WAIT] green_first) } -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvGetTooltip" received="1"></Command>}
+
+<<< Success : 1
+>>>verdiVcstGetTooltipByPropertyName -propName {traffic.chk.assert_honor_waiting_first}
+<<< Success : 1
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_honor_waiting_first}
+>>>@@@Event: verdiRunVcstCmd(___fvGetTooltip {assert_honor_waiting_first: assert property( @(posedge clk) 
+        $rose(waiting_first) |-> ##[0:MAX_WAIT] green_first) } -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvGetTooltip" received="1"></Command>}
+
+<<< Success : 1
+<<< Success : 1
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>verdiVcstCheckFv -taskName FPV
+<<< Success : 1
+>>>vcstRunCovCmd -async gui_vcst_set_parameters -is_running true
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: vcstReportFvProgress(gridUsage.xml gridUsage null)
+<<< Success : 0
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="check_fv" status="0" />}
+<<< Success : 1
+>>>receiveFvProgress /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/gridUsage.xml1
+<<< Success : 1
+>>>verdiVcstCheckFv -taskName FPV
+<<< Success : 
+>>>vcstRunCovCmd -async gui_vcst_set_parameters -is_running false
+<<< Success : 0
+>>>vcstRunCovCmd -async {gui_vcst_set_parameters -status_msg { _EnableMedHighEffort_1}}
+<<< Success : 0
+>>>verdiVcstSetErrorIdentifier
+<<< Success : 
+>>>vcstRunCovCmd -async {gui_vcst_set_parameters -status_msg { _EnableMedHighEffort_1}}
+<<< Success : 0
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>verdiVcstGetTooltipByPropertyName -propName {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>@@@Event: verdiRunVcstCmd(___fvGetTooltip {assert_green_no_waiting_main: assert property ( @(posedge clk)
+        (!waiting_first && red_main && waiting_first) |-> green_main) } -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvGetTooltip" received="1"></Command>}
+
+<<< Success : 1
+>>>verdiVcstGetTooltipByPropertyName -propName {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>@@@Event: verdiRunVcstCmd(___fvGetTooltip {assert_green_no_waiting_main: assert property ( @(posedge clk)
+        (!waiting_first && red_main && waiting_first) |-> green_main) } -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvGetTooltip" received="1"></Command>}
+
+<<< Success : 1
+>>>verdiVcstGetTooltipByPropertyName -propName {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>verdiVcstGetTooltipByPropertyName -propName {traffic.chk.assert_green_no_waiting_main}
+>>>@@@Event: verdiRunVcstCmd(___fvGetTooltip {assert_green_no_waiting_main: assert property ( @(posedge clk)
+        (!waiting_first && red_main && waiting_first) |-> green_main) } -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvGetTooltip" received="1"></Command>}
+
+<<< Success : 1
+<<< Success : 1
+>>>@@@Event: verdiRunVcstCmd(___fvGetTooltip {assert_green_no_waiting_main: assert property ( @(posedge clk)
+        (!waiting_first && red_main && waiting_first) |-> green_main) } -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="___fvGetTooltip" received="1"></Command>}
+
+<<< Success : 1
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>verdiVcstCreateFormalCoreWidget -property traffic.chk.assert_green_no_waiting_main    -subtype vacuity -propCout {1} -depth {};
+<<< Success : 1
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: vcstReportFormalCore(-property {traffic.chk.assert_green_no_waiting_main} -subtype vacuity)
+>>>@@@Event: verdiRunVcstCmd(action aaMonetSetCustomizeView -categories coverage -coverageSetting {FormalCore Selected:1} -trigger -no_wait)
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="action" received="1"></Command>}
+
+<<< Success : 1
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="action" status="1"></Command>}
+
+<<< Success : 1
+>>>verdiVcstFormalCoreCoverage -disable 
+<<< Success : 1
+>>>verdiVcstFormalCoreCoverage -show 
+<<< Success : 1
+>>>report_fml_core -xmlFile /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/formalCore.xml -trigger 
+<<< Success : 0
+>>>set ::vcst::EnableUDWin 0 ;srcSetOptions -lockActView off
+<<< Success : 1
+>>>verdiSetRCValue -section appSetting -key FVSetupCheckList -value {!clock/glitch/osc_loop/osc_seq/reset/comb_loop/multi_driver};
+<<< Success : 
+>>>verdiSetRCValue -section appSetting -key fdc_w -value {650};verdiSetRCValue -section appSetting -key fdc_h -value {400};verdiSetRCValue -section appSetting -key fdc_x -value {873};verdiSetRCValue -section appSetting -key fdc_y -value {407};
+<<< Success : 
+>>>verdiSetRCValue -section appSetting -key fdc_w -value {650};verdiSetRCValue -section appSetting -key fdc_h -value {400};verdiSetRCValue -section appSetting -key fdc_x -value {873};verdiSetRCValue -section appSetting -key fdc_y -value {407};
+<<< Success : 
+>>>vcstPropertyDensity -includeCov 0 
+<<< Success : 0
+>>>verdiVcstConstantReport -xmlFile /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/constant.xml 
+<<< Success : 1
+>>>vcstPropertyDensity -includeCov 0 
+<<< Success : 0
+>>>verdiVcstFormalCoreUpdated
+<<< Success : 1
+>>>@@@Event: vcstReportFormalCore( -property {traffic.chk.assert_green_no_waiting_main} -subtype vacuity)
+>>>report_fml_core -xmlFile /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/formalCore.xml -trigger 
+<<< Success : 0
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>verdiVcstFormalCoreUpdated
+<<< Success : 1
+>>>verdiVcstFormalCoreFinished;
+<<< Success : 1
+>>>@@@Event: vcstReportFormalCore( -property {traffic.chk.assert_green_no_waiting_main} -subtype vacuity)
+>>>report_fml_core -xmlFile /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/formalCore.xml -trigger 
+<<< Success : 0
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_green_no_waiting_main}
+<<< Success : 1
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_honor_waiting_first}
+<<< Success : 1
+>>>wvDeleteMarker -win $_Verdi_1 -all
+<<< Failed : 0
+>>>verdiSetStatusMsg -win $_Verdi_1 -2nd "Preparing FSDB..."
+<<< Success : 1
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="view_trace" status="1" />}
+<<< Success : 1
+>>>verdiSetStatusMsg -win $_Verdi_1 -2nd "FSDB is ready, Waveform loading..."
+<<< Success : 1
+>>>sysWarnEnable -disable; set ::vcst::_sysWarnEnable 0
+<<< Success : 0
+>>>verdiLayoutFreeze -off
+<<< Success : 1
+>>>set ::vcst::_curWaveVw [wvCreateWindow]
+<<< Success : 225ae310
+>>>srcSetPreference -annotate on
+>>>@@@Event: wvCreateWindow(225ae310)
+<<< Success : 1
+>>>set currentWinId [string trimleft [wvGetCurrentWindow -name] \$_nWave];verdiDockWidgetFix -dock windowDock_nWave_$currentWinId;
+>>>@@@Event: verdiActiveWindowChange(-win 225ae310)
+<<< Success : 1
+>>>verdiWindowBeWindow -win $::vcst::_curWaveVw
+<<< Success : 1
+>>>verdiHideWindow -win $::vcst::_curWaveVw
+<<< Success : 1
+>>>set ::vcst::_fsdb $::vcst::_rtdbDir/.internal/formal/fpId0/trace_11.xml.replay.fsdb.vf;
+<<< Success : /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb.vf
+>>>expPropVcstDataUpdated -initFSDB $::vcst::_fsdb;
+<<< Success : 1
+>>>::vcst::wvOpenFsdb $::vcst::_curWaveVw $::vcst::_fsdb
+<<< Success : 
+>>>verdiVcstFsdbAppMode -fsdb $::vcst::_fsdb -AppMode FPV
+>>>@@@Event: debSimResultOpen(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb.vf)
+>>>@@@Event: wvViewRangeChanged(0.000000 75.750000)
+>>>@@@Event: debCursorTimeChange(0)
+>>>@@@Event: wvOpenFSDBFile(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb.vf)
+<<< Success : 
+>>>set ::vcst::_propClass {source}
+set ::vcst::_propLoc {../sva/traffic.sva:44}
+set ::vcst::_propType {assert}
+set ::vcst::_propExpr {@(posedge clk) ($rose(waiting_first) |-> ( ##[0:(MAX_WAIT)] green_first))}
+set ::vcst::_traceType {property}
+set ::vcst::_sva {traffic.chk.assert_honor_waiting_first}
+::vcst::setupSvaDebug 0 0 200
+
+<<< Success : 1
+>>>set ::vcst::traceTypeMap($::vcst::actualFsdb) property
+
+>>>@@@Event: srcCloseFSDBFile(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb.vf)
+>>>@@@Event: debSimResultClose()
+>>>@@@Event: debSimResultOpen(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: wvOpenFSDBFile(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: wvZoom(0.000000 75.750000)
+>>>@@@Event: wvMarkerTimeChange(0 NULL /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: wvCursorTimeChange(0 {NULL} /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: debCursorTimeChange(0)
+>>>@@@Event: wvZoom(0.000000 75.750000)
+>>>@@@Event: debCursorTimeChange(0)
+>>>@@@Event: debCursorTimeChange(0)
+>>>@@@Event: srcOpenFSDBFile(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: wvCursorTimeChange(700 {NULL} /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: wvViewRangeChanged(662.125000 737.875000)
+>>>@@@Event: debCursorTimeChange(700)
+>>>@@@Event: wvCursorTimeChange(700 {NULL} /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: debCursorTimeChange(700)
+>>>@@@Event: wvCursorTimeChange(700 {NULL} /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: debCursorTimeChange(700)
+>>>@@@Event: wvCursorTimeChange(700 {NULL} /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: debCursorTimeChange(700)
+>>>@@@Event: wvAddSignal(/ 1 {/traffic/chk/assert_honor_waiting_first})
+>>>@@@Event: wvAddSignalByIdCode(-idcode 1 {100})
+<<< Success : property
+>>>wvSelectSignal {( "SOURCE-Property" 1 )} ;wvExpandBus ;wvGetSelectedSignals
+>>>@@@Event: verdiActiveWindowChange(-win 1d699ff0)
+<<< Success : /traffic/chk/clk /traffic/chk/waiting_first /traffic/chk/green_first
+>>>vcst::setTraceAnalysisInfo {traffic.chk.waiting_first} {Uninitialized Registers} {Uninitialized Property State}
+>>>@@@Event: wvSelectSignal(1 {/traffic/chk/assert_honor_waiting_first})
+>>>@@@Event: wvAddSignal(/ 3 {/traffic/chk/clk} {/traffic/chk/waiting_first} {/traffic/chk/green_first})
+>>>@@@Event: wvAddSignalByIdCode(-idcode 3 {32 34 33})
+<<< Success : Uninitialized Property State
+>>>::vcst::saveTraceAnalysisStr {traffic.chk.waiting_first!;Uninitialized Registers!;Uninitialized Property State!;}
+<<< Success : /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf
+>>>wvAddGroup -win $::vcst::_curWaveVw {Undriven};wvAddSignal -fromVCST -delim "." -win $::vcst::_curWaveVw -group { "Undriven/Uninitialized Registers" {traffic.chk.waiting_first} };wvCollapseGroup -win $::vcst::_curWaveVw {Undriven/Uninitialized Registers};
+<<< Success : 1
+>>>wvSelectGroup -win $::vcst::_curWaveVw {Undriven}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+wvSelectGroup -win $::vcst::_curWaveVw {Undriven/Abstracted Outputs}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+wvSelectGroup -win $::vcst::_curWaveVw {Undriven/Blackbox Outputs}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+wvSelectGroup -win $::vcst::_curWaveVw {Undriven/Out-of-Bounds Accesses}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+wvSelectGroup -win $::vcst::_curWaveVw {Undriven/Undriven/Snipped Signals}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+wvSelectGroup -win $::vcst::_curWaveVw {Undriven/Uninitialized Registers}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+wvSelectGroup -win $::vcst::_curWaveVw {Multi-driven}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+
+>>>@@@Event: wvAddSignal(/ 1 {/traffic/chk/waiting_first})
+>>>@@@Event: wvAddSignalByIdCode(-idcode 1 {34})
+<<< Success : 0
+>>>verdiVcstOnPropSelectionChanged -strNum 1 -propList {traffic.chk.assert_honor_waiting_first}
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+<<< Success : 1
+>>>wvGoToGroup -win $::vcst::_curWaveVw SOURCE-Property
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+<<< Success : 1
+>>>wvSetPosition -win $::vcst::_curWaveVw {("Support-Signals" last)}
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+<<< Success : 0
+>>>::vcst::addResetMarker 200
+<<< Success : 1
+>>>::vcst::showDebugViews -100 true true
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: wvAddMarker("Rst-End" 200.000)
+>>>@@@Event: wvViewRangeChanged(162.125000 237.875000)
+>>>@@@Event: wvViewRangeChanged(0.000000 38.074362)
+<<< Success : 1
+>>>srcShowDefine -incrSearch {traffic.chk.assert_honor_waiting_first}; 
+<<< Success : 1
+>>>wvZoomAll -win $::vcst::_curWaveVw
+>>>@@@Event: wvViewRangeChanged(0.000000 20.396980)
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: srcHBTreeSelect({ 1 {traffic.chk}})
+<<< Success : 1
+>>>verdiSetStatusMsg -win $_Verdi_1 -2nd "Trace is loaded"
+>>>@@@Event: wvViewRangeChanged(0.000000 757.500000)
+<<< Success : 1
+>>>::vcst::enableAddTraceToWave
+>>>@@@Event: verdiActiveWindowChange(-win 225ae310)
+<<< Success : 23071360
+>>>sysWarnEnable -enable; set ::vcst::_sysWarnEnable 1
+<<< Success : 1
+>>>wvDeleteMarker -win $_Verdi_1 -all
+<<< Success : 1
+>>>verdiSetStatusMsg -win $_Verdi_1 -2nd "Preparing FSDB..."
+<<< Success : 1
+>>>verdiGetVcstCmdResult -xmlstr {<Command name="view_trace" status="1" />}
+<<< Success : 1
+>>>verdiSetStatusMsg -win $_Verdi_1 -2nd "FSDB is ready, Waveform loading..."
+<<< Success : 1
+>>>sysWarnEnable -disable; set ::vcst::_sysWarnEnable 0
+<<< Success : 0
+>>>wvGetAllWindows
+<<< Success : 225ae310
+>>>expPropGetAttr -is_nav_wave 225ae310
+<<< Success : 0
+>>>set currentWinId [string trimleft [wvGetCurrentWindow -name] \$_nWave];verdiDockWidgetFix -dock windowDock_nWave_$currentWinId;
+>>>@@@Event: wvCursorTimeChange(200 {traffic.chk.waiting_first} /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: debCursorTimeChange(200)
+<<< Success : 1
+>>>verdiWindowBeWindow -win $::vcst::_curWaveVw
+<<< Success : 1
+>>>verdiHideWindow -win $::vcst::_curWaveVw
+<<< Success : 1
+>>>set ::vcst::_fsdb $::vcst::_rtdbDir/.internal/formal/fpId0/trace_11.xml.replay.fsdb.vf;
+<<< Success : /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb.vf
+>>>expPropVcstDataUpdated -initFSDB $::vcst::_fsdb;
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+<<< Success : 1
+>>>wvCloseFile -win $::vcst::_curWaveVw
+<<< Success : 1
+>>>::vcst::wvOpenFsdb $::vcst::_curWaveVw $::vcst::_fsdb
+>>>@@@Event: verdiActiveWindowChange(-win 1d699ff0)
+>>>@@@Event: wvCloseFSDBFile(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: debSimResultClose()
+<<< Success : 
+>>>verdiVcstFsdbAppMode -fsdb $::vcst::_fsdb -AppMode FPV
+>>>@@@Event: srcDragSVASignal("(SVA_OBJ_ASSERT)traffic.chk.assert_honor_waiting_first")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+>>>@@@Event: debSimResultOpen(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb.vf)
+>>>@@@Event: wvViewRangeChanged(0.000000 75.750000)
+>>>@@@Event: debCursorTimeChange(0)
+>>>@@@Event: wvOpenFSDBFile(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay.fsdb.vf)
+<<< Success : 
+>>>set ::vcst::_propClass {source}
+set ::vcst::_propLoc {../sva/traffic.sva:44}
+set ::vcst::_propType {assert}
+set ::vcst::_propExpr {@(posedge clk) ($rose(waiting_first) |-> ( ##[0:(MAX_WAIT)] green_first))}
+set ::vcst::_traceType {property}
+set ::vcst::_sva {traffic.chk.assert_honor_waiting_first}
+::vcst::setupSvaDebug 0 0 200
+
+<<< Success : 1
+>>>set ::vcst::traceTypeMap($::vcst::actualFsdb) property
+
+>>>@@@Event: srcCloseFSDBFile(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: debSimResultClose()
+>>>@@@Event: debSimResultOpen(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: wvOpenFSDBFile(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: wvZoom(0.000000 75.750000)
+>>>@@@Event: wvMarkerTimeChange(0 NULL /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: wvCursorTimeChange(0 {NULL} /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: debCursorTimeChange(0)
+>>>@@@Event: wvZoom(0.000000 75.750000)
+>>>@@@Event: debCursorTimeChange(0)
+>>>@@@Event: debCursorTimeChange(0)
+>>>@@@Event: srcOpenFSDBFile(/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: wvCursorTimeChange(700 {NULL} /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: wvViewRangeChanged(662.125000 737.875000)
+>>>@@@Event: debCursorTimeChange(700)
+>>>@@@Event: wvCursorTimeChange(700 {NULL} /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: debCursorTimeChange(700)
+>>>@@@Event: wvCursorTimeChange(700 {NULL} /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: debCursorTimeChange(700)
+>>>@@@Event: wvCursorTimeChange(700 {NULL} /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf)
+>>>@@@Event: debCursorTimeChange(700)
+>>>@@@Event: wvAddSignal(/ 1 {/traffic/chk/assert_honor_waiting_first})
+>>>@@@Event: wvAddSignalByIdCode(-idcode 1 {100})
+<<< Success : property
+>>>wvSelectSignal {( "SOURCE-Property" 1 )} ;wvExpandBus ;wvGetSelectedSignals
+<<< Success : /traffic/chk/clk /traffic/chk/waiting_first /traffic/chk/green_first
+>>>vcst::setTraceAnalysisInfo {traffic.chk.waiting_first} {Uninitialized Registers} {Uninitialized Property State}
+>>>@@@Event: wvSelectSignal(1 {/traffic/chk/assert_honor_waiting_first})
+>>>@@@Event: wvAddSignal(/ 3 {/traffic/chk/clk} {/traffic/chk/waiting_first} {/traffic/chk/green_first})
+>>>@@@Event: wvAddSignalByIdCode(-idcode 3 {32 34 33})
+<<< Success : Uninitialized Property State
+>>>::vcst::saveTraceAnalysisStr {traffic.chk.waiting_first!;Uninitialized Registers!;Uninitialized Property State!;}
+<<< Success : /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb.vf
+>>>wvAddGroup -win $::vcst::_curWaveVw {Undriven};wvAddSignal -fromVCST -delim "." -win $::vcst::_curWaveVw -group { "Undriven/Uninitialized Registers" {traffic.chk.waiting_first} };wvCollapseGroup -win $::vcst::_curWaveVw {Undriven/Uninitialized Registers};
+<<< Success : 1
+>>>wvSelectGroup -win $::vcst::_curWaveVw {Undriven}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+wvSelectGroup -win $::vcst::_curWaveVw {Undriven/Abstracted Outputs}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+wvSelectGroup -win $::vcst::_curWaveVw {Undriven/Blackbox Outputs}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+wvSelectGroup -win $::vcst::_curWaveVw {Undriven/Out-of-Bounds Accesses}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+wvSelectGroup -win $::vcst::_curWaveVw {Undriven/Undriven/Snipped Signals}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+wvSelectGroup -win $::vcst::_curWaveVw {Undriven/Uninitialized Registers}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+wvSelectGroup -win $::vcst::_curWaveVw {Multi-driven}; wvChangeDisplayAttr -win $::vcst::_curWaveVw -c ID_RED6
+
+>>>@@@Event: wvAddSignal(/ 1 {/traffic/chk/waiting_first})
+>>>@@@Event: wvAddSignalByIdCode(-idcode 1 {34})
+<<< Success : 0
+>>>wvGoToGroup -win $::vcst::_curWaveVw SOURCE-Property
+<<< Success : 1
+>>>wvSetPosition -win $::vcst::_curWaveVw {("Support-Signals" last)}
+<<< Success : 0
+>>>::vcst::addResetMarker 200
+<<< Success : 1
+>>>::vcst::showDebugViews -100 true true
+>>>@@@Event: wvAddMarker("Rst-End" 200.000)
+>>>@@@Event: wvViewRangeChanged(162.125000 237.875000)
+>>>@@@Event: wvViewRangeChanged(0.000000 38.247856)
+<<< Success : 1
+>>>wvZoomAll -win $::vcst::_curWaveVw
+<<< Success : 1
+>>>verdiSetStatusMsg -win $_Verdi_1 -2nd "Trace is loaded"
+>>>@@@Event: wvViewRangeChanged(0.000000 757.500000)
+<<< Success : 1
+>>>::vcst::enableAddTraceToWave
+<<< Success : 23071360
+>>>sysWarnEnable -enable; set ::vcst::_sysWarnEnable 1
+>>>@@@Event: swnTraceWindowType(-win "nTrace")
+<<< Success : 1
+>>>set currentWinId [string trimleft [wvGetCurrentWindow -name] \$_nWave];verdiDockWidgetUnfix -dock windowDock_nWave_$currentWinId;
+<<< Success : 1
+>>>set currentWinId [string trimleft [wvGetCurrentWindow -name] \$_nWave];verdiDockWidgetUnfix -dock windowDock_nWave_$currentWinId;
+>>>@@@Event: srcDragSVASignal("(SVA_OBJ_ASSERT)traffic.chk.assert_honor_waiting_first")
+>>>@@@Event: debMidBtnDown(nTrace)
+>>>@@@Event: debDndSrc(nTrace)
+<<< Success : 1

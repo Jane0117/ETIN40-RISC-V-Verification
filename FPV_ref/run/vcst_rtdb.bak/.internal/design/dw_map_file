@@ -1,0 +1,8 @@
+dware: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dware/lib
+gtech: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/gtech/lib
+dw01: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/dw01/lib
+dw02: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/dw02/lib
+dw03: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/dw03/lib
+dw04: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/dw04/lib
+dw05: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/dw05/lib
+dw06: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/dw06/lib

@@ -1,0 +1,341 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+% 在导言区添加（只需一次）
+\renewcommand{\arraystretch}{1.2} % 行距略大，增强可读性
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % 自定义左对齐列宽
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+\begin{center}
+    \Large \textbf{Verification Plan for RISC-V ALU and Execute Stage}\\[6pt]
+    \normalsize Shengjie Chen; Peihao Sun; Pengxin Luan
+\end{center}
+
+\section{Verification Scope and Objectives}
+
+This verification plan targets two cascaded modules in the RISC-V pipeline:
+\begin{itemize}
+    \item \textbf{Decode Stage} control read and write from register filse and judge if the input instruction is invalid.
+    \item \textbf{Execute Stage:} Integrates the ALU, operand forwarding logic, and branch handling. It computes results and forwarding data for subsequent pipeline stages.
+\end{itemize}
+\textbf{Objectives:}
+\begin{enumerate}
+    \item Verify read and write of the register files could work as expected.
+    \item Verify if the decode stage could generate illegal instruction signal correctly.
+    \item Verify operand selection and forwarding paths within the execute stage.
+    \item Ensure correct generation of control signals (\texttt{pc\_src}, \texttt{jalr\_flag}, etc.).
+    \item Achieve functional and code coverage closure with UVM-based verification.
+\end{enumerate}
+
+\section{Design Interface Summary}
+
+% ======== DECODE STAGE TABLE ========
+\subsection*{Decode Stage}
+\begin{longtable}{@{}L{3.5cm}L{1.8cm}L{8.5cm}@{}}
+\caption{Interface Summary of the Decode Stage}\\
+\toprule
+\textbf{Signal} & \textbf{Direction} & \textbf{Description} \\ 
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Signal} & \textbf{Direction} & \textbf{Description} \\ 
+\midrule
+\endhead
+
+\midrule
+\multicolumn{3}{r}{\textit{(continued on next page)}} \\
+\bottomrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+% --- Input Signals ---
+\texttt{clk} & Input & Main clock signal driving synchronous logic (e.g., register file). \\[2pt]
+\texttt{reset\_n} & Input & Active-low reset signal. \\[2pt]
+\texttt{instruction} & Input & The 32-bit instruction (\texttt{instruction\_type}) from the fetch stage. \\[2pt]
+\texttt{pc\_in[31:0]} & Input & The Program Counter (PC) address of the current instruction. \\[2pt]
+\texttt{write\_en} & Input & Register write-enable signal, typically from the Writeback (WB) stage. \\[2pt]
+\texttt{write\_id[4:0]} & Input & Target register ID for the writeback operation. \\[2pt]
+\texttt{write\_data[31:0]} & Input & Data to be written into the register file from the Writeback stage. \\[2pt]
+
+% --- Output Signals ---
+\texttt{reg\_rd\_id[4:0]} & Output & Destination register ID (rd) decoded from the instruction. \\[2pt]
+\texttt{read\_data1[31:0]} & Output & Data for source operand 1 (rs1), read from the register file. \\[2pt]
+\texttt{read\_data2[31:0]} & Output & Data for source operand 2 (rs2), read from the register file. \\[2pt]
+\texttt{immediate\_data[31:0]} & Output & Sign-extended immediate value decoded from the instruction. \\[2pt]
+\texttt{pc\_out[31:0]} & Output & Program Counter (PC) value passed to the next stage (same as \texttt{pc\_in}). \\[2pt]
+\texttt{instruction\_illegal} & Output & Flag asserted if the instruction is unrecognized or registers are invalid. \\[2pt]
+\texttt{control\_signals} & Output & Generated control signals (\texttt{control\_type}) for subsequent pipeline stages. \\
+
+\end{longtable}
+
+
+\subsection*{Execute Stage}
+\begin{longtable}{@{}L{3.5cm}L{1.8cm}L{8.5cm}@{}}
+\caption{Interface Summary of the Execute Stage}\\
+\toprule
+\textbf{Signal} & \textbf{Direction} & \textbf{Description} \\ 
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Signal} & \textbf{Direction} & \textbf{Description} \\ 
+\midrule
+\endhead
+
+\midrule
+\multicolumn{3}{r}{\textit{(continued on next page)}} \\
+\bottomrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\texttt{data1}, \texttt{data2} & Input & Source register operands from the decode stage. \\
+\texttt{immediate\_data} & Input & Immediate value decoded from instruction. \\
+\texttt{pc\_in} & Input & Current program counter value entering the execute stage. \\
+\texttt{control\_in} & Input & Control structure containing ALU operation type, instruction encoding, and pipeline control signals. \\
+\texttt{wb\_forward\_data} & Input & Data forwarded from the write-back stage for hazard resolution. \\
+\texttt{mem\_forward\_data} & Input & Data forwarded from the memory stage for hazard resolution. \\
+\texttt{forward\_rs1}, \texttt{forward\_rs2} & Input & Multiplexer selectors determining which data source to forward for operands 1 and 2. \\
+\texttt{control\_out} & Output & Propagated control signals to the next pipeline stage. \\
+\texttt{alu\_data} & Output & Final ALU computation result. \\
+\texttt{memory\_data} & Output & Data prepared for memory write operations (valid for S-type instructions). \\
+\texttt{pc\_src} & Output & Branch decision flag indicating whether the next PC should be redirected. \\
+\texttt{jalr\_target\_offset} & Output & Calculated target address offset for JALR instructions. \\
+\texttt{jalr\_flag} & Output & Indicates that a JALR-type instruction is being executed. \\
+\texttt{pc\_out} & Output & Program counter value passed to the next stage. \\
+\texttt{overflow} & Output & Overflow indicator propagated from the ALU operation. \\
+
+\end{longtable}
+
+
+\section{Verification Environment Overview}
+
+\subsection{Testbench Architecture}
+A UVM-based joint testbench will be built using Easier UVM generator, including:
+\begin{itemize}
+    \item \textbf{Interface:} Connects the joint testbench to the cascaded DUT (decode\_stage + execute\_stage).
+    \item \textbf{Driver:} Drives randomized transaction stimuli.
+    \item \textbf{Monitor:} Captures DUT outputs for checking and coverage.
+    \item \textbf{Scoreboard:} Compares DUT outputs with reference model.
+    \item \textbf{sequence item:} The data generated from the randomization.
+    \item \textbf{Sequence/Sequencer:} Generates constrained random operations and operand patterns.
+    \item \textbf{Coverage Collector:} Records coverage metrics.
+\end{itemize}
+
+The joint testbench for decode+execute cascade should look as follows:
+\begin{figure}[h]
+    \centering % 3. 将图片居中
+    \includegraphics[width=0.8\textwidth]{bd_new.png} % 4. 插入图片
+    \caption{joint decode+execute verification structure} % 5. 为图片添加标题
+    \label{fig:joint_tb_diagram} % 6. 添加标签，用于正文引用
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Interfaces/Agents:} Active agents drive \texttt{decode\_in}, \texttt{decode\_wb}, and \texttt{execute\_in}. Passive agents monitor \texttt{decode\_out} and \texttt{execute\_out} from the cascaded DUT.
+    \item \textbf{Sequences:} \texttt{decode\_in\_default\_seq} and \texttt{decode\_wb\_default\_seq} generate instruction streams and writeback updates; \texttt{execute\_in\_default\_seq} drives execute inputs from \texttt{exe\_v1}.
+    \item \textbf{Scoreboard/Reference:} \texttt{joint\_scoreboard} checks decode legality, control/pc consistency, regfile read behavior, and aligns decode-to-execute results using \texttt{seq\_id} with expected outputs from \texttt{joint\_ref\_model}.
+\end{itemize}
+% \begin{center}
+%     \includegraphics[width=0.8\textwidth]{uvm_env.png}
+% \end{center}
+
+\section{Functional Verification Plan}
+
+\subsection{Decode stage Verification Items}
+
+\begin{itemize}
+    \item \textbf{Illegal Opcode:} Verify that when the \texttt{instruction} input is an invalid or unsupported combination of \texttt{opcode}, \texttt{funct3}, or \texttt{funct7}, \texttt{decode\_failed} is asserted, subsequently asserting \texttt{instruction\_illegal}.
+
+    \item Verify \texttt{immediate\_data} is correctly sign-extended and formatted for all five immediate types (I, S, B, U, J) based on the \texttt{controls.encoding} signal.
+
+    \item \textbf{Read Operation:} Verify \texttt{read\_data1} and \texttt{read\_data2} correctly output the values from the register locations specified by \texttt{instruction.rs1} and \texttt{instruction.rs2}.
+
+    \item \textbf{Writeback Operation:} Verify the \texttt{write\_en}, \texttt{write\_id}, and \texttt{write\_data} ports correctly update the internal state of the register file (can be checked by a subsequent read to the same \texttt{write\_id}).
+
+    \item \textbf{Simultaneous Read/Write (Read-Old-Value):} Verify that in a single clock cycle, when a write operation occurs to address X (\texttt{write\_id=X}) and the \texttt{instruction} simultaneously reads from address X (\texttt{rs1=X} or \texttt{rs2=X}), the \texttt{read\_data1}/\texttt{read\_data2} outputs reflect the \textbf{old} value (verifying standard read-before-write register file behavior).
+
+    \item Verify that when an R, I, S, or B-Type instruction has \texttt{instruction.rs1 >= 32}, \texttt{reg\_illegal} is asserted, subsequently asserting \texttt{instruction\_illegal}.
+
+    \item Verify that when an R-Type instruction (e.g., \texttt{ADD x0, x1, x2}) has \texttt{rd=0}, \texttt{reg\_illegal} is asserted.
+\end{itemize}
+
+\subsection{Execute Stage Verification Items}
+
+\textbf{Forwarding Logic:}
+\begin{itemize}
+    \item Verify correct selection from \texttt{data1}, \texttt{data2}, \texttt{mem\_forward\_data}, and \texttt{wb\_forward\_data}.
+    \item Check data hazards resolution in cases FORWARD\_FROM\_EX and FORWARD\_FROM\_MEM.
+\end{itemize}
+\textbf{Control and Branch:}
+\begin{itemize}
+    \item Verify \texttt{pc\_src} asserted only for valid branch.
+    \item Verify \texttt{jalr\_flag} and \texttt{jalr\_target\_offset} for jump instructions.
+\end{itemize}
+\textbf{ALU Integration:}
+\begin{itemize}
+    \item Cross-check ALU output consistency with Execute Stage’s \texttt{alu\_data}.
+    \item Verify propagation of overflow and zero\_flag signals.
+\end{itemize}
+
+\section*{Grade3: End-to-End Verification Flow}
+\subsection*{Build \& Simulation Orchestration}
+\begin{itemize}
+    \item \textbf{Script:} \texttt{exe\_v1/compile\_questa.do} deletes \texttt{work}, compiles DUT (\texttt{common.sv}, \texttt{alu.sv}, \texttt{execute\_stage.sv}), agents (\texttt{execute\_in}, \texttt{execute\_out}), env/test packages, and TB top with consistent \texttt{+incdir}. Runs \texttt{vsim} on \texttt{execute\_top\_tb} with \texttt{+UVM\_TESTNAME=execute\_top\_test}, then dumps coverage (\texttt{coverage\_report.txt}) and triages warnings/errors into \texttt{logs/}.
+    \item \textbf{Topology:} The TB top binds VIFs to DUT, sets them in the config DB, and instantiates the UVM test which creates the environment.
+\end{itemize}
+
+\subsection*{Environment Composition}
+\begin{itemize}
+    \item \textbf{Agents:} \texttt{execute\_in\_agent} drives and monitors operand/control/forwarding inputs. \texttt{execute\_out\_agent} monitors DUT outputs. Each has a coverage subscriber for stimulus/response bins.
+    \item \textbf{Reference Model:} \texttt{execute\_stage\_ref\_model} consumes input transactions from a TLM FIFO, recomputes expected execute-stage outputs (ALU op, forwarding selection, branch/JALR handling, overflow) and publishes \texttt{execute\_out\_tx} on \texttt{ref\_ap}.
+    \item \textbf{Scoreboard:} \texttt{execute\_stage\_scoreboard} has two get/peek ports connected via FIFOs to expected (ref model) and actual (out monitor). It compares \texttt{control\_out}, \texttt{alu\_data}, \texttt{memory\_data}, \texttt{pc\_src}, \texttt{jalr\_flag}, \texttt{jalr\_target\_offset}, \texttt{pc\_out}, and \texttt{overflow}, counting pass/fail and reporting in \texttt{report\_phase}.
+    \item \textbf{Sequences:} \texttt{execute\_top\_default\_seq} in \texttt{run\_phase} randomizes transactions and starts them on the \texttt{execute\_in} sequencer; the driver asserts \texttt{valid} for one beat per item.
+\end{itemize}
+
+\subsection*{Reference Model Detailing}
+\begin{itemize}
+    \item \textbf{Forwarding Resolution:} Selects operands per \texttt{forward\_rs1/rs2} (NONE/EX/MEM), overriding \texttt{data1/data2} with \texttt{mem\_forward\_data}/\texttt{wb\_forward\_data} where requested.
+    \item \textbf{ALU/Jumps:} Uses \texttt{alu\_calc} to model all ALU ops including branches (zero flag inversion for B\_BNE/B\_BLT/B\_BGE/B\_LTU/B\_GEU). For J/JALR encodings it forces \texttt{alu\_data=pc+4} and sets \texttt{jalr\_flag}/\texttt{jalr\_target\_offset} when appropriate.
+    \item \textbf{Store Payload:} \texttt{memory\_data} is either forwarded store data (for S-type) or the original \texttt{data2}. \texttt{pc\_src} reflects branch decision; \texttt{pc\_out} passes through.
+    \item \textbf{Overflow:} Sets overflow only for ADD/SUB based on signed overflow detection; zero flag is derived from the computed result.
+\end{itemize}
+
+\subsection*{Coverage Instrumentation}
+\begin{itemize}
+    \item \textbf{execute\_in\_coverage:} Coverpoints on operand sign bits, PC alignment, encoding type, ALU op, alu\_src, branch flag, mem read/write dir, mem size/sign, reg\_write, forwarding selectors. Crosses encoding with forwarding to ensure hazard scenarios are hit.
+    \item \textbf{Collection Points:} Monitors publish transactions to coverage subscribers; coverage is enabled via agent configs (\texttt{coverage\_enable}).
+    \item \textbf{Closure:} UCDB produced by \texttt{coverage report -code bcesf -assert -cvg}; target is functional bins hit across encoding types, forwarding combos, branch outcomes, mem size/sign directions.
+\end{itemize}
+
+\subsection*{Stimulus and Checking Flow}
+\begin{itemize}
+    \item \textbf{Drive:} Default virtual sequence randomizes \texttt{execute\_tx} fields (operands, immediates, control encoding/op, forwarding selectors).
+    \item \textbf{Sample:} \texttt{execute\_in\_monitor} captures inputs each cycle; \texttt{execute\_out\_monitor} captures DUT outputs. Both feed coverage and scoreboard/reference paths.
+    \item \textbf{Compare:} Scoreboard waits for matching expected/actual, then compares field-by-field; mismatches raise \texttt{UVM\_ERROR} with expected vs actual details.
+\end{itemize}
+
+\section*{Grade4: Decode+Execute Cascaded Verification Flow}
+\subsection*{Build \& Simulation Orchestration}
+\begin{itemize}
+    \item \textbf{Script:} \texttt{generated\_joint\_tb/sim/compile\_questa.do} compiles DUTs for the cascaded flow: \texttt{decode\_stage} from \texttt{generated\_execute\_tb/dut} and \texttt{execute\_stage}/\texttt{alu} from \texttt{exe\_v1/dut}. It also compiles decode agents from \texttt{generated\_decode\_tb} and the \texttt{execute\_out} agent from \texttt{exe\_v1}, then builds the joint env/test/top.
+    \item \textbf{Run:} Simulates \texttt{joint\_top\_tb} with \texttt{+UVM\_TESTNAME=joint\_top\_test}; dumps UCDB and log triage into \texttt{generated\_joint\_tb/sim/logs/}.
+\end{itemize}
+
+\subsection*{Environment Composition}
+\begin{itemize}
+    \item \textbf{Agents:} \texttt{decode\_in\_agent} and \texttt{decode\_wb\_agent} are active drivers; \texttt{decode\_out\_agent} and \texttt{execute\_out\_agent} are passive monitors for the cascaded DUT outputs.
+    \item \textbf{Env:} \texttt{joint\_top\_env} instantiates \texttt{joint\_scoreboard}, \texttt{joint\_ref\_model}, and \texttt{joint\_coverage} and connects decode/execute analysis streams to each checker.
+\end{itemize}
+
+\subsection*{Reference Model and Scoreboard}
+\begin{itemize}
+    \item \textbf{Decode Checks:} \texttt{joint\_scoreboard} caches \texttt{decode\_in} instruction/PC, recomputes expected \texttt{control\_signals} and illegal flags, and verifies \texttt{read\_data1/2} against an internal regfile model (gated when decode fails or instruction is illegal). It also flags illegal writes to \texttt{x0}.
+    \item \textbf{Execute Checks:} \texttt{joint\_ref\_model} converts \texttt{decode\_out} transactions into expected \texttt{execute\_out} (ALU result, \texttt{pc\_src}, \texttt{memory\_data}) using \texttt{seq\_id} for alignment. The scoreboard compares \texttt{control\_out}, \texttt{alu\_data}, \texttt{memory\_data}, and \texttt{pc\_src} per instruction.
+\end{itemize}
+
+\subsection*{Coverage Instrumentation}
+\begin{itemize}
+    \item \textbf{cg\_joint:} Covers encoding, ALU op, mem controls, reg\_write, branch decision, and illegal flag, with cross coverage on \texttt{pc\_src} and control combinations.
+    \item \textbf{cg\_instr:} Per-instruction bins for R/I/S/B/U/J opcodes to ensure decode-to-execute propagation across all instruction classes.
+    \item \textbf{cg\_wb:} Tracks \texttt{x0} write attempts via \texttt{decode\_wb} monitoring.
+\end{itemize}
+
+\subsection*{Stimulus and Checking Flow}
+\begin{itemize}
+    \item \textbf{Drive:} \texttt{joint\_top\_test} runs \texttt{decode\_in\_default\_seq} and \texttt{decode\_wb\_default\_seq} to generate instruction streams and writeback updates.
+    \item \textbf{Sample:} Decode/execute monitors publish transactions each cycle; \texttt{pc\_out} and \texttt{seq\_id} are used to align decode outputs with execute outputs.
+    \item \textbf{Compare:} Scoreboard compares decode correctness and execute correctness in one flow, validating the cascade from decode to execute.
+\end{itemize}
+
+
+% \section{Bug Detection Strategy}
+
+% \begin{itemize}
+%     \item Use \textbf{scoreboard} to compare DUT outputs with a SystemVerilog reference model.
+%     \item Add \textbf{assertions (SVA)}:
+%     \begin{itemize}
+%         \item \texttt{assert property (result == 0 -> zero\_flag == 1);}
+%         \item \texttt{assert property (control inside \{ADD,SUB\} |-> overflow == expected);}
+%         \item \texttt{assert property (forwarding path matches selected signal);}
+%     \end{itemize}
+%     \item Use directed tests for corner cases (e.g., overflow, max/min shift).
+% \end{itemize}
+
+\section{Coverage Plan}
+
+\subsection{Functional Coverage}
+
+\textbf{Joint (Decode+Execute) coverage in \texttt{generated\_joint\_tb} will cross:}
+\begin{itemize}
+    \item \texttt{encoding} $\times$ \texttt{pc\_src}, \texttt{alu\_op} $\times$ \texttt{pc\_src}.  
+    \textit{Ensures branch/jump decisions align with decoded control and ALU op in the cascaded flow.}
+
+    \item \texttt{mem\_read}, \texttt{mem\_write}, \texttt{reg\_write} $\times$ \texttt{instruction\_illegal}.  
+    \textit{Ensures control combinations are covered while excluding illegal-control cases.}
+
+    \item \texttt{mem\_size} $\times$ \texttt{mem\_sign}.  
+    \textit{Covers byte/half/word and sign/zero extension behaviors through decode-to-execute.}
+
+    \item Per-instruction bins across R/I/S/B/U/J opcodes (cg\_instr).  
+    \textit{Ensures each instruction class is observed through the cascaded scoreboard/coverage.}
+
+    \item \texttt{x0} write attempts via decode\_wb stream (cg\_wb).  
+    \textit{Ensures x0 protection is exercised in joint verification.}
+\end{itemize}
+
+\textbf{Execute Stage coverage in \texttt{exe\_v1} will cross:}
+\begin{itemize}
+    \item Operand forwarding paths $\times$ control type.  
+    \textit{Ensures all instruction types are tested under every forwarding condition.}
+
+    \item Branch decisions (\texttt{pc\_src}) $\times$ zero\_flag.  
+    \textit{Confirms branch logic behaves correctly for both taken and not-taken cases.}
+
+    \item Instruction encoding types (\texttt{encoding\_t}).  
+    \textit{Verifies that all instruction formats (R/I/S/B/U/J) are executed in simulation.}
+
+    \item Immediate data extension cases.  
+    \textit{Ensures both sign-extension and zero-extension immediates are covered.}
+
+    \item Control signal forwarding (\texttt{control\_in} $\times$ \texttt{control\_out}).  
+    \textit{Confirms control signals are properly propagated between pipeline stages.}
+
+    \item JALR branch target computation (\texttt{jalr\_flag} $\times$ \texttt{jalr\_target\_offset}).  
+    \textit{Validates that JALR-type branch targets are calculated correctly.}
+\end{itemize}
+
+
+\section{Verification Closure Criteria}
+
+\begin{itemize}
+    \item All functional coverage points reached ($\geq 95\%$).
+    \item Code coverage $\geq 90\%$.
+    \item All assertions pass without failure.
+    \item No mismatches reported by scoreboard.
+    \item All directed corner cases verified.
+\end{itemize}
+
+\section{Deliverables}
+
+\begin{itemize}
+    \item UVM environment source files.
+    \item Verification plan and coverage report.
+    \item Simulation waveforms for representative cases.
+    \item Summary report of detected bugs and fixes.
+\end{itemize}
+
+\end{document}

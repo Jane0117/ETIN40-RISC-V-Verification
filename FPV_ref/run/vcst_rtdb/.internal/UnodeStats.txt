@@ -1,0 +1,2 @@
+STATS:: before Verdi Load Design:  :  M=1014.797mb, T=0s
+STATS:: after Verdi Load Design:  :  M=1014.797mb, T=3.000s

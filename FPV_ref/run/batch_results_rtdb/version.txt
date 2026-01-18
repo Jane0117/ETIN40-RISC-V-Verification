@@ -1,0 +1,8 @@
+Version      -> V-2023.12 
+Build Date   -> Nov 24, 2023 
+Machine Name -> subaida
+Machine OS   -> Linux 4.18.0-553.58.1.el8_10.x86_64
+Machine Type -> x86_64
+Cmd Line Arg ->
+VC_STATIC_HOME
+             -> /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12

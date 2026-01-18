@@ -1,0 +1,54 @@
+###############################################################
+ # This report contains names of design units along with parameter
+ # values and self instances.
+ # Some parameters may have more than one possible values for that
+ # design unit, values will be unique for instances. It is indicated as
+ # "Multiple Values".
+ # In some cases instance count shown may be less than actual instance
+ # count in the design due to optimizations. It is indicated as
+ # "Optimized".
+###############################################################
+
+
+Design Unit Name: 'traffic', (../design/traffic.v:1)
+    Parameters (Total 0)
+    Instances (Total: 0)
+=============================================
+
+
+Design Unit Name: 'vlog_street_ctrl_fsm', (../design/vlog_street_ctrl_fsm.v:1)
+    Parameters (Total 7)
+        PRIORITY = 1  (default: 0)
+        MAX_WAIT = 4  (default: 4)
+        RESET = 5'b1  (default: 5'b1)
+        SR0 = 5'b00010  (default: 5'b00010)
+        SR1 = 5'b00100  (default: 5'b00100)
+        SY = 5'b01000  (default: 5'b01000)
+        SG = 5'b10000  (default: 5'b10000)
+    Instances (Total 1)(Optimized)
+        traffic.main
+=============================================
+
+
+Design Unit Name: 'vlog_street_ctrl_fsm', (../design/vlog_street_ctrl_fsm.v:1)
+    Parameters (Total 7)
+        PRIORITY = 0  (default: 0)
+        MAX_WAIT = 4  (default: 4)
+        RESET = 5'b1  (default: 5'b1)
+        SR0 = 5'b00010  (default: 5'b00010)
+        SR1 = 5'b00100  (default: 5'b00100)
+        SY = 5'b01000  (default: 5'b01000)
+        SG = 5'b10000  (default: 5'b10000)
+    Instances (Total 1)(Optimized)
+        traffic.first
+=============================================
+
+
+Design Unit Name: 'sva_checker', (../sva/traffic.sva:1)
+    Parameters (Total 1)
+        MAX_WAIT = 4  (default: 4)
+    Instances (Total 1)
+        traffic.chk
+=============================================
+
+

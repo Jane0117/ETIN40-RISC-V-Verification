@@ -1,0 +1,7 @@
+../design/decode_execute_top.sv
+../design/common.sv
+../design/register_file.sv
+../design/control.sv
+../design/alu.sv
+../design/decode_stage.sv
+../design/execute_stage.sv

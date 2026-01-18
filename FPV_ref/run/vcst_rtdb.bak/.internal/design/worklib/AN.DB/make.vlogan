@@ -1,0 +1,27 @@
+
+VLOGAN	= vlogan
+VLOGAN_OPT	= -kdb=common_elab -sverilog -skip_translate_body +define+INLINE_SVA +define+SYNTHESIS -q -timescale=1ns/1ns -full64 -full64
+
+all :		_VCSgd_Ekz71c_1.db \
+	_VCSgd_ZtFMde_1.db \
+	_VCSgd_hUH6Pd_1.db \
+	_VCSgd_I6oLRd_1.db \
+
+
+
+_VCSgd_Ekz71c_1.db :	/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/design/undef_vcs.v 
+		${VLOGAN}  ${VLOGAN_OPT} /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/design/undef_vcs.v
+
+
+_VCSgd_ZtFMde_1.db :	../design/traffic.v 
+		${VLOGAN}  ${VLOGAN_OPT} ../design/traffic.v
+
+
+_VCSgd_hUH6Pd_1.db :	../design/vlog_street_ctrl_fsm.v 
+		${VLOGAN}  ${VLOGAN_OPT} ../design/vlog_street_ctrl_fsm.v
+
+
+_VCSgd_I6oLRd_1.db :	../sva/traffic.sva 
+		${VLOGAN}  ${VLOGAN_OPT} ../sva/traffic.sva
+
+

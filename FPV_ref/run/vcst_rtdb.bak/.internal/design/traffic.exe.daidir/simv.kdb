@@ -1,0 +1,22 @@
+rc file Version 1.0
+
+[Design]
+COMPILE_PATH=/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run
+VCS_HOME=/usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/vcs-mx
+VERDI_HOME=/usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/verdi
+SystemC=FALSE
+UUM=TRUE
+KDB=TRUE
+USE_NOVAS_HOME=FALSE
+COSIM=FALSE
+ENV="SYNOPSYS_SIM_SETUP=/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/design/synopsys_sim.setup" 
+TOP=traffic 
+ELAB=TRUE
+COMMON_ELAB=TRUE
+SIMV_WRAPPER=FALSE
+[Value]
+WREALX=ffff534e50535f58
+WREALZ=ffff534e50535f5a
+
+[CompInfo]
+FLOW_OPTS=-kdb=common_elab 

@@ -1,0 +1,2 @@
+source /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/auxx/monet/tcl/npi_coi_mark.tcl
+npi_coi_mark /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/coiTarget "" traffic /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/coi.log

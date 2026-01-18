@@ -1,0 +1,5 @@
+{"comelab":{"timestamp_begin":1760957902.697947576, "rt":4.82, "ut":0.51, "st":0.55}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1760957902.209401627}
+{"VCS_COMP_START_TIME": 1760957902.209401627}
+{"VCS_COMP_END_TIME": 1760957907.579666109}
+{"VCS_USER_OPTIONS": "-file /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/design/elaborateCmd -Xvcstatic_extns=0x4 -Xvcstatic_extns=0x1000 -Xvcstatic_extns=0x100 +warn=noSM_CCE -units -error=IRRIPS -kdb=common_elab -Xufe=parallel:incrdump +warn=noKDB-ELAB-E -Xverdi_elab_opts=-saveLevel -verdi_opts -logdir /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/verdi/elabcomLog  -Xvd_opts=,-ssy,-ssv,-ssz,-silent,+disable_message+C00373, -full64"}

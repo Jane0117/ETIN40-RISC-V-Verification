@@ -1,2 +1,6 @@
-58357:# UVM_WARNING :    0
-116745:# UVM_WARNING :    0
+354:# UVM_WARNING ../tb/decode_wb/sv/decode_wb_monitor.sv(66) @ 110000: uvm_test_top.m_env.m_decode_wb_agent.m_monitor [decode_wb_monitor] write_en asserted with write_id==0 (ignored by regfile)
+12352:# UVM_WARNING ../tb/decode_wb/sv/decode_wb_monitor.sv(66) @ 40110000: uvm_test_top.m_env.m_decode_wb_agent.m_monitor [decode_wb_monitor] write_en asserted with write_id==0 (ignored by regfile)
+24352:# UVM_WARNING ../tb/decode_wb/sv/decode_wb_monitor.sv(66) @ 80110000: uvm_test_top.m_env.m_decode_wb_agent.m_monitor [decode_wb_monitor] write_en asserted with write_id==0 (ignored by regfile)
+34369:# UVM_WARNING ../tb/decode_wb/sv/decode_wb_monitor.sv(66) @ 120110000: uvm_test_top.m_env.m_decode_wb_agent.m_monitor [decode_wb_monitor] write_en asserted with write_id==0 (ignored by regfile)
+46365:# UVM_WARNING ../tb/decode_wb/sv/decode_wb_monitor.sv(66) @ 160110000: uvm_test_top.m_env.m_decode_wb_agent.m_monitor [decode_wb_monitor] write_en asserted with write_id==0 (ignored by regfile)
+58367:# UVM_WARNING :    5

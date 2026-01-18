@@ -1,0 +1,1 @@
+-sverilog  -Xmonet  -p1800_macro_expansion=xlrm_macro_exp_in_escape  -Xspyglass=0x10000  -skip_translate_body  -partial_OPDL -f ../design/filelist +define+INLINE_SVA ../sva/traffic.sva ../sva/bind_traffic.sva  +define+SYNTHESIS -q  -error=noMPD   -timescale=1ns/1ns -XVSILangChk=/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/design/.read_log/readlog_0.log 

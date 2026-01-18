@@ -1,0 +1,2 @@
+verdiVcstPostRestoreCmd ""
+debRestoreSession vcst.ses

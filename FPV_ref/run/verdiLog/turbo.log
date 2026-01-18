@@ -1,0 +1,3 @@
+Command Line: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/verdi/platform/LINUXAMD64/bin/Novas -vcst -vcstOpts {-demo -session .tmp  -restore -prompt vcf -mode64 -fmode _default -new_verdi_comm} -play .tmp_rtdb.tcl
+uname(Linux krok 4.18.0-553.58.1.el8_10.x86_64 #1 SMP Thu Jun 26 15:50:39 UTC 2025 x86_64)
+au time 547.385890 15.921312 9.264353 delta 374882304 374882304 total 1049513984 1049513984

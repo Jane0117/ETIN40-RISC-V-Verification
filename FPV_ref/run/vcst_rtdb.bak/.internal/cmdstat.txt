@@ -1,0 +1,63 @@
+
+
+### check_fv	Num_calls 1	Total_time 6.08378	Total_CpuTime 2.28	Total malloc-M 0
+1	File:run_batch.tcl::28	Time:6.08378	CpuTime:2.28	 Malloc-MB:0
+
+### create_clock	Num_calls 1	Total_time 0.01132	Total_CpuTime 0.01	Total malloc-M 0
+1	File:run_batch.tcl::20	Time:0.01132	CpuTime:0.01	 Malloc-MB:0
+
+### create_reset	Num_calls 1	Total_time 0.002686	Total_CpuTime 0	Total malloc-M 0
+1	File:run_batch.tcl::21	Time:0.002686	CpuTime:0.00	 Malloc-MB:0
+
+### elaborate	Num_calls 1	Total_time 5.67025	Total_CpuTime 0.88	Total malloc-M 26
+1	File:run_batch.tcl::17	Time:5.67025	CpuTime:0.88	 Malloc-MB:26
+
+### get_message_db_ptr	Num_calls 1	Total_time 1.1e-05	Total_CpuTime 0	Total malloc-M 0
+
+### get_report_db_ptr	Num_calls 1	Total_time 1e-05	Total_CpuTime 0	Total malloc-M 0
+
+### report_fv	Num_calls 1	Total_time 0.033522	Total_CpuTime 0.01	Total malloc-M 2
+1	File:run_batch.tcl::29	Time:0.033522	CpuTime:0.01	 Malloc-MB:2
+
+### restore_session	Num_calls 1	Total_time 4.3e-05	Total_CpuTime 0	Total malloc-M 0
+
+### save_session	Num_calls 1	Total_time 1.78113	Total_CpuTime 0.29	Total malloc-M 0
+1	File:run_batch.tcl::32	Time:1.78113	CpuTime:0.29	 Malloc-MB:0
+
+### set_fml_appmode	Num_calls 1	Total_time 1.7e-05	Total_CpuTime 0	Total malloc-M 0
+
+### sim_run	Num_calls 1	Total_time 0.057756	Total_CpuTime 0	Total malloc-M 12
+1	File:run_batch.tcl::24	Time:0.057756	CpuTime:0.00	 Malloc-MB:12
+
+### sim_save_reset	Num_calls 1	Total_time 0.045744	Total_CpuTime 0.01	Total malloc-M -11
+1	File:run_batch.tcl::25	Time:0.045744	CpuTime:0.01	 Malloc-MB:-11
+
+ ****************************Shell commands Recording************************
+MasterSourceFile run_batch.tcl
+
+
+ ****************************ThreadTask Recording************************
+Thread: CommonMgr Time: 0(s) Mem: 0(KB) MaxSize: 0
+Thread: ReportDb Time: 0.066026(s) Mem: 280(KB) MaxSize: 4
+Thread: watchdog Time: 0.00071311(s) Mem: 0(KB) MaxSize: 1
+
+
+ ****************************ProcessTask Recording************************
+
+ Task : VCS Analyzer Task
+ args: sh,-c,$VCS_HOME/bin/vlogan  -kdb=common_elab /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/design/undef_vcs.v -Xvd_opts=-silent,+disable_message+C00373,-ssy,-ssv,-ssz -file /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/design/analyzeCmd1 -Xufe=parallel:incrdump  -full64  -libfile_opt 
+ file: run_batch.tcl line: 12
+ Start Time: 1.99923, 1.2
+ End Time: 6.58791, 1.32
+
+ Task : VCS Elaborater Task
+ args: sh,-c,$VCS_HOME/bin/vcs -file /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/design/elaborateCmd -Xvcstatic_extns=0x4  -Xvcstatic_extns=0x1000  -Xvcstatic_extns=0x100  +warn=noSM_CCE  -units  -error=IRRIPS  -kdb=common_elab  -Xufe=parallel:incrdump  +warn=noKDB-ELAB-E  -Xverdi_elab_opts=-saveLevel  -verdi_opts "-logdir /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/verdi/elabcomLog " -Xvd_opts=,-ssy,-ssv,-ssz,-silent,+disable_message+C00373, -full64 
+ file: run_batch.tcl line: 17
+ Start Time: 6.67556, 1.37
+ End Time: 12.3152, 2.24
+
+ Task : TW_0
+ args: tw_master_csc,-log,/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/tw/tw.log,-interactive,-workDir,/h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/tw,-worker,4,-encryptLogs,-time,12
+ file: run_batch.tcl line: 28
+ Start Time: 12.7377, 2.29
+ End Time: 18.5208, 4.54

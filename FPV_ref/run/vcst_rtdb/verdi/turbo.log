@@ -1,0 +1,27 @@
+Command Line: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/verdi/platform/LINUXAMD64/bin/Novas -nologo -logdir /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/verdi -serverPort 14240 -tkName VCST -play /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/auxx/monet/tcl/verdi_vcst.tcl  -lca
+uname(Linux subaida 4.18.0-553.58.1.el8_10.x86_64 #1 SMP Thu Jun 26 15:50:39 UTC 2025 x86_64)
+Event --> "verdiRunVcstCmd" : ___vcstCommandLog {verdi_cmd srcShowDefine -incrSearch traffic.chk.assume_continuous_waiting_main}
+Property Selection Difference Report :
+
+  - SVA Property Selection Result :
+(1) Newly Enabled Properties :
+    traffic.chk.assert_honor_waiting_first
+
+(2) Newly Disabled Properties :
+    None.
+
+
+
+Property Selection Ends Successfully.
+
+
+Disabled Warning Message: Active waveform file has changed. The Assertion Analyzer contents will be cleared.
+Property Selection Difference Report :
+
+  No Property Changed.
+
+
+
+Property Selection Ends Successfully.
+
+

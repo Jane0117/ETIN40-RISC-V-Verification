@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ProofCore>
+  <Proof>
+    <VpId>1</VpId>
+    <ProofId>1</ProofId>
+    <add_nox_reset_constraints>1</add_nox_reset_constraints>
+  </Proof>
+  <UnionPC success="0" failed="1" bounded="0" constraintsAvailable="1">
+    <PropertiesWithFormalCore>
+      <Prop name="traffic.chk.assert_green_no_waiting_main" depth="-1" />
+    </PropertiesWithFormalCore>
+    <Registers />
+    <Inputs />
+    <Constraints />
+  </UnionPC>
+  <SummaryPC regs="0" inps="0" cons="0" regsTotal="5" inpsTotal="2" consTotal="2" total="1" scheduled="0" completed="1" success="0" failed="1" bounded="0" nostatus="0" constraintsAvailable="1" />
+  <DisplayOptions complement="0" union="1" bit="0" comb="0" seqMode="0" />
+</ProofCore>
+

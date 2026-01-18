@@ -1,0 +1,59 @@
+                                   VC Static 
+                 Version V-2023.12 for linux64 - Nov 24, 2023
+                    Copyright (c) 2010 - 2023 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+[Info] SIM_I_RESTORE_RESET: Resetting simulator and forces upon restore.
+[Info] RESTORED_SESSION: Restored session (vcst_rtdb).
+[Info] Opening Complexity View...
+#report_fv_complexity -gui  -design
+[Info] Opening Design Check View...
+#check_fv_setup -check {%1}
+[Info] FML_CHECK_WITH_UNCOMMITTED_FORCES: check_fv is called with uncommitted sim_force commands.
+	Please run sim_run to ensure the consistency of reset values.
+[Info] FORMAL_I_REUSE: Reuse Formal Model:traffic.
+[Info] FORMAL_I_RUN: Starting formal verification for check_fv_setup
+	  Id: 1  Goals: 1  Constraints: 0  Block Mode: false
+[Info] LIC_UNUSED_WORKERS: 8 unused worker(s) based 1 licenses needed to support 4 workers requested.
+	Use 'set_grid_usage' to maximize worker usage and improve performance, if there are sufficient compute resources to support more workers.
+	Each runtime license supports 12 workers.
+[Info] LIC_RT_CHECKOUT: VC Formal run time license checkout. Base:1  FPV:1.
+[Info] BITLEVEL_MODEL_STATS: Generated model with 0 gates, 0 inputs, 0 registers, 0 initial constraints, 0 constraints.
+[Info] BITLEVEL_MODEL_STATS: Generated model with 0 gates, 0 inputs, 0 registers, 0 initial constraints, 0 constraints.
+[Info] FDC_FVS: No setup issues found.
+	The results can be viewed again by using the report_fv_setup command.
+#check_fv
+[Error] NO_PROPERTIES_FOUND_FV: No properties have been identified for verification.
+	Possible reasons are: 
+	1. All existing properties have already been run and converged.
+	2. Formal checks were not enabled: 
+		For source properties, the option '-sva' needs to be provided.
+Error: 0
+	Use error_info for more info. (CMD-013)
+#check_fv
+[Error] NO_PROPERTIES_FOUND_FV: No properties have been identified for verification.
+	Possible reasons are: 
+	1. All existing properties have already been run and converged.
+	2. Formal checks were not enabled: 
+		For source properties, the option '-sva' needs to be provided.
+Error: 0
+	Use error_info for more info. (CMD-013)
+#check_fv
+[Error] NO_PROPERTIES_FOUND_FV: No properties have been identified for verification.
+	Possible reasons are: 
+	1. All existing properties have already been run and converged.
+	2. Formal checks were not enabled: 
+		For source properties, the option '-sva' needs to be provided.
+Error: 0
+	Use error_info for more info. (CMD-013)

@@ -1,14 +1,14 @@
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:42:36 on Jan 15,2026
+# Start time: 02:05:52 on Jan 16,2026
 # vlog -reportprogress 300 ../../generated_execute_tb/dut/common.sv 
 # -- Compiling package common
 # 
 # Top level modules:
 # 	--none--
-# End time: 14:42:36 on Jan 15,2026, Elapsed time: 0:00:00
+# End time: 02:05:53 on Jan 16,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:42:36 on Jan 15,2026
+# Start time: 02:05:53 on Jan 16,2026
 # vlog -reportprogress 300 -sv ../../generated_execute_tb/dut/control.sv 
 # ** Warning: ../../generated_execute_tb/dut/control.sv(7): (vlog-13314) Defaulting port 'instruction' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
 # -- Compiling package control_sv_unit
@@ -18,10 +18,10 @@
 # 
 # Top level modules:
 # 	control
-# End time: 14:42:36 on Jan 15,2026, Elapsed time: 0:00:00
+# End time: 02:05:53 on Jan 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 2
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:42:36 on Jan 15,2026
+# Start time: 02:05:53 on Jan 16,2026
 # vlog -reportprogress 300 -sv ../../generated_execute_tb/dut/register_file.sv 
 # -- Compiling package register_file_sv_unit
 # -- Importing package common
@@ -29,10 +29,10 @@
 # 
 # Top level modules:
 # 	register_file
-# End time: 14:42:37 on Jan 15,2026, Elapsed time: 0:00:01
+# End time: 02:05:53 on Jan 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:42:37 on Jan 15,2026
+# Start time: 02:05:53 on Jan 16,2026
 # vlog -reportprogress 300 -sv ../../generated_execute_tb/dut/decode_stage.sv 
 # ** Warning: ../../generated_execute_tb/dut/decode_stage.sv(9): (vlog-13314) Defaulting port 'instruction' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
 # ** Warning: ../../generated_execute_tb/dut/decode_stage.sv(72): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
@@ -44,10 +44,10 @@
 # 
 # Top level modules:
 # 	decode_stage
-# End time: 14:42:37 on Jan 15,2026, Elapsed time: 0:00:00
+# End time: 02:05:53 on Jan 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 4
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:42:37 on Jan 15,2026
+# Start time: 02:05:53 on Jan 16,2026
 # vlog -reportprogress 300 -sv ../../exe_v1/dut/alu.sv 
 # -- Compiling package alu_sv_unit
 # -- Importing package common
@@ -55,10 +55,10 @@
 # 
 # Top level modules:
 # 	alu
-# End time: 14:42:37 on Jan 15,2026, Elapsed time: 0:00:00
+# End time: 02:05:53 on Jan 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:42:37 on Jan 15,2026
+# Start time: 02:05:53 on Jan 16,2026
 # vlog -reportprogress 300 -sv ../../exe_v1/dut/execute_stage.sv 
 # ** Warning: ../../exe_v1/dut/execute_stage.sv(11): (vlog-13314) Defaulting port 'control_in' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
 # -- Compiling package execute_stage_sv_unit
@@ -68,10 +68,10 @@
 # 
 # Top level modules:
 # 	execute_stage
-# End time: 14:42:37 on Jan 15,2026, Elapsed time: 0:00:00
+# End time: 02:05:54 on Jan 16,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 2
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:42:37 on Jan 15,2026
+# Start time: 02:05:54 on Jan 16,2026
 # vlog -reportprogress 300 -sv "+incdir+../../generated_decode_tb/dut" "+incdir+../../generated_decode_tb/tb/include" "+incdir+../../generated_decode_tb/tb/decode_in/sv" ../../generated_decode_tb/tb/decode_in/sv/decode_in_pkg.sv ../../generated_decode_tb/tb/decode_in/sv/decode_in_if.sv 
 # -- Compiling package decode_in_pkg
 # ** Note: (vlog-2286) ../../generated_decode_tb/tb/decode_in/sv/decode_in_pkg.sv(18): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
@@ -82,10 +82,10 @@
 # 
 # Top level modules:
 # 	--none--
-# End time: 14:42:38 on Jan 15,2026, Elapsed time: 0:00:01
+# End time: 02:05:54 on Jan 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:42:38 on Jan 15,2026
+# Start time: 02:05:55 on Jan 16,2026
 # vlog -reportprogress 300 -sv "+incdir+../../generated_decode_tb/dut" "+incdir+../../generated_decode_tb/tb/include" "+incdir+../../generated_decode_tb/tb/decode_wb/sv" ../../generated_decode_tb/tb/decode_wb/sv/decode_wb_pkg.sv ../../generated_decode_tb/tb/decode_wb/sv/decode_wb_if.sv 
 # -- Compiling package decode_wb_pkg
 # ** Note: (vlog-2286) ../../generated_decode_tb/tb/decode_wb/sv/decode_wb_pkg.sv(18): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
@@ -96,10 +96,10 @@
 # 
 # Top level modules:
 # 	--none--
-# End time: 14:42:38 on Jan 15,2026, Elapsed time: 0:00:00
+# End time: 02:05:55 on Jan 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:42:38 on Jan 15,2026
+# Start time: 02:05:55 on Jan 16,2026
 # vlog -reportprogress 300 -sv "+incdir+../../generated_decode_tb/dut" "+incdir+../../generated_decode_tb/tb/include" "+incdir+../../generated_decode_tb/tb/decode_out/sv" ../../generated_decode_tb/tb/decode_out/sv/decode_out_pkg.sv ../../generated_decode_tb/tb/decode_out/sv/decode_out_if.sv 
 # -- Compiling package decode_out_pkg
 # ** Note: (vlog-2286) ../../generated_decode_tb/tb/decode_out/sv/decode_out_pkg.sv(18): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
@@ -110,10 +110,10 @@
 # 
 # Top level modules:
 # 	--none--
-# End time: 14:42:39 on Jan 15,2026, Elapsed time: 0:00:01
+# End time: 02:05:56 on Jan 16,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:42:39 on Jan 15,2026
+# Start time: 02:05:56 on Jan 16,2026
 # vlog -reportprogress 300 -sv "+incdir+../../exe_v1/dut" "+incdir+../../exe_v1/tb/include" "+incdir+../../exe_v1/tb/execute_out/sv" ../../exe_v1/tb/execute_out/sv/execute_out_pkg.sv ../../exe_v1/tb/execute_out/sv/execute_out_if.sv 
 # -- Compiling package execute_out_pkg
 # ** Note: (vlog-2286) ../../exe_v1/tb/execute_out/sv/execute_out_pkg.sv(18): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
@@ -124,158 +124,10 @@
 # 
 # Top level modules:
 # 	--none--
-# End time: 14:42:39 on Jan 15,2026, Elapsed time: 0:00:00
+# End time: 02:05:56 on Jan 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:42:39 on Jan 15,2026
-# vlog -reportprogress 300 -sv "+incdir+../../generated_joint_tb/tb/include" "+incdir+../../generated_joint_tb/tb/joint_top/sv" ../../generated_joint_tb/tb/joint_top/sv/joint_top_pkg.sv 
-# -- Compiling package joint_top_pkg
-# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
-# ** Note: (vlog-2286) ../../generated_joint_tb/tb/joint_top/sv/joint_top_pkg.sv(7): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
-# -- Importing package common
-# -- Importing package decode_in_pkg
-# -- Importing package decode_wb_pkg
-# -- Importing package decode_out_pkg
-# -- Importing package execute_out_pkg
-# ** Error: (vlog-13069) ** while parsing file included at ../../generated_joint_tb/tb/joint_top/sv/joint_top_pkg.sv(16)
-# ** at ../../generated_joint_tb/tb/include/joint_scoreboard.sv(278): near "-": syntax error, unexpected '-'.
-# End time: 14:42:39 on Jan 15,2026, Elapsed time: 0:00:00
-# Errors: 1, Warnings: 0
-# E:/questasim64_2024.1/win64/vlog failed.
-source compile_questa.do
-# ** Error (suppressible): (vdel-19) Failed to access library 'work' at "work".
-# No such file or directory. (errno = ENOENT)
-# ** Warning: (vdel-57) Library 'work' is missing or is not a valid QuestaSim library.
-# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:43:30 on Jan 15,2026
-# vlog -reportprogress 300 ../../generated_execute_tb/dut/common.sv 
-# -- Compiling package common
-# 
-# Top level modules:
-# 	--none--
-# End time: 14:43:30 on Jan 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:43:30 on Jan 15,2026
-# vlog -reportprogress 300 -sv ../../generated_execute_tb/dut/control.sv 
-# ** Warning: ../../generated_execute_tb/dut/control.sv(7): (vlog-13314) Defaulting port 'instruction' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
-# -- Compiling package control_sv_unit
-# -- Importing package common
-# -- Compiling module control
-# ** Warning: ../../generated_execute_tb/dut/control.sv(7): (vlog-13314) Defaulting port 'instruction' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
-# 
-# Top level modules:
-# 	control
-# End time: 14:43:30 on Jan 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 2
-# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:43:30 on Jan 15,2026
-# vlog -reportprogress 300 -sv ../../generated_execute_tb/dut/register_file.sv 
-# -- Compiling package register_file_sv_unit
-# -- Importing package common
-# -- Compiling module register_file
-# 
-# Top level modules:
-# 	register_file
-# End time: 14:43:30 on Jan 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:43:31 on Jan 15,2026
-# vlog -reportprogress 300 -sv ../../generated_execute_tb/dut/decode_stage.sv 
-# ** Warning: ../../generated_execute_tb/dut/decode_stage.sv(9): (vlog-13314) Defaulting port 'instruction' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
-# ** Warning: ../../generated_execute_tb/dut/decode_stage.sv(72): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# -- Compiling package decode_stage_sv_unit
-# -- Importing package common
-# -- Compiling module decode_stage
-# ** Warning: ../../generated_execute_tb/dut/decode_stage.sv(9): (vlog-13314) Defaulting port 'instruction' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
-# ** Warning: ../../generated_execute_tb/dut/decode_stage.sv(72): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
-# 
-# Top level modules:
-# 	decode_stage
-# End time: 14:43:31 on Jan 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 4
-# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:43:31 on Jan 15,2026
-# vlog -reportprogress 300 -sv ../../exe_v1/dut/alu.sv 
-# -- Compiling package alu_sv_unit
-# -- Importing package common
-# -- Compiling module alu
-# 
-# Top level modules:
-# 	alu
-# End time: 14:43:31 on Jan 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:43:31 on Jan 15,2026
-# vlog -reportprogress 300 -sv ../../exe_v1/dut/execute_stage.sv 
-# ** Warning: ../../exe_v1/dut/execute_stage.sv(11): (vlog-13314) Defaulting port 'control_in' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
-# -- Compiling package execute_stage_sv_unit
-# -- Importing package common
-# -- Compiling module execute_stage
-# ** Warning: ../../exe_v1/dut/execute_stage.sv(11): (vlog-13314) Defaulting port 'control_in' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
-# 
-# Top level modules:
-# 	execute_stage
-# End time: 14:43:31 on Jan 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 2
-# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:43:31 on Jan 15,2026
-# vlog -reportprogress 300 -sv "+incdir+../../generated_decode_tb/dut" "+incdir+../../generated_decode_tb/tb/include" "+incdir+../../generated_decode_tb/tb/decode_in/sv" ../../generated_decode_tb/tb/decode_in/sv/decode_in_pkg.sv ../../generated_decode_tb/tb/decode_in/sv/decode_in_if.sv 
-# -- Compiling package decode_in_pkg
-# ** Note: (vlog-2286) ../../generated_decode_tb/tb/decode_in/sv/decode_in_pkg.sv(18): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
-# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
-# -- Importing package common
-# -- Compiling interface decode_in_if
-# -- Importing package decode_in_pkg
-# 
-# Top level modules:
-# 	--none--
-# End time: 14:43:31 on Jan 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:43:31 on Jan 15,2026
-# vlog -reportprogress 300 -sv "+incdir+../../generated_decode_tb/dut" "+incdir+../../generated_decode_tb/tb/include" "+incdir+../../generated_decode_tb/tb/decode_wb/sv" ../../generated_decode_tb/tb/decode_wb/sv/decode_wb_pkg.sv ../../generated_decode_tb/tb/decode_wb/sv/decode_wb_if.sv 
-# -- Compiling package decode_wb_pkg
-# ** Note: (vlog-2286) ../../generated_decode_tb/tb/decode_wb/sv/decode_wb_pkg.sv(18): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
-# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
-# -- Importing package common
-# -- Compiling interface decode_wb_if
-# -- Importing package decode_wb_pkg
-# 
-# Top level modules:
-# 	--none--
-# End time: 14:43:32 on Jan 15,2026, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:43:32 on Jan 15,2026
-# vlog -reportprogress 300 -sv "+incdir+../../generated_decode_tb/dut" "+incdir+../../generated_decode_tb/tb/include" "+incdir+../../generated_decode_tb/tb/decode_out/sv" ../../generated_decode_tb/tb/decode_out/sv/decode_out_pkg.sv ../../generated_decode_tb/tb/decode_out/sv/decode_out_if.sv 
-# -- Compiling package decode_out_pkg
-# ** Note: (vlog-2286) ../../generated_decode_tb/tb/decode_out/sv/decode_out_pkg.sv(18): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
-# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
-# -- Importing package common
-# -- Compiling interface decode_out_if
-# -- Importing package decode_out_pkg
-# 
-# Top level modules:
-# 	--none--
-# End time: 14:43:32 on Jan 15,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:43:32 on Jan 15,2026
-# vlog -reportprogress 300 -sv "+incdir+../../exe_v1/dut" "+incdir+../../exe_v1/tb/include" "+incdir+../../exe_v1/tb/execute_out/sv" ../../exe_v1/tb/execute_out/sv/execute_out_pkg.sv ../../exe_v1/tb/execute_out/sv/execute_out_if.sv 
-# -- Compiling package execute_out_pkg
-# ** Note: (vlog-2286) ../../exe_v1/tb/execute_out/sv/execute_out_pkg.sv(18): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
-# -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
-# -- Importing package common
-# -- Compiling interface execute_out_if
-# -- Importing package execute_out_pkg
-# 
-# Top level modules:
-# 	--none--
-# End time: 14:43:33 on Jan 15,2026, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-# QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:43:33 on Jan 15,2026
+# Start time: 02:05:56 on Jan 16,2026
 # vlog -reportprogress 300 -sv "+incdir+../../generated_joint_tb/tb/include" "+incdir+../../generated_joint_tb/tb/joint_top/sv" ../../generated_joint_tb/tb/joint_top/sv/joint_top_pkg.sv 
 # -- Compiling package joint_top_pkg
 # -- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
@@ -288,10 +140,10 @@ source compile_questa.do
 # 
 # Top level modules:
 # 	--none--
-# End time: 14:43:33 on Jan 15,2026, Elapsed time: 0:00:00
+# End time: 02:05:57 on Jan 16,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:43:33 on Jan 15,2026
+# Start time: 02:05:57 on Jan 16,2026
 # vlog -reportprogress 300 -sv -timescale 1ns/1ps "+incdir+../../generated_joint_tb/tb/include" "+incdir+../../generated_joint_tb/tb/joint_top/sv" ../../generated_joint_tb/tb/joint_top/sv/joint_top_th.sv 
 # -- Compiling package joint_top_th_sv_unit
 # -- Importing package common
@@ -299,10 +151,10 @@ source compile_questa.do
 # 
 # Top level modules:
 # 	joint_top_th
-# End time: 14:43:33 on Jan 15,2026, Elapsed time: 0:00:00
+# End time: 02:05:57 on Jan 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 14:43:33 on Jan 15,2026
+# Start time: 02:05:57 on Jan 16,2026
 # vlog -reportprogress 300 -sv -timescale 1ns/1ps "+incdir+../../generated_joint_tb/tb/include" "+incdir+../../generated_joint_tb/tb/joint_top/sv" ../../generated_joint_tb/tb/joint_top/sv/joint_top_tb.sv 
 # ** Note: (vlog-2286) ../../generated_joint_tb/tb/joint_top/sv/joint_top_tb.sv(3): Using implicit +incdir+E:/questasim64_2024.1/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
 # -- Compiling package joint_top_tb_sv_unit
@@ -317,10 +169,10 @@ source compile_questa.do
 # 
 # Top level modules:
 # 	joint_top_tb
-# End time: 14:43:34 on Jan 15,2026, Elapsed time: 0:00:01
+# End time: 02:05:58 on Jan 16,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # vsim -voptargs="+acc" -solvefaildebug -uvmcontrol=all -classdebug work.joint_top_tb "+UVM_TESTNAME=joint_top_test" "+UVM_VERBOSITY=UVM_MEDIUM" 
-# Start time: 14:43:34 on Jan 15,2026
+# Start time: 02:05:58 on Jan 16,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
 # Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
@@ -6421,3 +6273,5 @@ source compile_questa.do
 # ** Note: $finish    : E:/questasim64_2024.1/win64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
 #    Time: 20 us  Iteration: 54  Instance: /joint_top_tb
 # Break in Task uvm_pkg/uvm_root::run_test at E:/questasim64_2024.1/win64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh line 430
+# End time: 14:33:42 on Jan 16,2026, Elapsed time: 12:27:44
+# Errors: 0, Warnings: 4

@@ -1,0 +1,10 @@
+# Master Broadcast File
+time 1760960138
+pid 8574
+log /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId1/tw/run_tw_session/log.cdpl/master.subaida.8574.log.gz
+tcp 130.235.203.130:36601
+wlog /dev/null
+wlog /dev/null
+wlog /dev/null
+wlog /dev/null
+status done

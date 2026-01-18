@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<File version="1">
+	<Delimiter character="." />
+	<State>
+		<Pair vector="1'b0" name="chk.prev_rose_12" />
+	</State>
+	<Input />
+	<Cex cycCount="11">
+		<Cycle time="0">
+			<Pair vector="1'b1" name="waiting_first" />
+		</Cycle>
+		<Cycle time="1">
+			<Pair vector="1'b1" name="waiting_first" />
+		</Cycle>
+		<Cycle time="2">
+			<Pair vector="1'b1" name="waiting_main" />
+		</Cycle>
+		<Cycle time="3">
+			<Pair vector="1'b1" name="waiting_main" />
+			<Pair vector="1'b1" name="waiting_first" />
+		</Cycle>
+		<Cycle time="4" />
+		<Cycle time="5">
+			<Pair vector="1'b1" name="waiting_main" />
+			<Pair vector="1'b1" name="waiting_first" />
+		</Cycle>
+		<Cycle time="6" />
+		<Cycle time="7">
+			<Pair vector="1'b1" name="waiting_first" />
+		</Cycle>
+		<Cycle time="8" />
+		<Cycle time="9">
+			<Pair vector="1'b1" name="waiting_first" />
+		</Cycle>
+		<Cycle time="10">
+			<Expect>
+				<Pair vector="1'b1" name="chk._SVAC_11_ended_reg_0" alias="assert_honor_waiting_first" path="chk" srcProp="1" successTrace="0" svaType="safety" />
+			</Expect>
+		</Cycle>
+	</Cex>
+</File>

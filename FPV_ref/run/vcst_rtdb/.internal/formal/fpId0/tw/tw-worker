@@ -1,0 +1,3 @@
+#!/bin/sh
+EXEDIR=/usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/linux64/ctg/bin
+$EXEDIR/tw_slave -exeDir $EXEDIR -workDir /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/tw/run_tw_session/log.tw-slave -mgHome $MG_HOME -ydLogDir /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/tw/run_tw_session/log.tw-to-yd -tipCutCone -encryptLogs -glHome $GL_HOME -traceCompression -seqaigCompression -bmcMessages -taskRusageMessages -logTimestamps -addMTLim -handshakeTimeout 7200 -skipLowerDepthMsg 3 -ftaFlowVersion 0 -taskRusageMessagesInterval 300 -watchdogInterval 10

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<DfgsimReport>
+	<v1>
+		<TriggeredProps>
+			<signal>assert_honor_waiting_first</signal>
+			<time>500</time>
+		</TriggeredProps>
+		<Signal-Groups>
+			<Group name="Most-Toggled-Inputs">
+				<signal>waiting_main</signal>
+			</Group>
+			<Group name="Most-Toggled-Registers">
+				<signal>first.timer</signal>
+				<signal>main.state_out</signal>
+				<signal>first.state_out</signal>
+			</Group>
+			<Group name="Last-Toggled-Registers">
+				<signal>main.timer</signal>
+				<signal>first.green</signal>
+			</Group>
+			<Group name="Constant-Inputs">
+				<signal>rst</signal>
+				<signal>waiting_first</signal>
+			</Group>
+		</Signal-Groups>
+	</v1>
+</DfgsimReport>

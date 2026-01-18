@@ -1,0 +1,9 @@
+@FSDB rc file Version 1.0
+[VRTL_FILE_HEADER]
+# !! DON'T EDIT [VRTL_FILE_HEADER] SESSION !!
+Version = 1
+[VRTL_FILE_SOURCE]
+FileType = stitch
+File1 = /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/trace_11.xml.replay_shifted.fsdb
+File2 = /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/formal/fpId0/reset.xml.fsdb
+File3 = /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/verdi/evaluate_result.fsdb 1

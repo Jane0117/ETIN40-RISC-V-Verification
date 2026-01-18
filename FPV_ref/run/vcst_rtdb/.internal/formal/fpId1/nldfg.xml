@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<aep_glitch_detect />
+<aep_clock_trigger_detect />
+<aep_reset_detect>
+	<aep name="AR:s_reg" alwaysActive="0">
+		<ff name="s_reg" visible="1" />
+		<ff name="main.state_out" visible="1" />
+		<ff name="main.timer" visible="1" />
+		<ff name="first.state_out" visible="1" />
+		<ff name="first.timer" visible="1" />
+	</aep>
+</aep_reset_detect>
+<aep_maxiter_comb>
+	<sccs />
+</aep_maxiter_comb>
+<aep_maxiter_seq>
+	<sccs />
+</aep_maxiter_seq>
+<false_risk_signals />
+<true_risk_signals />

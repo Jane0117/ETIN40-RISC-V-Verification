@@ -1,0 +1,21 @@
+-- DesignWare map file
+dware: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dware/lib
+gtech: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/gtech/lib
+dw01: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/dw01/lib
+dw02: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/dw02/lib
+dw03: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/dw03/lib
+dw04: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/dw04/lib
+dw05: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/dw05/lib
+dw06: /usr/local-eit/cad2/synopsys/vcf24/vc_static/V-2023.12/packages/DW/linux64/packages/dw/dw06/lib
+
+
+-- default WORK mapping
+WORK > DEFAULT
+TIMEBASE = PS
+
+DISAMBIG_CONCAT=TRUE
+
+OVERWRITE_PREDECLARATION_IN_LIB=TRUE
+
+DEFAULT : /h/d3/v/sh5704ch-s/ICP-Verification/FPV/run/vcst_rtdb/.internal/design/worklib
+
